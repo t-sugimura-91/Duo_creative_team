@@ -496,6 +496,18 @@ img{max-width:100%;}
    キャプションを外したあとの縦の余白が埋まる。 */
 body[data-domain="inshoku"] .shot__img,
 body[data-domain="biyo"]    .shot__img{aspect-ratio:2/3;}
+
+/* SPでは縦位置のまま縮小するとFVが1画面に収まらないため、
+   2:1の帯に切り出した別ファイルへ差し替える（<picture>のsourceで切替）。
+   キャッチより上に置き、開いた瞬間に業種が伝わるようにする。 */
+@media (max-width:859px){
+  body[data-domain="inshoku"] .fv__in,
+  body[data-domain="biyo"]    .fv__in{display:flex;flex-direction:column;}
+  body[data-domain="inshoku"] .shot,
+  body[data-domain="biyo"]    .shot{display:block;order:-1;margin-bottom:var(--s-5);}
+  body[data-domain="inshoku"] .shot__img,
+  body[data-domain="biyo"]    .shot__img{aspect-ratio:2/1;}
+}
 .shot__label{
   position:absolute;top:10px;left:10px;z-index:2;
   font-size:var(--fs-100);letter-spacing:.08em;color:var(--c-ink-2);

@@ -87,9 +87,12 @@
 
     <!-- ビジュアル枠：外部画像は一切読み込まず、インラインSVGの線画で構図を示す -->
     <aside class="shot" aria-label="閉店後のカウンターで締め作業をする店主の写真">
-      <img class="shot__img" src="images/01-inshoku-hero-v.webp"
+      <picture>
+        <source media="(max-width:859px)" srcset="images/01-inshoku-sp21.webp" width="800" height="400">
+        <img class="shot__img" src="images/01-inshoku-hero-v.webp"
            width="880" height="1320" loading="eager" decoding="async"
            alt="閉店後の居酒屋のカウンター。消灯した客席を背に、伝票の束と電卓を前にしてスマートフォンを見る店主。">
+      </picture>
 
     </aside>
 
