@@ -497,16 +497,18 @@ img{max-width:100%;}
 body[data-domain="inshoku"] .shot__img,
 body[data-domain="biyo"]    .shot__img{aspect-ratio:2/3;}
 
-/* SPでは縦位置のまま縮小するとFVが1画面に収まらないため、
-   2:1の帯に切り出した別ファイルへ差し替える（<picture>のsourceで切替）。
-   キャッチより上に置き、開いた瞬間に業種が伝わるようにする。 */
+/* SPでは縦位置のまま縮小するとFVが1画面に収まらないため、横長の別ファイルへ
+   差し替える（<picture>のsourceで切替）。キャッチより上に置き、開いた瞬間に
+   業種が伝わるようにする。
+   比率は3:2。2:1まで詰めると、縦位置写真から切り出した場合に画面の1/3しか
+   使えず「何の写真か分からない寄り」になったため、高さを優先した。 */
 @media (max-width:859px){
   body[data-domain="inshoku"] .fv__in,
   body[data-domain="biyo"]    .fv__in{display:flex;flex-direction:column;}
   body[data-domain="inshoku"] .shot,
   body[data-domain="biyo"]    .shot{display:block;order:-1;margin-bottom:var(--s-5);}
   body[data-domain="inshoku"] .shot__img,
-  body[data-domain="biyo"]    .shot__img{aspect-ratio:2/1;}
+  body[data-domain="biyo"]    .shot__img{aspect-ratio:3/2;}
 }
 .shot__label{
   position:absolute;top:10px;left:10px;z-index:2;
