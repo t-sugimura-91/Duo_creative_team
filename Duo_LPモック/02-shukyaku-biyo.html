@@ -1,8 +1,14 @@
 <!doctype html>
 <!--
-  NXTERA / 集客LP（理美容）— FVのみのデザインモック。
-  仮値：ロゴ、20:00〜23:00、火曜（定休日想定）。画像の読み込みはゼロ。
-  スタイルは tokens.css に集約（biyoの静かな振れ幅も同ファイル）。
+  NXTERA / 集客LP（理美容）— FV＋2セクションのデザインモック。
+  構成は 01（飲食）と同じ：FV → よくある失敗 → できること → CTA。
+
+  【仮値の注記】
+   - ロゴ「NXTERA」はテキスト仮置き。
+   - 相談時間「30分」、受付時間「8:00〜翌1:00」は仮値です。
+   - 右カラムはまだインラインSVGの線画です。飲食と同様、
+     縦位置の写真に差し替える前提（画像生成プロンプト.md の C）。
+   - 実績数値は意図的に一切掲載していません。
 -->
 <html lang="ja">
 <head>
@@ -24,7 +30,7 @@
       <span class="logo__txt">
         <span class="logo__type">NXTERA</span>
       </span>
-      <span class="logo__sub">サロンの経営支援</span>
+      <span class="logo__sub">サロンの集客支援</span>
     </a>
     <nav class="hd__nav">
       <a href="#">できること</a>
@@ -40,32 +46,41 @@
     <div>
       <h1 class="catch">クーポンで来た人は、<br><em>次も来ていますか。</em></h1>
 
-      <p class="sub">値引きで集めた客層と、指名の戻り方を分けて見ます。掲載プランの中身も、その一つとして一緒に読み解きます。まず3分の診断で現在地だけ確認してください。</p>
+      <p class="catch-sub">勘ではなく、数字から「戻ってこない理由」を見つける。</p>
 
-      <div class="komi">
-        <span class="komi__tag">込み</span>
-        <p class="komi__txt">スタイル動画2本／LINE予約・再来促進ツール3ヶ月ぶんが込み。追加費用はありません。</p>
+      <p class="sub">その原因を、掲載プランの中身・口コミ・再来率のデータから整理して、次にやるべきことを一緒に考えます。</p>
+
+      <div class="komi komi--strong">
+        <div class="komi__body">
+          <p class="komi__lead"><span class="komi__lead-s">当サイト限定</span><span class="komi__lead-b">特典</span></p>
+          <ul class="komi__list">
+            <li><span class="komi__item">スタイル動画制作</span><span class="komi__q">2本無料</span></li>
+            <li><span class="komi__item">再来促進ツール利用</span><span class="komi__q">3か月無料</span></li>
+          </ul>
+        </div>
       </div>
 
       <div class="ctas">
-        <a class="btn btn--main" href="05-shindan-yoyaku.html">3分診断をはじめる
-          <span class="btn__note">5問・その場で結果</span>
+        <a class="btn btn--main" href="05-shindan-yoyaku.html#yoyaku">相談スケジュールを選ぶ
+          <span class="btn__note">オンライン30分</span>
         </a>
-        <a class="btn btn--sub" href="05-shindan-yoyaku.html#yoyaku">営業後20〜23時・火曜の相談枠を見る</a>
+        <a class="btn btn--sub" href="#">LINEで情報を得る</a>
       </div>
+
+      <p class="ctanote">受付：8:00〜翌1:00<br>全国オンライン・1回30分。カメラはオフでも構いません。その場でのご契約は不要です。</p>
 
       <div class="trust">
         <ul>
-          <li>商談は営業後20:00〜23:00と定休日の枠から、ご自身で選べます</li>
-          <li>診断は3分・5問。その場で結果が出ます</li>
+          <li>日時は空いている枠から、ご自身で選べます。電話を待つ必要はありません</li>
+          <li>施策ごとに業者を分けません。掲載も口コミもSNSも同じ担当が見ます</li>
           <li>全国オンライン完結。サロンを閉めてからで間に合います</li>
         </ul>
       </div>
+
+      <p class="more">このあと：よくある失敗と、その理由／できること</p>
     </div>
 
     <aside class="shot" aria-label="閉店後のセット面のイラスト">
-      <span class="shot__label">ILLUSTRATION</span>
-
       <svg class="shot__fig" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img"
            aria-label="サロンのセット面。大きな鏡に後ろ姿が映り、鏡の上にライトバー。カウンターにボトルとコーム、はさみ。右にスタイリングチェア。">
         <rect class="il-bg" width="400" height="300"/>
@@ -103,18 +118,86 @@
         <path class="il-s il-s--thin" d="M0 288h400"/>
       </svg>
 
-      <div class="shot__cap">
-        <p class="shot__d">撮影：閉店後のセット面。垂直を出し、人物は後ろ姿で小さく。</p>
-      </div>
     </aside>
 
   </div>
 </main>
 
+<section class="sec" id="shippai">
+  <div class="wrap">
+    <p class="eyebrow">よくある失敗</p>
+    <h2 class="sec__h">「やったのに、変わらなかった」には<br><em>理由があります。</em></h2>
+
+    <ul class="fails">
+      <li class="fail">
+        <p class="fail__q">掲載プランを上げて、新規は増えた。<br>でも2回目に来てくれる人は、増えなかった。</p>
+        <p class="fail__a"><span class="fail__mark">なぜ</span>クーポンで来た人は、次もクーポンのある店を探すからです。掲載を強くするほど、価格でサロンを選ぶ人の割合が増えます。</p>
+      </li>
+      <li class="fail">
+        <p class="fail__q">Instagramにスタイル写真を出し続けた。<br>フォロワーは増えたが、予約は増えなかった。</p>
+        <p class="fail__a"><span class="fail__mark">なぜ</span>見ているのが同業とサロン好きで、通える距離の人ではなかったからです。届く相手を決めないまま出し続けても、予約には変わりません。</p>
+      </li>
+      <li class="fail">
+        <p class="fail__q">次回予約の声かけをスタッフに任せた。<br>人によってばらつき、そのうち誰もやらなくなった。</p>
+        <p class="fail__a"><span class="fail__mark">なぜ</span>やり方が個人の裁量のままだからです。忙しい日から先に崩れ、一度崩れると戻りません。</p>
+      </li>
+      <li class="fail">
+        <p class="fail__q">クーポンの割引を小さくしたら、客足が落ちた。<br>戻そうとしたら、元の単価に戻せなくなっていた。</p>
+        <p class="fail__a"><span class="fail__mark">なぜ</span>値引きで集めた客層にとっては、値引きが来店の条件だからです。同じ客層のまま単価だけを戻すことはできません。</p>
+      </li>
+    </ul>
+
+    <p class="sec__close">どれも、<b>施策を単体で見ていると気づけません。</b><br>
+    NXTERAは、掲載・投稿・口コミを別々の仕事にせず、予約と再来までつなげて見ます。</p>
+
+  </div>
+</section>
+
+<section class="sec sec--alt" id="shien">
+  <div class="wrap">
+    <p class="eyebrow">できること</p>
+    <h2 class="sec__h">新規を集めて終わりにしない。<br><em>指名と再来まで、ひと続きで見ます。</em></h2>
+
+    <ul class="shien">
+      <li class="card">
+        <h3 class="card__h">クーポン以外の入口を増やす</h3>
+        <p class="card__d">掲載は残したまま、Googleマップ・口コミ・紹介からの流入を育てます。価格以外の理由で選ばれる入口が増えるほど、掲載への依存が下がります。</p>
+        <p class="card__to">「新規は増えたのに、2回目が増えない」に効きます</p>
+      </li>
+      <li class="card">
+        <h3 class="card__h">Instagramを「通える人に届く」設定に変える</h3>
+        <p class="card__d">投稿の内容と位置情報、プロフィールからの導線を見直して、通える距離の人に届くようにします。予約までのタップ数も減らします。</p>
+        <p class="card__to">「フォロワーは増えたのに、予約が増えない」に効きます</p>
+      </li>
+      <li class="card">
+        <h3 class="card__h">次回予約を、個人技から仕組みに変える</h3>
+        <p class="card__d">お会計のときの声かけを裁量に任せず、誰がやっても同じ流れになる形にします。特典の再来促進ツールは、ここで使うものです。</p>
+        <p class="card__to">「声かけが人によってばらついた」に効きます</p>
+      </li>
+      <li class="card">
+        <h3 class="card__h">「1人呼ぶのに、いくらかかっているか」を出す</h3>
+        <p class="card__d">掲載費にクーポンの値引き分を足して、お客様1人あたりの集客コストを出します。単価を戻す手順も、いつからどれだけ動かすかも、その数字をもとに決めます。</p>
+        <p class="card__to">「元の単価に戻せなくなった」に効きます</p>
+      </li>
+    </ul>
+
+    <p class="sec__close">どれも、<b>やりっぱなしにしないための仕組み</b>です。<br>
+    毎月いっしょに数字を見ながら、次の一手を決めていきます。</p>
+
+    <div class="ctas ctas--center">
+      <a class="btn btn--main" href="05-shindan-yoyaku.html#yoyaku">相談スケジュールを選ぶ
+        <span class="btn__note">オンライン30分</span>
+      </a>
+      <a class="btn btn--sub" href="#">LINEで情報を得る</a>
+    </div>
+    <p class="ctanote ctanote--center">受付：8:00〜翌1:00　全国オンライン・1回30分。カメラはオフでも構いません。その場でのご契約は不要です。</p>
+  </div>
+</section>
+
 <nav class="bar" aria-label="主要アクション">
-  <a class="bar__s" href="#">LINEで<br>聞く</a>
-  <a class="bar__p" href="05-shindan-yoyaku.html">3分診断<small>5問・無料</small></a>
-  <a class="bar__s" href="05-shindan-yoyaku.html#yoyaku">夜・火曜<br>の枠</a>
+  <a class="bar__s" href="#">LINEで<br>情報</a>
+  <a class="bar__p" href="05-shindan-yoyaku.html#yoyaku">日程を選ぶ<small>8:00〜翌1:00</small></a>
+  <a class="bar__s" href="#shippai">よくある<br>失敗</a>
 </nav>
 
 </body>

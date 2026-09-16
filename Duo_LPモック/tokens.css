@@ -588,7 +588,7 @@ body[data-domain="biyo"] .trust{padding-top:var(--s-6);}
 body[data-domain="biyo"] .il-s{stroke-width:1.25;stroke-opacity:.62;}
 body[data-domain="biyo"] .il-s--thin{stroke-width:.9;stroke-opacity:.38;}
 @media (min-width:860px){
-  body[data-domain="biyo"] .fv__in{grid-template-columns:minmax(0,1fr) 440px;gap:var(--s-16);}
+  body[data-domain="biyo"] .fv__in{grid-template-columns:minmax(0,1fr) 440px;gap:var(--s-16);align-items:center;}
 }
 /* 飲食：右カラムは写真1枚のみ（キャプションを外した）。
    縦に切ると奥の客席が切れて「閉店後」が伝わらなくなるため、比率は3:2のまま。
@@ -615,14 +615,8 @@ body[data-domain="inshoku"] .catch{font-size:min(6.6vw, 25px);}
 @media (min-width:1120px){
   body[data-domain="biyo"] .fv__in{grid-template-columns:minmax(0,1fr) 520px;}
 }
-/* SPでも絵を見せる（この業種だけ）。横長の帯で、FV高さは1.2画面以内に収める。 */
-@media (max-width:859px){
-  body[data-domain="biyo"] .fv__in{display:flex;flex-direction:column;}
-  body[data-domain="biyo"] .shot{display:flex;order:-1;margin-bottom:var(--s-5);}
-  body[data-domain="biyo"] .shot__fig{height:104px;}
-  body[data-domain="biyo"] .shot__cap{display:none;}
-  body[data-domain="biyo"] .shot__label{top:8px;left:8px;}
-}
+/* ビジュアルは01と同じくPCのみ表示。縦位置の写真に差し替える前提のため、
+   SPで横帯に切り抜く旧仕様（高さ104px）は廃止した。 */
 
 /* ============================================================
    SP固定CTAバー（3ラベル・44px以上）
