@@ -1,5 +1,5 @@
 /* ============================================================
-   Duo / デザイントークン + 共通コンポーネント
+   ミセモト（MISEMOTO）/ デザイントークン + 共通コンポーネント
    これは「ファーストビューのみ」のデザインモック用スタイルです。
    数値・金額・時間はすべて仮値。実績数値は一切含みません。
 
@@ -142,24 +142,36 @@ img{max-width:100%;}
   backdrop-filter:saturate(1.1) blur(6px);
 }
 .hd__in{display:flex;align-items:center;gap:var(--s-4);min-height:58px;}
+/* ロゴ「ミセモト」＝店の元（足元）から見直す。
+   マーク＝軒（店）と、その下に引かれた一本の地面線（＝足元）。
+   カタカナ4文字は字面が詰まって見えるため、字間を広め(.14em)に取り、
+   サイズは20px→18pxに落として、ラテン表記を下に添えて重心を作る。 */
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.logo__mark{
-  width:26px;height:26px;position:relative;flex:none;
+.logo__mark{width:26px;height:26px;position:relative;flex:none;}
+.logo__mark::before{           /* 軒（店） */
+  content:"";position:absolute;left:2px;top:3px;width:22px;height:15px;
+  border:2px solid var(--c-brand);border-bottom:none;border-radius:3px 3px 0 0;
 }
-.logo__mark::before,.logo__mark::after{
-  content:"";position:absolute;top:3px;width:14px;height:20px;
-  border:2px solid var(--c-brand);border-radius:2px 8px 2px 8px;
+.logo__mark::after{            /* 足元の線 */
+  content:"";position:absolute;left:0;bottom:3px;width:26px;height:3px;
+  background:var(--c-accent);border-radius:1px;
 }
-.logo__mark::before{left:0;}
-.logo__mark::after{right:0;border-color:var(--c-accent);opacity:.85;}
+.logo__txt{display:flex;flex-direction:column;gap:1px;}
 .logo__type{
-  font-family:var(--f-head);font-weight:700;font-size:var(--fs-600);
-  letter-spacing:.06em;color:var(--c-brand);line-height:1;
+  font-family:var(--f-head);font-weight:700;font-size:18px;
+  letter-spacing:.14em;color:var(--c-brand);line-height:1.1;
+}
+.logo__latin{
+  font-family:var(--f-head);font-weight:500;font-size:9px;
+  letter-spacing:.24em;color:var(--c-ink-3);line-height:1;
 }
 .logo__sub{
   font-size:var(--fs-200);color:var(--c-ink-3);letter-spacing:.04em;
   padding-left:var(--s-3);margin-left:var(--s-1);
   border-left:1px solid var(--c-line);
+}
+@media (max-width:420px){
+  .logo__sub{display:none;}   /* 375pxではサービス名を優先 */
 }
 .hd__nav{margin-left:auto;display:none;gap:var(--s-6);align-items:center;}
 @media (min-width:860px){ .hd__nav{display:flex;} }
@@ -281,25 +293,47 @@ img{max-width:100%;}
   transform:rotate(-45deg);
 }
 
-/* ---------- 写真スロット（撮影指示つき） ---------- */
+/* ---------- ビジュアル枠（イラスト＋撮影指示） ----------
+   写真は使えないため、構図と被写体が伝わる線画をインラインSVGで置く。
+   本番では同じ構図の写真に差し替える前提。指示は枠の下に残す。 */
 .shot{
-  position:relative;border:1px dashed var(--c-line-strong);border-radius:var(--r-2);
-  background:
-    linear-gradient(135deg, color-mix(in srgb,var(--c-accent) 14%, var(--c-bg-sunk)) 0%, var(--c-bg-sunk) 58%),
-    var(--c-bg-sunk);
-  padding:var(--s-5);min-height:300px;display:none;
-  flex-direction:column;justify-content:flex-end;gap:var(--s-3);
+  position:relative;border:1px solid var(--c-line);border-radius:var(--r-2);
+  background:var(--c-surface);overflow:hidden;display:none;
+  flex-direction:column;box-shadow:var(--sh-1);
 }
 @media (min-width:860px){ .shot{display:flex;} }
+.shot__fig{display:block;width:100%;height:auto;background:var(--c-bg-sunk);}
 .shot__label{
-  position:absolute;top:10px;left:10px;
+  position:absolute;top:10px;left:10px;z-index:2;
   font-size:var(--fs-100);letter-spacing:.08em;color:var(--c-ink-2);
   background:var(--c-surface);border:1px solid var(--c-line);
   padding:2px 8px;border-radius:var(--r-1);
 }
+.shot__cap{padding:var(--s-4) var(--s-5) var(--s-5);border-top:1px solid var(--c-line);}
 .shot__t{font-family:var(--f-head);font-weight:700;font-size:var(--fs-300);color:var(--c-ink);}
-.shot__d{font-size:var(--fs-200);line-height:1.7;color:var(--c-ink-2);}
+.shot__d{font-size:var(--fs-200);line-height:1.7;color:var(--c-ink-2);margin-top:var(--s-2);}
 .shot__d b{font-weight:700;color:var(--c-ink);}
+
+/* ---------- イラスト共通クラス（色はトークンから取る） ----------
+   ※ SVGのプレゼンテーション属性では var() が効かないため、
+     必ずクラスで塗り・線を指定する。 */
+.il-bg{fill:var(--c-bg-sunk);}
+.il-s{                                   /* 線画の基本ストローク */
+  fill:none;stroke:var(--c-ink);stroke-opacity:.82;stroke-width:1.7;
+  stroke-linejoin:round;stroke-linecap:round;
+}
+.il-s--thin{stroke-width:1.1;stroke-opacity:.5;}
+.il-pa{fill:#FFFFFF;}                    /* 紙・白面（.il-s の後に定義） */
+.il-acc{fill:var(--c-accent);}
+.il-accd{fill:var(--c-accent-deep);}
+.il-accs{fill:var(--c-accent-soft);}
+.il-ink06{fill:var(--c-ink);fill-opacity:.06;}
+.il-ink12{fill:var(--c-ink);fill-opacity:.12;}
+.il-ink20{fill:var(--c-ink);fill-opacity:.20;}
+.il-glow{fill:var(--c-accent);fill-opacity:.12;}
+.il-glow2{fill:var(--c-accent);fill-opacity:.24;}
+.il-vline{stroke:var(--c-ink);stroke-opacity:.08;stroke-width:1;}
+.il-txt{fill:var(--c-ink-3);font-family:var(--f-body);font-size:9px;letter-spacing:.06em;}
 /* SP用：1行の撮影メモ */
 .shotnote{
   margin-top:var(--s-5);font-size:var(--fs-100);color:var(--c-ink-3);

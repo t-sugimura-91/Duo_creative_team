@@ -1,13 +1,14 @@
 <!doctype html>
 <!--
   ============================================================
-  Duo / 集客LP（飲食）— ファーストビューのみのデザインモックです。
+  ミセモト / 集客LP（飲食）— ファーストビューのみのデザインモックです。
   ページ全体ではなく、1画面目の見え方を確認するためのファイルです。
 
   【仮値の注記】
-   - ロゴ「Duo」はテキスト仮置き。ロゴマークはCSS図形の仮組みです。
+   - ロゴ「ミセモト（MISEMOTO）」はテキスト仮置き。マークはCSS図形の仮組みです。
    - 相談時間「45分」、受付時間「20:00〜23:00」は仮値です。
-   - 写真は使用していません。PCでは写真が入る領域に撮影指示を記載。
+   - 写真は使用していません（外部画像の読み込みなし）。PC右カラムは
+     構図を示すためのインラインSVGの線画で、本番は同構図の写真に差し替え前提。
    - 実績数値（導入店舗数・削減率等）は意図的に一切掲載していません。
   ============================================================
 -->
@@ -15,7 +16,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Duo｜集客LP（飲食）FVモック</title>
+<title>ミセモト｜集客LP（飲食）FVモック</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
@@ -27,8 +28,11 @@
 
 <header class="hd">
   <div class="wrap hd__in">
-    <a class="logo" href="#"><span class="logo__mark"></span>
-      <span class="logo__type">Duo</span>
+    <a class="logo" href="#"><span class="logo__mark" aria-hidden="true"></span>
+      <span class="logo__txt">
+        <span class="logo__type">ミセモト</span>
+        <span class="logo__latin">MISEMOTO</span>
+      </span>
       <span class="logo__sub">飲食店の経営支援</span>
     </a>
     <nav class="hd__nav">
@@ -76,15 +80,83 @@
       <p class="more">このあと：診断でわかること／料金の内訳／進め方</p>
     </div>
 
-    <!-- 写真が入る領域（ダミー画像は読み込まない） -->
-    <aside class="shot" aria-label="写真が入る領域と撮影指示">
-      <span class="shot__label">PHOTO AREA ／ 写真が入る領域</span>
-      <p class="shot__t">被写体：営業後の店内でスマホを見るオーナー</p>
-      <p class="shot__d">
-        <b>構図</b>：カウンター席に一人。手前に締め作業中の伝票とレジ、奥に消灯した客席。人物は胸から上を画面右に寄せ、左に文字スペースを空ける。<br>
-        <b>光</b>：暖色の残照＋スマホの明かり。強い影を作らない。<br>
-        <b>避ける</b>：作り込んだ笑顔、真正面、料理の寄り（食べ物の写真は下部セクションで使用）。
-      </p>
+    <!-- ビジュアル枠：外部画像は一切読み込まず、インラインSVGの線画で構図を示す -->
+    <aside class="shot" aria-label="閉店後のカウンターのイラストと撮影指示">
+      <span class="shot__label">ILLUSTRATION ／ 写真差し替え前提</span>
+
+      <svg class="shot__fig" viewBox="0 0 400 300" role="img"
+           aria-label="閉店後のカウンター。手元に伝票とスマホと電卓、奥にペンダントライトとボトル、壁の時計は22時すぎを指している。">
+        <rect class="il-bg" width="400" height="300"/>
+
+        <!-- 奥：壁の縦ライン -->
+        <g class="il-vline"><path d="M60 0V206"/><path d="M150 0V206"/><path d="M244 0V206"/><path d="M334 0V206"/></g>
+
+        <!-- 奥：ペンダントライトの灯り -->
+        <circle class="il-glow" cx="296" cy="88" r="88"/>
+        <ellipse class="il-glow2" cx="296" cy="100" rx="42" ry="13"/>
+        <path class="il-s" d="M296 0V44"/>
+        <path class="il-s il-accd" d="M268 76 296 44 324 76Z"/>
+
+        <!-- 壁の時計（22時すぎ＝営業後） -->
+        <circle class="il-s il-pa" cx="66" cy="66" r="25"/>
+        <path class="il-s" d="M66 66V50M66 66 53 61"/>
+        <circle class="il-acc" cx="66" cy="66" r="2.6"/>
+
+        <!-- 奥：棚とボトル -->
+        <path class="il-s il-s--thin" d="M192 142H400"/>
+        <rect class="il-s il-ink12" x="206" y="102" width="18" height="40" rx="2"/>
+        <rect class="il-s il-ink12" x="212" y="92" width="6" height="12" rx="1"/>
+        <rect class="il-s il-accs" x="234" y="110" width="16" height="32" rx="2"/>
+        <rect class="il-s il-accs" x="239" y="101" width="6" height="11" rx="1"/>
+        <rect class="il-s il-ink12" x="260" y="98" width="20" height="44" rx="2"/>
+        <rect class="il-s il-ink12" x="267" y="88" width="6" height="12" rx="1"/>
+
+        <!-- カウンター天板と前板 -->
+        <rect class="il-accd" x="0" y="206" width="400" height="12"/>
+        <rect class="il-ink06" x="0" y="218" width="400" height="82"/>
+        <path class="il-s il-s--thin" d="M120 218V300M280 218V300"/>
+
+        <!-- 手元：伝票の束 -->
+        <g transform="rotate(6 96 176)">
+          <rect class="il-s il-ink06" x="58" y="148" width="80" height="58" rx="2"/>
+        </g>
+        <g transform="rotate(-5 90 172)">
+          <rect class="il-s il-pa" x="44" y="136" width="86" height="70" rx="2"/>
+          <path class="il-s il-s--thin" d="M56 154h62M56 168h62M56 182h44"/>
+          <rect class="il-acc" x="56" y="192" width="34" height="6" rx="1"/>
+        </g>
+
+        <!-- 手元：スマホ -->
+        <g transform="rotate(-3 169 173)">
+          <rect class="il-s il-pa" x="146" y="140" width="46" height="66" rx="6"/>
+          <rect class="il-accs" x="151" y="148" width="36" height="50"/>
+          <rect class="il-acc" x="155" y="153" width="20" height="5" rx="2"/>
+          <path class="il-s il-s--thin" d="M155 168h28M155 178h22"/>
+        </g>
+
+        <!-- 手元：グラス -->
+        <path class="il-glow2" d="M213.4 176h27.2l-2.4 30h-22.4z"/>
+        <path class="il-s" d="M212 158h30l-4 48h-22z"/>
+
+        <!-- 手元：電卓 -->
+        <rect class="il-s il-pa" x="296" y="170" width="70" height="36" rx="3"/>
+        <rect class="il-ink12" x="302" y="176" width="58" height="10"/>
+        <g class="il-ink20">
+          <rect x="302" y="192" width="11" height="8" rx="1"/>
+          <rect x="317" y="192" width="11" height="8" rx="1"/>
+          <rect x="332" y="192" width="11" height="8" rx="1"/>
+          <rect class="il-acc" x="347" y="192" width="13" height="8" rx="1"/>
+        </g>
+      </svg>
+
+      <div class="shot__cap">
+        <p class="shot__t">撮影指示：営業後の店内でスマホを見るオーナー</p>
+        <p class="shot__d">
+          <b>構図</b>：カウンター席に一人。手前に締め作業中の伝票とレジ、奥に消灯した客席。人物は胸から上を画面右に寄せ、左に文字スペースを空ける。<br>
+          <b>光</b>：暖色の残照＋スマホの明かり。強い影を作らない。<br>
+          <b>避ける</b>：作り込んだ笑顔、真正面、料理の寄り（食べ物の写真は下部セクションで使用）。
+        </p>
+      </div>
     </aside>
 
   </div>

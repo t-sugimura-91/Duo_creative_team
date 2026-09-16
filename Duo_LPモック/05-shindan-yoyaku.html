@@ -1,12 +1,12 @@
 <!doctype html>
 <!--
   ============================================================
-  Duo / 診断・予約画面 — デザインモックです（3画面を縦に並べた1ファイル）。
+  ミセモト / 診断・予約画面 — デザインモックです（3画面を縦に並べた1ファイル）。
   5-1 診断 開始画面 ／ 5-2 診断 結果画面 ／ 5-3 予約カレンダー画面
   実装ではそれぞれ別画面になります。ここでは見え方の確認のみ。
 
   【仮値の注記】
-   - ロゴ「Duo」はテキスト仮置き。
+   - ロゴ「ミセモト（MISEMOTO）」はテキスト仮置き。
    - 相談時間「45分」、受付「20:00〜23:00」、カレンダーの日付・空き状況は仮値。
    - 結果画面のレンジ金額（例：月 3.2万〜7.8万円）はすべてダミーです。
      必ずレンジ表示とし、単一の金額・単一の%は表示しません。
@@ -17,7 +17,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Duo｜診断・予約画面 モック</title>
+<title>ミセモト｜診断・予約画面 モック</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
@@ -92,13 +92,17 @@
   .balance{margin-top:var(--s-6);padding:var(--s-5);background:var(--c-bg-sunk);
            border:1px solid var(--c-line);border-radius:var(--r-2);}
   .balance__t{font-family:var(--f-head);font-weight:700;font-size:var(--fs-300);margin-bottom:var(--s-4);}
-  .bal{display:flex;height:34px;border-radius:2px;overflow:hidden;border:1px solid var(--c-line-strong);}
-  .bal i{display:block;font-style:normal;}
-  .bal__a{background:#C1440E;}
-  .bal__b{background:#9A6410;}
-  .bal__c{background:#2F5D8C;}
-  .bal__legend{display:flex;gap:var(--s-4);flex-wrap:wrap;margin-top:var(--s-3);font-size:var(--fs-200);color:var(--c-ink-2);}
-  .bal__legend i{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px;}
+  /* 3領域のバランス図：帯の長さ＝比重。比重の大きい順に番号を振り、
+     「どこから手をつけるか」が一目で分かるようにする。 */
+  .balfig{display:block;width:100%;height:auto;}
+  .bf-a{fill:#C1440E;} .bf-b{fill:#9A6410;} .bf-c{fill:#2F5D8C;}
+  .bf-lbl{fill:#fff;font-family:var(--f-head);font-weight:700;font-size:14px;}
+  .bf-num{fill:#fff;font-family:var(--f-head);font-weight:700;font-size:12px;}
+  .bf-ring{fill:#fff;fill-opacity:.26;}
+  .bf-div{stroke:#fff;stroke-width:2;}
+  .bf-axis{stroke:var(--c-line-strong);stroke-width:1;}
+  .bf-cap{fill:var(--c-ink-3);font-family:var(--f-body);font-size:11px;}
+  .bal__note{margin-top:var(--s-3);font-size:var(--fs-200);color:var(--c-ink-2);line-height:1.7;}
   .caution{
     margin-top:var(--s-5);padding:var(--s-4);background:var(--c-surface);
     border:1px solid var(--c-line);border-left:3px solid var(--c-warn);border-radius:var(--r-1);
@@ -159,8 +163,11 @@
 
 <header class="hd">
   <div class="wrap hd__in">
-    <a class="logo" href="#"><span class="logo__mark"></span>
-      <span class="logo__type">Duo</span>
+    <a class="logo" href="#"><span class="logo__mark" aria-hidden="true"></span>
+      <span class="logo__txt">
+        <span class="logo__type">ミセモト</span>
+        <span class="logo__latin">MISEMOTO</span>
+      </span>
       <span class="logo__sub">3分診断・相談予約</span>
     </a>
     <nav class="hd__nav">
@@ -256,16 +263,42 @@
 
       <div class="balance">
         <p class="balance__t">3領域のバランス（どこに比重があるか）</p>
-        <div class="bal" role="img" aria-label="集客が最も大きく、次に固定費、資金繰りの順のバランス図（ダミー）">
-          <i class="bal__a" style="width:48%"></i>
-          <i class="bal__b" style="width:33%"></i>
-          <i class="bal__c" style="width:19%"></i>
-        </div>
-        <div class="bal__legend">
-          <span><i class="bal__a"></i>集客</span>
-          <span><i class="bal__b"></i>固定費</span>
-          <span><i class="bal__c"></i>資金繰り</span>
-        </div>
+
+        <svg class="balfig" viewBox="0 0 600 96" role="img"
+             aria-label="比重の大きい順に、1が集客、2が固定費、3が資金繰り。帯の長さで比重を示したダミーの図。">
+          <!-- 目盛 -->
+          <path class="bf-axis" d="M20 26V14M300 26V14M580 26V14M20 20h560"/>
+          <text class="bf-cap" x="20" y="10">比重 大</text>
+          <text class="bf-cap" x="580" y="10" text-anchor="end">小</text>
+
+          <!-- 帯 -->
+          <rect class="bf-a" x="20"    y="30" width="268.8" height="48" rx="2"/>
+          <rect class="bf-b" x="288.8" y="30" width="184.8" height="48"/>
+          <rect class="bf-c" x="473.6" y="30" width="106.4" height="48" rx="2"/>
+          <path class="bf-div" d="M288.8 30v48M473.6 30v48"/>
+
+          <!-- 順位 -->
+          <circle class="bf-ring" cx="42"  cy="54" r="11"/>
+          <circle class="bf-ring" cx="311" cy="54" r="11"/>
+          <circle class="bf-ring" cx="496" cy="54" r="11"/>
+          <g class="bf-num" text-anchor="middle">
+            <text x="42" y="58">1</text><text x="311" y="58">2</text><text x="496" y="58">3</text>
+          </g>
+
+          <!-- 領域名 -->
+          <g class="bf-lbl" text-anchor="middle">
+            <text x="176" y="59">集客</text>
+            <text x="400" y="59">固定費</text>
+            <text x="542" y="59">資金繰り</text>
+          </g>
+
+          <!-- 下段：レンジの位置関係を同じ軸で -->
+          <g class="bf-cap">
+            <text x="20" y="92">帯の長さは3領域の比重を表します（順番は、比重の大きい順）</text>
+          </g>
+        </svg>
+
+        <p class="bal__note">この図の比率はダミーです。実際の比重は、請求書と入出金の予定を見ながら確認します。</p>
       </div>
 
       <div class="ctas">

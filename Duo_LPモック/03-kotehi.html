@@ -1,15 +1,15 @@
 <!doctype html>
 <!--
   ============================================================
-  Duo / 固定費LP — ファーストビューのみのデザインモックです。
+  ミセモト / 固定費LP — ファーストビューのみのデザインモックです。
   1画面目の見え方を確認するためのファイルで、ページ全体ではありません。
 
   【仮値の注記】
-   - ロゴ「Duo」はテキスト仮置き。
+   - ロゴ「ミセモト（MISEMOTO）」はテキスト仮置き。
    - 「着手金0円／初月フィー無料」の適用条件は未確定の仮値。
      条件が付く場合は、この帯に条件を併記する必要があります。
-   - 右カラムのトーク画面はCSSで描いたUIモックです（画像は未使用）。
-     サムネイル部分は「オーナーが撮った請求書の写真」が入る領域です。
+   - 右カラムのトーク画面はCSS、請求書サムネイルはインラインSVGです
+     （外部画像の読み込みは一切なし）。本番では実際の請求書写真が入ります。
    - 実績数値（削減率・削減額等）は一切掲載していません。
   ============================================================
 -->
@@ -17,7 +17,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Duo｜固定費LP FVモック</title>
+<title>ミセモト｜固定費LP FVモック</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
@@ -46,18 +46,18 @@
     background:var(--c-accent-soft);border-color:color-mix(in srgb,var(--c-accent) 32%, transparent);
     border-radius:10px 2px 10px 10px;
   }
-  /* 請求書サムネ：写真が入る領域。CSSの横罫で「書類」であることだけ示す */
+  /* 請求書サムネ：送られてきた写真として、トーク内に実物大で見せる。
+     中身はインラインSVGで簡易に描画（外部画像は読み込まない）。 */
   .invoice{
-    width:150px;height:104px;border:1px solid var(--c-line-strong);
-    background:
-      linear-gradient(180deg,#fff 0 22px, transparent 22px),
-      repeating-linear-gradient(180deg, transparent 0 9px, var(--c-line) 9px 10px),
-      #fff;
-    border-radius:var(--r-1);position:relative;overflow:hidden;
+    display:block;width:168px;height:auto;border:1px solid var(--c-line-strong);
+    border-radius:var(--r-1);background:#fff;box-shadow:var(--sh-2);
+    transform:rotate(-1.2deg);   /* 手で撮った1枚に見せるための微傾き */
   }
-  .invoice::after{
-    content:"請求書の写真";position:absolute;left:6px;top:4px;
-    font-size:10px;color:var(--c-ink-3);letter-spacing:.04em;
+  .iv-t{fill:var(--c-ink);font-family:var(--f-head);font-size:11px;font-weight:700;letter-spacing:.08em;}
+  .iv-s{fill:var(--c-ink-3);font-family:var(--f-body);font-size:7.5px;letter-spacing:.04em;}
+  .iv-k{fill:var(--c-ink);font-family:var(--f-head);font-size:8.5px;font-weight:700;}
+  .invoice__stamp{
+    display:block;font-size:10px;color:var(--c-ink-3);text-align:right;margin-top:4px;
   }
   .talk__time{font-size:10px;color:var(--c-ink-3);align-self:flex-end;margin:0 6px 2px;}
   .talk__foot{
@@ -72,8 +72,11 @@
 
 <header class="hd">
   <div class="wrap hd__in">
-    <a class="logo" href="#"><span class="logo__mark"></span>
-      <span class="logo__type">Duo</span>
+    <a class="logo" href="#"><span class="logo__mark" aria-hidden="true"></span>
+      <span class="logo__txt">
+        <span class="logo__type">ミセモト</span>
+        <span class="logo__latin">MISEMOTO</span>
+      </span>
       <span class="logo__sub">固定費の見直し支援</span>
     </a>
     <nav class="hd__nav">
@@ -131,14 +134,36 @@
 
       <div class="talk__row talk__row--me">
         <span class="talk__time">23:41</span>
-        <div class="invoice" role="img" aria-label="ここにオーナーが撮影した請求書の写真が入ります"></div>
+        <div>
+          <svg class="invoice" viewBox="0 0 168 112" role="img"
+               aria-label="オーナーが撮影して送った請求書の写真（内訳3行と合計欄が見えている）">
+            <rect class="il-s il-pa" x="2" y="2" width="164" height="108" rx="2"/>
+            <text class="iv-t" x="12" y="20">請 求 書</text>
+            <rect class="il-ink12" x="104" y="9" width="52" height="6" rx="1"/>
+            <rect class="il-ink12" x="118" y="19" width="38" height="6" rx="1"/>
+            <path class="il-s il-s--thin" d="M12 29h144"/>
+            <rect class="il-accs" x="12" y="34" width="144" height="12" rx="1"/>
+            <text class="iv-s" x="17" y="43">内訳</text>
+            <text class="iv-s" x="126" y="43">金額</text>
+            <g class="il-ink12">
+              <rect x="17" y="52" width="58" height="6" rx="1"/><rect x="112" y="52" width="42" height="6" rx="1"/>
+              <rect x="17" y="64" width="44" height="6" rx="1"/><rect x="118" y="64" width="36" height="6" rx="1"/>
+              <rect x="17" y="76" width="52" height="6" rx="1"/><rect x="122" y="76" width="32" height="6" rx="1"/>
+            </g>
+            <path class="il-s il-s--thin" d="M12 86h144"/>
+            <rect class="il-accs" x="12" y="90" width="144" height="16" rx="1"/>
+            <text class="iv-k" x="18" y="101">合計</text>
+            <rect class="il-acc" x="106" y="94" width="48" height="8" rx="1"/>
+          </svg>
+          <span class="invoice__stamp">写真1枚・そのまま送信</span>
+        </div>
       </div>
 
       <div class="talk__row">
         <p class="talk__bubble">受け取りました。契約期間と単価の欄を確認します。返信は翌営業日中です。<br>不足があれば、こちらから必要な箇所だけお伝えします。</p>
       </div>
 
-      <p class="talk__foot">※ トーク画面・時刻・文面はすべてモック上の仮の表示です。<br>※ サムネイルは写真が入る領域を示したもので、実画像は使用していません。</p>
+      <p class="talk__foot">※ トーク画面・時刻・文面はすべてモック上の仮の表示です。<br>※ 請求書サムネイルはSVGで簡易に描いたもので、写真・実データは使用していません。</p>
     </aside>
 
   </div>
