@@ -1,16 +1,8 @@
 <!doctype html>
 <!--
-  ============================================================
-  ミセモト / 集客LP（理美容）— ファーストビューのみのデザインモックです。
-  1画面目の見え方を確認するためのファイルで、ページ全体ではありません。
-
-  【仮値の注記】
-   - ロゴ「ミセモト（MISEMOTO）」はテキスト仮置き。
-   - 「20:00〜23:00」「火曜（定休日想定）」「返信は翌営業日中」は仮値。
-   - 写真は使用していません（外部画像の読み込みなし）。PC右カラムは
-     構図を示すためのインラインSVGの線画で、本番は同構図の写真に差し替え前提。
-   - 実績数値（導入サロン数・削減率等）は一切掲載していません。
-  ============================================================
+  ミセモト / 集客LP（理美容）— FVのみのデザインモック。
+  仮値：ロゴ、20:00〜23:00、火曜（定休日想定）。画像の読み込みはゼロ。
+  スタイルは tokens.css に集約（biyoの静かな振れ幅も同ファイル）。
 -->
 <html lang="ja">
 <head>
@@ -21,18 +13,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens.css">
-<style>
-  /* 理美容だけ、余白と罫をわずかに広く・細く取り、温度を下げる。
-     ブランド構造（要素の並び・型）は01と完全に共通。 */
-  body[data-domain="biyo"] .catch{letter-spacing:.02em;}
-  body[data-domain="biyo"] .fv::before{opacity:.38;}
-  body[data-domain="biyo"] .fv__in{padding-top:var(--s-10);}
-  body[data-domain="biyo"] .trust li{color:var(--c-ink-2);}
-</style>
 </head>
 <body data-domain="biyo">
 
-<p class="mockflag"><b>DESIGN MOCK</b>　ファーストビューのみ／金額・時間・ロゴはすべて仮値です</p>
+<p class="mockflag"><b>DESIGN MOCK</b>　FVのみ／時間・ロゴは仮値</p>
 
 <header class="hd">
   <div class="wrap hd__in">
@@ -47,9 +31,7 @@
       <a href="#">できること</a>
       <a href="#">料金</a>
       <a href="#">進め方</a>
-      <a href="#">よくある質問</a>
     </nav>
-    <span class="hd__tel">相談は全国オンライン／返信は翌営業日中</span>
   </div>
 </header>
 
@@ -57,8 +39,6 @@
   <div class="wrap fv__in">
 
     <div>
-      <p class="eyebrow">集客・固定費・資金繰りを1社で</p>
-
       <h1 class="catch">掲載料は上がって、<br><em>再来率は下がって</em>いませんか。</h1>
 
       <p class="sub">掲載プランの中身と、値引きで集めた客層と、指名の戻り方。この3つを分けて見ないと、来月も同じ請求書が届きます。まず3分の診断で現在地だけ確認してください。</p>
@@ -82,39 +62,27 @@
           <li>全国オンライン完結。サロンを閉めてからで間に合います</li>
         </ul>
       </div>
-
-      <p class="shotnote">撮影指示：閉店後のセット面。鏡・シャンプー台の直線を活かし、余白を多く取る（人物は後ろ姿のみ）。</p>
-
-      <p class="more">このあと：診断でわかること／料金の内訳／進め方</p>
     </div>
 
-    <!-- ビジュアル枠：外部画像は一切読み込まず、インラインSVGの線画で構図を示す -->
-    <aside class="shot" aria-label="閉店後のセット面のイラストと撮影指示">
-      <span class="shot__label">ILLUSTRATION ／ 写真差し替え前提</span>
+    <aside class="shot" aria-label="閉店後のセット面のイラスト">
+      <span class="shot__label">ILLUSTRATION</span>
 
-      <svg class="shot__fig" viewBox="0 0 400 300" role="img"
-           aria-label="サロンのセット面。大きな鏡に後ろ姿が映り、鏡の上にライトバー、カウンターにボトルとコーム、はさみ。右にスタイリングチェア。">
+      <svg class="shot__fig" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img"
+           aria-label="サロンのセット面。大きな鏡に後ろ姿が映り、鏡の上にライトバー。カウンターにボトルとコーム、はさみ。右にスタイリングチェア。">
         <rect class="il-bg" width="400" height="300"/>
 
-        <!-- 壁の縦ライン（清潔感のある垂直） -->
         <g class="il-vline"><path d="M250 0V300"/><path d="M296 0V300"/><path d="M342 0V300"/><path d="M388 0V300"/></g>
 
-        <!-- ミラー -->
         <rect class="il-s il-pa" x="34" y="26" width="180" height="200" rx="3"/>
         <path class="il-accs" d="M34 168 214 66v42L34 210z"/>
         <path class="il-s il-s--thin" d="M34 186h180"/>
-        <!-- 鏡に映る後ろ姿 -->
         <circle class="il-ink12" cx="124" cy="120" r="24"/>
         <path class="il-ink12" d="M86 196c6-30 20-44 38-44s32 14 38 44z"/>
-        <!-- ミラー上のライトバー -->
         <ellipse class="il-glow" cx="124" cy="44" rx="104" ry="30"/>
         <rect class="il-acc" x="34" y="14" width="180" height="6" rx="2"/>
 
-        <!-- カウンター -->
         <rect class="il-s il-ink12" x="18" y="232" width="214" height="12" rx="1"/>
         <rect class="il-ink06" x="18" y="244" width="214" height="56"/>
-
-        <!-- ボトル・コーム・はさみ -->
         <rect class="il-s il-pa" x="58" y="196" width="18" height="36" rx="2"/>
         <rect class="il-acc" x="62" y="189" width="10" height="8" rx="1"/>
         <rect class="il-s il-accs" x="84" y="204" width="16" height="28" rx="2"/>
@@ -127,25 +95,17 @@
           <circle class="il-s il-pa" cx="181" cy="204" r="4.5"/>
         </g>
 
-        <!-- スタイリングチェア -->
         <rect class="il-s il-accs" x="282" y="92" width="74" height="96" rx="10"/>
         <path class="il-s il-s--thin" d="M282 140h74"/>
         <rect class="il-s il-accs" x="270" y="188" width="96" height="20" rx="7"/>
         <rect class="il-ink20" x="313" y="208" width="12" height="60" rx="2"/>
         <path class="il-s" d="M292 246h54"/>
         <ellipse class="il-s il-ink12" cx="319" cy="272" rx="38" ry="9"/>
-
-        <!-- 床 -->
         <path class="il-s il-s--thin" d="M0 288h400"/>
       </svg>
 
       <div class="shot__cap">
-        <p class="shot__t">撮影指示：閉店後のセット面と、片付け中のスタイリスト</p>
-        <p class="shot__d">
-          <b>構図</b>：鏡面を画面右2/3に、垂直・水平をきっちり出す。人物は後ろ姿かシルエットで小さく。床とミラーの反射で明るさを作る。<br>
-          <b>光</b>：白〜ニュートラル。色被りを残さない（清潔感が最優先）。<br>
-          <b>避ける</b>：施術中のビフォーアフター、モデルのアップ、ピンク系の照明。
-        </p>
+        <p class="shot__d">撮影：閉店後のセット面。垂直を出し、人物は後ろ姿で小さく。</p>
       </div>
     </aside>
 

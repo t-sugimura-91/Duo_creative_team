@@ -1,17 +1,9 @@
 <!doctype html>
 <!--
-  ============================================================
-  ミセモト / 固定費LP — ファーストビューのみのデザインモックです。
-  1画面目の見え方を確認するためのファイルで、ページ全体ではありません。
-
-  【仮値の注記】
-   - ロゴ「ミセモト（MISEMOTO）」はテキスト仮置き。
-   - 「着手金0円／初月フィー無料」の適用条件は未確定の仮値。
-     条件が付く場合は、この帯に条件を併記する必要があります。
-   - 右カラムのトーク画面はCSS、請求書サムネイルはインラインSVGです
-     （外部画像の読み込みは一切なし）。本番では実際の請求書写真が入ります。
-   - 実績数値（削減率・削減額等）は一切掲載していません。
-  ============================================================
+  ミセモト / 固定費LP — FVのみのデザインモック。
+  仮値：ロゴ、「着手金0円／初月フィー無料」の適用条件（未確定。条件が付く場合は帯に併記）、
+  トーク画面の文面・時刻。画像の読み込みはゼロ（請求書サムネイルはインラインSVG）。
+  実績数値は掲載していません。
 -->
 <html lang="ja">
 <head>
@@ -23,11 +15,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens.css">
 <style>
-  /* 右カラム：LINEで請求書を1枚送る、という「最初の一手」をUIで示す。
-     写真は使えないため、請求書のサムネイルはCSSの罫で質感を作る。 */
+  /* 「1枚送るだけ」が売りなので、FVの体験も1アクションに絞る。
+     視線は キャッチ → 込み帯 → 送るボタン の3点。
+     右カラムは「送るとこうなる」が一目で分かる最小構成（往復2通）。 */
   .talk{
     display:none;background:var(--c-bg-sunk);border:1px solid var(--c-line);
-    border-radius:var(--r-3);padding:var(--s-4);position:relative;
+    border-radius:var(--r-3);padding:var(--s-5) var(--s-4);position:relative;
   }
   @media (min-width:860px){ .talk{display:block;} }
   .talk__label{
@@ -35,40 +28,29 @@
     letter-spacing:.08em;color:var(--c-ink-2);background:var(--c-surface);
     border:1px solid var(--c-line);padding:2px 8px;border-radius:var(--r-1);
   }
-  .talk__row{display:flex;margin-top:var(--s-3);}
-  .talk__row--me{justify-content:flex-end;}
+  .talk__row{display:flex;margin-top:var(--s-4);}
+  .talk__row--me{justify-content:flex-end;align-items:flex-end;gap:6px;}
   .talk__bubble{
-    max-width:84%;font-size:var(--fs-200);line-height:1.7;
+    max-width:86%;font-size:var(--fs-300);line-height:1.7;
     background:var(--c-surface);border:1px solid var(--c-line);
-    padding:10px 12px;border-radius:2px 10px 10px 10px;color:var(--c-ink);
+    padding:10px 13px;border-radius:2px 10px 10px 10px;color:var(--c-ink);
   }
-  .talk__row--me .talk__bubble{
-    background:var(--c-accent-soft);border-color:color-mix(in srgb,var(--c-accent) 32%, transparent);
-    border-radius:10px 2px 10px 10px;
-  }
-  /* 請求書サムネ：送られてきた写真として、トーク内に実物大で見せる。
-     中身はインラインSVGで簡易に描画（外部画像は読み込まない）。 */
+  .talk__time{font-size:10px;color:var(--c-ink-3);padding-bottom:4px;}
   .invoice{
-    display:block;width:168px;height:auto;border:1px solid var(--c-line-strong);
+    display:block;width:158px;height:auto;border:1px solid var(--c-line-strong);
     border-radius:var(--r-1);background:#fff;box-shadow:var(--sh-2);
-    transform:rotate(-1.2deg);   /* 手で撮った1枚に見せるための微傾き */
+    transform:rotate(-1.2deg);           /* 手で撮った1枚に見せる微傾き */
   }
   .iv-t{fill:var(--c-ink);font-family:var(--f-head);font-size:11px;font-weight:700;letter-spacing:.08em;}
-  .iv-s{fill:var(--c-ink-3);font-family:var(--f-body);font-size:7.5px;letter-spacing:.04em;}
-  .iv-k{fill:var(--c-ink);font-family:var(--f-head);font-size:8.5px;font-weight:700;}
-  .invoice__stamp{
-    display:block;font-size:10px;color:var(--c-ink-3);text-align:right;margin-top:4px;
-  }
-  .talk__time{font-size:10px;color:var(--c-ink-3);align-self:flex-end;margin:0 6px 2px;}
-  .talk__foot{
-    margin-top:var(--s-4);padding-top:var(--s-3);border-top:1px solid var(--c-line);
-    font-size:var(--fs-100);color:var(--c-ink-3);line-height:1.7;
-  }
+  .iv-k{fill:var(--c-ink);font-family:var(--f-head);font-size:9px;font-weight:700;}
+  .talk__foot{margin-top:var(--s-4);font-size:var(--fs-100);color:var(--c-ink-3);}
+  /* 主CTAを一段強くして、FVの終着点を1つにする */
+  body[data-domain="kotehi"] .btn--main{min-height:62px;font-size:var(--fs-600);}
 </style>
 </head>
 <body data-domain="kotehi">
 
-<p class="mockflag"><b>DESIGN MOCK</b>　ファーストビューのみ／金額・時間・ロゴ・適用条件はすべて仮値です</p>
+<p class="mockflag"><b>DESIGN MOCK</b>　FVのみ／金額・適用条件はすべて仮値</p>
 
 <header class="hd">
   <div class="wrap hd__in">
@@ -83,9 +65,7 @@
       <a href="#">見直せる費目</a>
       <a href="#">料金</a>
       <a href="#">進め方</a>
-      <a href="#">よくある質問</a>
     </nav>
-    <span class="hd__tel">相談は全国オンライン／返信は翌営業日中</span>
   </div>
 </header>
 
@@ -93,8 +73,6 @@
   <div class="wrap fv__in">
 
     <div>
-      <p class="eyebrow">家賃・電力・決済手数料・通信</p>
-
       <h1 class="catch">請求書を1枚、<br><em>LINEで送る</em>ところから始まります。</h1>
 
       <p class="sub">家賃・電力・決済手数料・通信。写真を1枚送っていただければ、どこに見直しの余地がありそうかを診断し、必要な資料の作り方と論点の整理までお手伝いします。</p>
@@ -118,52 +96,38 @@
           <li>電力は診断と比較情報の提供まで。切替の手続き代行は行いません</li>
         </ul>
       </div>
-
-      <p class="shotnote">撮影指示：オーナーの手元で請求書を1枚スマホ撮影する瞬間（真上から／机の木目と伝票の質感を残す）。</p>
-
-      <p class="more">このあと：見直せる費目の一覧／料金の内訳／進め方</p>
     </div>
 
-    <!-- LINEトークのUIモック（CSSのみ。画像は読み込んでいません） -->
-    <aside class="talk" aria-label="LINEで請求書を送る流れのUIモック">
-      <span class="talk__label">UI MOCK ／ 最初の一手</span>
+    <!-- 送るとこうなる：往復2通だけ -->
+    <aside class="talk" aria-label="LINEで請求書を送ったときのやりとり">
+      <span class="talk__label">UI MOCK</span>
 
       <div class="talk__row">
-        <p class="talk__bubble">いま届いている請求書を、1枚だけ写真で送ってください。費目はどれでも構いません。</p>
+        <p class="talk__bubble">請求書を1枚、写真で送ってください。費目はどれでも構いません。</p>
       </div>
 
       <div class="talk__row talk__row--me">
         <span class="talk__time">23:41</span>
-        <div>
-          <svg class="invoice" viewBox="0 0 168 112" role="img"
-               aria-label="オーナーが撮影して送った請求書の写真（内訳3行と合計欄が見えている）">
-            <rect class="il-s il-pa" x="2" y="2" width="164" height="108" rx="2"/>
-            <text class="iv-t" x="12" y="20">請 求 書</text>
-            <rect class="il-ink12" x="104" y="9" width="52" height="6" rx="1"/>
-            <rect class="il-ink12" x="118" y="19" width="38" height="6" rx="1"/>
-            <path class="il-s il-s--thin" d="M12 29h144"/>
-            <rect class="il-accs" x="12" y="34" width="144" height="12" rx="1"/>
-            <text class="iv-s" x="17" y="43">内訳</text>
-            <text class="iv-s" x="126" y="43">金額</text>
-            <g class="il-ink12">
-              <rect x="17" y="52" width="58" height="6" rx="1"/><rect x="112" y="52" width="42" height="6" rx="1"/>
-              <rect x="17" y="64" width="44" height="6" rx="1"/><rect x="118" y="64" width="36" height="6" rx="1"/>
-              <rect x="17" y="76" width="52" height="6" rx="1"/><rect x="122" y="76" width="32" height="6" rx="1"/>
-            </g>
-            <path class="il-s il-s--thin" d="M12 86h144"/>
-            <rect class="il-accs" x="12" y="90" width="144" height="16" rx="1"/>
-            <text class="iv-k" x="18" y="101">合計</text>
-            <rect class="il-acc" x="106" y="94" width="48" height="8" rx="1"/>
-          </svg>
-          <span class="invoice__stamp">写真1枚・そのまま送信</span>
-        </div>
+        <svg class="invoice" viewBox="0 0 168 108" role="img" aria-label="送信した請求書の写真">
+          <rect class="il-s il-pa" x="2" y="2" width="164" height="104" rx="2"/>
+          <text class="iv-t" x="12" y="22">請 求 書</text>
+          <rect class="il-ink12" x="106" y="12" width="50" height="6" rx="1"/>
+          <path class="il-s il-s--thin" d="M12 32h144"/>
+          <g class="il-ink12">
+            <rect x="14" y="44" width="62" height="7" rx="1"/><rect x="110" y="44" width="44" height="7" rx="1"/>
+            <rect x="14" y="60" width="48" height="7" rx="1"/><rect x="118" y="60" width="36" height="7" rx="1"/>
+          </g>
+          <rect class="il-accs" x="12" y="78" width="144" height="18" rx="1"/>
+          <text class="iv-k" x="18" y="90">合計</text>
+          <rect class="il-acc" x="104" y="82" width="50" height="9" rx="1"/>
+        </svg>
       </div>
 
       <div class="talk__row">
-        <p class="talk__bubble">受け取りました。契約期間と単価の欄を確認します。返信は翌営業日中です。<br>不足があれば、こちらから必要な箇所だけお伝えします。</p>
+        <p class="talk__bubble">受け取りました。翌営業日中にご連絡します。</p>
       </div>
 
-      <p class="talk__foot">※ トーク画面・時刻・文面はすべてモック上の仮の表示です。<br>※ 請求書サムネイルはSVGで簡易に描いたもので、写真・実データは使用していません。</p>
+      <p class="talk__foot">※ 文面・時刻・請求書はすべて仮の表示です。</p>
     </aside>
 
   </div>

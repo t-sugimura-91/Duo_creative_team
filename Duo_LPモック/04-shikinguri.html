@@ -1,17 +1,11 @@
 <!doctype html>
 <!--
-  ============================================================
-  ミセモト / 資金繰りLP — ファーストビューのみのデザインモックです。
-  1画面目の見え方を確認するためのファイルで、ページ全体ではありません。
-
-  【仮値の注記】
-   - ロゴ「ミセモト（MISEMOTO）」はテキスト仮置き。
-   - 「後払い・初回手数料0円」の適用条件は未確定の仮値。
-     条件が付く場合は、この帯に条件を併記する必要があります。
-   - 右カラムの資金繰り表はCSSで描いたサンプル表示で、数値は入れていません
-     （実データ・実績値ではありません）。
-   - 実績数値（調達実績・改善率等）は一切掲載していません。
-  ============================================================
+  ミセモト / 資金繰りLP — FVのみのデザインモック。
+  順番は「人 → 支援の範囲 → 条件 → CTA → 数字」。
+  仮値：ロゴ、担当者名（仮名）、後払い・初回手数料0円の適用条件（未確定）、山谷図の曲線。
+  肩書は「店舗支援担当」。資格名は未取得のため記載していません。
+  金額・実データ・実績数値はゼロ。画像の読み込みもゼロ（すべてインラインSVG）。
+  スタイルは tokens.css に集約（.who / .scope / .sheet / .ch-*）。
 -->
 <html lang="ja">
 <head>
@@ -22,51 +16,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens.css">
-<style>
-  /* 右カラム：入金と支払いを並べた資金繰り表の「形」だけを示す。
-     金額は入れない（推定値の独り歩きを避けるため）。 */
-  .sheet{
-    display:none;background:var(--c-surface);border:1px solid var(--c-line);
-    border-radius:var(--r-2);padding:var(--s-5);position:relative;box-shadow:var(--sh-1);
-  }
-  @media (min-width:860px){ .sheet{display:block;} }
-  .sheet__label{
-    position:absolute;top:-11px;left:12px;font-size:var(--fs-100);
-    letter-spacing:.08em;color:var(--c-ink-2);background:var(--c-bg);
-    border:1px solid var(--c-line);padding:2px 8px;border-radius:var(--r-1);
-  }
-  .sheet__t{font-family:var(--f-head);font-weight:700;font-size:var(--fs-300);margin-bottom:var(--s-4);}
-  .grid{display:grid;grid-template-columns:52px repeat(6,1fr);gap:6px;align-items:end;}
-  .grid__h{font-size:10px;color:var(--c-ink-3);text-align:center;}
-  .grid__rl{font-size:var(--fs-100);color:var(--c-ink-2);line-height:1.3;}
-  .bar-in,.bar-out{border-radius:1px;}
-  .bar-in{background:color-mix(in srgb,var(--c-accent) 62%, #fff);}
-  .bar-out{background:color-mix(in srgb,var(--c-ink) 22%, #fff);}
-  .thin{outline:2px solid var(--c-warn);outline-offset:2px;}
-  .sheet__legend{
-    margin-top:var(--s-4);padding-top:var(--s-3);border-top:1px solid var(--c-line);
-    display:flex;gap:var(--s-4);font-size:var(--fs-100);color:var(--c-ink-2);flex-wrap:wrap;
-  }
-  .sheet__legend i{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px;}
-  .sheet__note{margin-top:var(--s-3);font-size:var(--fs-100);color:var(--c-ink-3);line-height:1.7;}
-  /* 山谷の折れ線：入金＝実線（アクセント）／支払い＝破線（墨）。
-     交差して支払いが上回る月に帯を立てる。金額は入れない。 */
-  .chart{display:block;width:100%;height:auto;margin-top:var(--s-3);}
-  .ch-ax{stroke:var(--c-line);stroke-width:1;}
-  .ch-in{fill:none;stroke:var(--c-accent);stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round;}
-  .ch-out{fill:none;stroke:var(--c-ink);stroke-opacity:.55;stroke-width:2;stroke-dasharray:5 4;stroke-linejoin:round;}
-  .ch-gap{fill:var(--c-warn);fill-opacity:.12;}
-  .ch-gapline{stroke:var(--c-warn);stroke-width:1.4;stroke-dasharray:3 3;}
-  .ch-dot-in{fill:#fff;stroke:var(--c-accent);stroke-width:2.2;}
-  .ch-dot-out{fill:#fff;stroke:var(--c-ink);stroke-opacity:.55;stroke-width:2;}
-  .ch-t{fill:var(--c-ink-3);font-family:var(--f-body);font-size:9px;}
-  .ch-lbl{fill:var(--c-warn);font-family:var(--f-head);font-size:9.5px;font-weight:700;}
-  .sheet__sub{font-size:var(--fs-100);color:var(--c-ink-2);margin-top:var(--s-5);font-weight:700;font-family:var(--f-head);}
-</style>
 </head>
 <body data-domain="shikin">
 
-<p class="mockflag"><b>DESIGN MOCK</b>　ファーストビューのみ／金額・時間・ロゴ・適用条件はすべて仮値です</p>
+<p class="mockflag"><b>DESIGN MOCK</b>　FVのみ／担当者名は仮名・適用条件は未確定</p>
 
 <header class="hd">
   <div class="wrap hd__in">
@@ -81,9 +34,7 @@
       <a href="#">できること</a>
       <a href="#">料金</a>
       <a href="#">進め方</a>
-      <a href="#">よくある質問</a>
     </nav>
-    <span class="hd__tel">相談は全国オンライン／返信は翌営業日中</span>
   </div>
 </header>
 
@@ -91,11 +42,42 @@
   <div class="wrap fv__in">
 
     <div>
-      <p class="eyebrow">入金と支払いを、並べて見る</p>
-
       <h1 class="catch">2店舗目を出した直後に、<br><em>手元が締まって</em>いませんか。</h1>
 
+      <!-- 人を先に。写真ではなくインラインSVGの線画。 -->
+      <aside class="who">
+        <svg class="who__fig" viewBox="0 0 400 190" preserveAspectRatio="xMidYMid slice" role="img"
+             aria-label="机をはさんで向かい合う2人。机の上に資金繰り表が1枚置かれている線画。">
+          <rect class="il-bg" width="400" height="190"/>
+          <circle class="il-ink12" cx="90" cy="74" r="26"/>
+          <path class="il-ink12" d="M38 150c4-34 26-50 52-50s48 16 52 50z"/>
+          <circle class="il-s il-accs" cx="310" cy="70" r="26"/>
+          <path class="il-s il-accs" d="M258 150c4-36 26-52 52-52s48 16 52 52z"/>
+          <g transform="rotate(-3 200 136)">
+            <rect class="il-s il-pa" x="152" y="120" width="96" height="30" rx="2"/>
+            <path class="il-s il-s--thin" d="M160 130h60M160 138h72"/>
+          </g>
+          <path class="il-s" d="M268 142 246 150"/>
+          <rect class="il-ink20" x="0" y="150" width="400" height="7"/>
+          <rect class="il-ink06" x="0" y="157" width="400" height="33"/>
+        </svg>
+        <div>
+          <p class="who__name">佐野 直人 <span class="who__kari">（仮名）</span></p>
+          <p class="who__role">店舗支援担当</p>
+        </div>
+      </aside>
+
       <p class="sub">入金と支払いの時期を並べた資金繰り表をつくり、どの月が薄いかを見える化します。金融機関に出す必要書類の整理と、面談の準備までご一緒します。</p>
+
+      <!-- どこまでやって、どこからはやらないか。条件とCTAより上に置く。 -->
+      <div class="scope">
+        <p class="scope__t">支援の範囲</p>
+        <ul>
+          <li>入金と支払いを並べた資金繰り表を、一緒に作るところから始めます</li>
+          <li>金融機関へ出す必要書類の整理と、面談の準備までを支援します</li>
+          <li>商談は営業後20:00〜23:00の枠から、ご自身で選べます</li>
+        </ul>
+      </div>
 
       <div class="komi">
         <span class="komi__tag">込み</span>
@@ -108,80 +90,35 @@
         </a>
         <a class="btn btn--sub" href="05-shindan-yoyaku.html#yoyaku">相談枠を見る（その場で契約する必要はありません）</a>
       </div>
-
-      <div class="trust">
-        <ul>
-          <li>入金と支払いを並べた資金繰り表を、一緒に作るところから始めます</li>
-          <li>金融機関へ出す必要書類の整理と、面談の準備までを支援します</li>
-          <li>商談は営業後20:00〜23:00の枠から、ご自身で選べます</li>
-        </ul>
-      </div>
-
-      <p class="shotnote">撮影指示：机上の通帳・手書きのメモ・電卓を真上から。人物は手だけ（顔は写さない）。</p>
-
-      <p class="more">このあと：資金繰り表の作り方／料金の内訳／進め方</p>
     </div>
 
-    <!-- 資金繰り表のサンプル表示（CSSのみ。金額・実データは入れていません） -->
+    <!-- 数字は人より下。金額・実データは入れていない。 -->
     <aside class="sheet" aria-label="資金繰り表のサンプル表示">
-      <span class="sheet__label">SAMPLE ／ 表示イメージ</span>
-      <p class="sheet__t">入金と支払いの山谷</p>
+      <span class="sheet__label">SAMPLE</span>
+      <p class="sheet__t">入金と支払いを、月ごとに並べる</p>
 
-      <!-- 山谷の折れ線（インラインSVG・金額なし） -->
       <svg class="chart" viewBox="0 0 330 132" role="img"
            aria-label="入金の折れ線と支払いの破線が4月で逆転し、支払いが入金を上回る月に帯が立っているサンプル図。金額は表示していません。">
-        <!-- 逆転している月の帯 -->
         <rect class="ch-gap" x="168" y="14" width="48" height="90"/>
         <path class="ch-ax" d="M14 104h306"/>
-
-        <!-- 支払い（破線） -->
         <path class="ch-out" d="M30 62 84 56 138 60 192 34 246 58 300 62"/>
-        <!-- 入金（実線） -->
         <path class="ch-in" d="M30 44 84 58 138 36 192 82 246 66 300 46"/>
-
-        <!-- 逆転幅 -->
         <path class="ch-gapline" d="M192 36V80"/>
         <circle class="ch-dot-out" cx="192" cy="34" r="4"/>
         <circle class="ch-dot-in" cx="192" cy="82" r="4.5"/>
         <text class="ch-lbl" x="216" y="26">支払いが入金を</text>
         <text class="ch-lbl" x="216" y="38">上回る月</text>
-
         <g class="ch-t" text-anchor="middle">
           <text x="30" y="120">1月</text><text x="84" y="120">2月</text><text x="138" y="120">3月</text>
           <text x="192" y="120">4月</text><text x="246" y="120">5月</text><text x="300" y="120">6月</text>
         </g>
       </svg>
 
-      <p class="sheet__sub">同じ期間を、棒で並べると</p>
-
-      <div class="grid" aria-hidden="true">
-        <span class="grid__rl">入金</span>
-        <span class="bar-in" style="height:54px"></span>
-        <span class="bar-in" style="height:44px"></span>
-        <span class="bar-in" style="height:60px"></span>
-        <span class="bar-in" style="height:30px"></span>
-        <span class="bar-in" style="height:38px"></span>
-        <span class="bar-in" style="height:52px"></span>
-
-        <span class="grid__rl">支払い</span>
-        <span class="bar-out" style="height:40px"></span>
-        <span class="bar-out" style="height:46px"></span>
-        <span class="bar-out" style="height:42px"></span>
-        <span class="bar-out thin" style="height:58px"></span>
-        <span class="bar-out" style="height:44px"></span>
-        <span class="bar-out" style="height:41px"></span>
-
-        <span></span>
-        <span class="grid__h">1月</span><span class="grid__h">2月</span><span class="grid__h">3月</span>
-        <span class="grid__h">4月</span><span class="grid__h">5月</span><span class="grid__h">6月</span>
+      <div class="ch-key">
+        <span><i></i>入金</span>
+        <span><i class="d"></i>支払い</span>
       </div>
-
-      <div class="sheet__legend">
-        <span><i class="bar-in"></i>入金</span>
-        <span><i class="bar-out"></i>支払い</span>
-        <span><i class="bar-out thin"></i>薄くなりそうな月</span>
-      </div>
-      <p class="sheet__note">※ 形を示すためのサンプル表示です。金額・実データは含まれていません。<br>※ 実際の表は、ご自身の入出金の予定をもとに一緒に作成します。</p>
+      <p class="sheet__note">※ 形を示すためのサンプルです。金額は含まれていません。</p>
     </aside>
 
   </div>
