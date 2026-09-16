@@ -383,23 +383,12 @@ img{max-width:100%;}
 }
 
 /* ---------- 統合版（06）専用 ---------- */
-/* 2業種を並べて、1枚で両方を扱うことを最初に示す */
-.shots{display:none;gap:var(--s-4);}
+/* 統合版のFV右カラム。1枚（業種を特定しない写真）に統一した */
 @media (min-width:860px){
-  .shots{display:grid;grid-template-columns:1fr 1fr;align-content:center;}
   body[data-domain="tougou"] .fv__in{grid-template-columns:minmax(0,1fr) 440px;align-items:center;}
 }
 @media (min-width:1120px){
   body[data-domain="tougou"] .fv__in{grid-template-columns:minmax(0,1fr) 500px;}
-}
-.shots__i{margin:0;}
-.shots__i img{
-  display:block;width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;
-  border:1px solid var(--c-line);border-radius:var(--r-2);background:var(--c-bg-sunk);
-}
-.shots__i figcaption{
-  margin-top:var(--s-2);font-size:var(--fs-200);font-weight:700;
-  color:var(--c-ink-2);letter-spacing:.04em;text-align:center;
 }
 
 /* 業種タブ */
@@ -524,7 +513,8 @@ img{max-width:100%;}
 /* 飲食は縦位置に差し替え済み。右カラムの高さが左の文字カラムに近づき、
    キャプションを外したあとの縦の余白が埋まる。 */
 body[data-domain="inshoku"] .shot__img,
-body[data-domain="biyo"]    .shot__img{aspect-ratio:2/3;}
+body[data-domain="biyo"]    .shot__img,
+body[data-domain="tougou"]  .shot__img{aspect-ratio:2/3;}
 
 /* SPでは縦位置のまま縮小するとFVが1画面に収まらないため、横長の別ファイルへ
    差し替える（<picture>のsourceで切替）。キャッチより上に置き、開いた瞬間に
@@ -533,11 +523,14 @@ body[data-domain="biyo"]    .shot__img{aspect-ratio:2/3;}
    使えず「何の写真か分からない寄り」になったため、高さを優先した。 */
 @media (max-width:859px){
   body[data-domain="inshoku"] .fv__in,
-  body[data-domain="biyo"]    .fv__in{display:flex;flex-direction:column;}
+  body[data-domain="biyo"]    .fv__in,
+  body[data-domain="tougou"]  .fv__in{display:flex;flex-direction:column;}
   body[data-domain="inshoku"] .shot,
-  body[data-domain="biyo"]    .shot{display:block;order:-1;margin-bottom:var(--s-5);}
+  body[data-domain="biyo"]    .shot,
+  body[data-domain="tougou"]  .shot{display:block;order:-1;margin-bottom:var(--s-5);}
   body[data-domain="inshoku"] .shot__img,
-  body[data-domain="biyo"]    .shot__img{aspect-ratio:3/2;}
+  body[data-domain="biyo"]    .shot__img,
+  body[data-domain="tougou"]  .shot__img{aspect-ratio:3/2;}
 }
 .shot__label{
   position:absolute;top:10px;left:10px;z-index:2;

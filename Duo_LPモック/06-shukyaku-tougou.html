@@ -12,7 +12,8 @@
   【仮値の注記】
    - ロゴ「NXTERA」はテキスト仮置き。
    - 相談時間「30分」、受付時間「8:00〜翌1:00」は仮値です。
-   - 写真はAI生成の仮画像。本番は同構図で撮影する前提。
+   - 写真はAI生成の仮画像。業種が特定できない構図にしてある。
+   - 本番は同構図で撮影する前提。
    - 実績数値は意図的に一切掲載していません。
   ============================================================
 -->
@@ -86,18 +87,14 @@
       <p class="more">このあと：業種を選ぶ／よくある失敗と、その理由／できること</p>
     </div>
 
-    <!-- 2業種を並べて、1枚で両方を扱うことを最初に示す -->
-    <aside class="shots" aria-label="飲食店とサロンの写真">
-      <figure class="shots__i">
-        <img src="images/01-inshoku-hero-v.webp" width="880" height="1320" loading="eager" decoding="async"
-             alt="閉店後の居酒屋のカウンター。伝票の束と電卓を前にしてスマートフォンを見る店主。">
-        <figcaption>飲食店</figcaption>
-      </figure>
-      <figure class="shots__i">
-        <img src="images/02-biyo-hero-v2.webp" width="880" height="1320" loading="eager" decoding="async"
-             alt="美容室のセット面。予約台帳とタブレット、はさみとコームが並ぶカウンターの先で、スタッフがタブレットに書き込んでいる。">
-        <figcaption>美容室・サロン</figcaption>
-      </figure>
+    <!-- 業種を特定しない1枚。一般クエリの受け皿のため、どちらのオーナーにも自分に見える絵にする -->
+    <aside class="shot" aria-label="閉店後のカウンターで締め作業をする店主の写真">
+      <picture>
+        <source media="(max-width:859px)" srcset="images/06-tougou-sp.webp" width="800" height="533">
+        <img class="shot__img" src="images/06-tougou-hero-v.webp"
+           width="880" height="1320" loading="eager" decoding="async"
+           alt="閉店後のカウンター。レジ、伝票の束、電卓、書きかけの帳面を前にして、スマートフォンを見る店主。">
+      </picture>
     </aside>
 
   </div>
