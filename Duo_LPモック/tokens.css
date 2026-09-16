@@ -425,6 +425,35 @@ img{max-width:100%;}
   .tab{font-size:var(--fs-500);padding:var(--s-3) var(--s-6);}
 }
 
+/* 計算の図（.dg）
+   SVGのプレゼンテーション属性では var() が効かないため、色も書体も必ずクラスで当てる。
+   viewBoxは縦積みの420幅。スマホで縮んでも文字が潰れない比率にしてある。 */
+.dg{
+  margin:var(--s-8) 0 0;max-width:460px;
+  background:var(--c-surface);border:1px solid var(--c-line);
+  border-radius:var(--r-2);padding:var(--s-5);
+}
+.dg__h{
+  font-family:var(--f-head);font-weight:700;font-size:var(--fs-400);
+  color:var(--c-ink);letter-spacing:var(--ls-head);
+}
+.dg__fig{display:block;width:100%;height:auto;margin-top:var(--s-4);}
+.dg__n{
+  margin-top:var(--s-4);padding-top:var(--s-3);
+  border-top:1px solid var(--c-line);
+  font-size:var(--fs-200);line-height:1.8;color:var(--c-ink-2);
+}
+.dg-box{fill:var(--c-bg-sunk);stroke:var(--c-line-strong);stroke-width:1;}
+.dg-fill{fill:var(--c-accent-soft);stroke:var(--c-accent);stroke-width:1.5;}
+.dg-t{fill:var(--c-ink);font-family:var(--f-body);font-size:15px;}
+.dg-n{fill:var(--c-ink);font-family:var(--f-head);font-size:17px;font-weight:700;}
+.dg-op{fill:var(--c-ink-3);font-family:var(--f-head);font-size:17px;font-weight:700;}
+.dg-tb{fill:var(--c-accent-deep);font-family:var(--f-head);font-size:15px;font-weight:700;}
+.dg-nb{fill:var(--c-accent-deep);font-family:var(--f-head);font-size:24px;font-weight:700;}
+@media (min-width:860px){
+  .dg{margin-top:var(--s-6);padding:var(--s-6);}
+}
+
 /* ---------- Buttons ---------- */
 .ctas{margin-top:var(--s-6);display:flex;flex-direction:column;gap:var(--s-3);}
 @media (min-width:860px){
