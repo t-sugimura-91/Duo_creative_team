@@ -447,7 +447,8 @@ img{max-width:100%;}
 }
 /* 飲食は縦位置に差し替え済み。右カラムの高さが左の文字カラムに近づき、
    キャプションを外したあとの縦の余白が埋まる。 */
-body[data-domain="inshoku"] .shot__img{aspect-ratio:2/3;}
+body[data-domain="inshoku"] .shot__img,
+body[data-domain="biyo"]    .shot__img{aspect-ratio:2/3;}
 .shot__label{
   position:absolute;top:10px;left:10px;z-index:2;
   font-size:var(--fs-100);letter-spacing:.08em;color:var(--c-ink-2);

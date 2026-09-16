@@ -130,7 +130,9 @@ Webフォントのみ Google Fonts を `<link>` で読み込んでいます（�
 
 | ファイル | 内容 | サイズ |
 |---|---|---|
-| `01-inshoku-hero-v.png` | 縦位置版の原本（生成AIの出力） | 1024×1536 / 約1.9MB |
+| `01-inshoku-hero-v.png` | 飲食・縦位置版の原本（生成AIの出力） | 1024×1536 / 約1.9MB |
+| `02-biyo-hero-v.png` | 理美容・縦位置版の原本（生成AIの出力） | 1024×1536 / 約2.0MB |
+| `02-biyo-hero-v.webp` | **理美容の採用版**（440px表示の2x） | 880×1320 / 約60KB |
 | `01-inshoku-hero-v.webp` | **採用版**（440px表示の2x） | 880×1320 / 約75KB |
 | `01-inshoku-hero-wide.webp` | 旧・横位置版（未使用） | 1000×667 / 約54KB |
 | `01-inshoku-hero-tight.webp` | 旧・横位置を右75%に寄せた版（未使用） | 1000×667 / 約54KB |
