@@ -174,5 +174,14 @@
   <a class="bar__s" href="#shippai">よくある<br>失敗</a>
 </nav>
 
+<script>
+  /* 戻る操作やブラウザのスクロール位置の復元で、ページ途中から表示されることがある。
+     ハッシュ指定がないときは必ず先頭から見せる。 */
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.addEventListener('load', function () {
+    if (!location.hash) window.scrollTo(0, 0);
+  });
+</script>
+
 </body>
 </html>
