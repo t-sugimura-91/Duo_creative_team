@@ -293,6 +293,59 @@ img{max-width:100%;}
   color:var(--c-ink-2); line-height:1.7;
 }
 
+/* ---------- セクション（FVより下） ---------- */
+.sec{
+  background:var(--c-bg-sunk);
+  border-top:1px solid var(--c-line);
+  padding:var(--s-10) 0 var(--s-12);
+}
+.sec__h{
+  font-family:var(--f-head);font-weight:700;
+  font-size:clamp(20px,5.2vw,26px);line-height:1.4;
+  letter-spacing:var(--ls-head);margin-top:var(--s-3);
+  text-wrap:balance;
+}
+.sec__h em{font-style:normal;color:var(--c-accent-deep);}
+.sec__close{
+  margin-top:var(--s-8);font-size:var(--fs-400);line-height:1.9;color:var(--c-ink-2);
+}
+.sec__close b{font-weight:700;color:var(--c-ink);}
+
+/* 失敗の構造：症状（太字）と、その理由（なぜ）の2段で1件 */
+.fails{
+  list-style:none;margin:var(--s-8) 0 0;padding:0;
+  display:grid;gap:var(--s-4);
+}
+.fail{
+  background:var(--c-surface);
+  border:1px solid var(--c-line);border-left:4px solid var(--c-accent);
+  border-radius:var(--r-2);padding:var(--s-5);
+}
+.fail__q{
+  font-family:var(--f-head);font-weight:700;
+  font-size:var(--fs-400);line-height:1.6;color:var(--c-ink);
+}
+.fail__a{
+  margin-top:var(--s-3);padding-top:var(--s-3);
+  border-top:1px solid var(--c-line);
+  font-size:var(--fs-300);line-height:1.85;color:var(--c-ink-2);
+}
+.fail__mark{
+  display:inline-block;margin-right:var(--s-2);
+  font-family:var(--f-head);font-weight:700;font-size:var(--fs-100);
+  letter-spacing:.1em;color:var(--c-on-accent);background:var(--c-accent-deep);
+  padding:2px 7px;border-radius:var(--r-1);vertical-align:2px;
+}
+.ctas--center{max-width:520px;}
+.ctanote--center{max-width:520px;}
+@media (min-width:860px){
+  .sec{padding:var(--s-12) 0 var(--s-16);}
+  .fails{grid-template-columns:repeat(2,1fr);gap:var(--s-5);}
+  .fail{padding:var(--s-6);}
+  .fail__q{font-size:var(--fs-500);}
+  .sec__close{font-size:var(--fs-500);}
+}
+
 /* ---------- Buttons ---------- */
 .ctas{margin-top:var(--s-6);display:flex;flex-direction:column;gap:var(--s-3);}
 @media (min-width:860px){
