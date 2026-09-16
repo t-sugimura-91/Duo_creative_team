@@ -664,9 +664,12 @@ body[data-domain="inshoku"] .catch{font-size:min(6.6vw, 25px);}
    860〜999pxで左カラムが最も狭くなるため、そこを基準に上限を決める。 */
 body[data-domain="biyo"] .catch{font-size:min(6.8vw, 27px);}
 body[data-domain="tougou"] .catch{font-size:min(6.8vw, 27px);}
+/* 固定費のキャッチ2行目「見直したのはいつですか。」は12文字 */
+body[data-domain="kotehi"] .catch{font-size:min(6.6vw, 26px);}
 @media (min-width:860px){
   body[data-domain="biyo"] .catch{font-size:clamp(27px, 3.3vw, 42px);}
   body[data-domain="tougou"] .catch{font-size:clamp(27px, 3.1vw, 40px);}
+  body[data-domain="kotehi"] .catch{font-size:clamp(27px, 3.0vw, 38px);}
 }
 @media (min-width:1120px){
   body[data-domain="biyo"] .fv__in{grid-template-columns:minmax(0,1fr) 520px;}
