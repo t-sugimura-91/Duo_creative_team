@@ -351,6 +351,33 @@ img{max-width:100%;}
   .sec__close{font-size:var(--fs-500);}
 }
 
+/* できること：失敗セクションと交互に地色を変えて、境目を作る */
+.sec--alt{background:var(--c-bg);}
+
+.shien{list-style:none;margin:var(--s-8) 0 0;padding:0;display:grid;gap:var(--s-4);}
+.card{
+  background:var(--c-surface);border:1px solid var(--c-line);
+  border-radius:var(--r-2);padding:var(--s-5);
+}
+.card__h{
+  font-family:var(--f-head);font-weight:700;
+  font-size:var(--fs-500);line-height:1.5;color:var(--c-ink);
+  letter-spacing:var(--ls-head);
+}
+.card__d{margin-top:var(--s-3);font-size:var(--fs-300);line-height:1.85;color:var(--c-ink-2);}
+.card__to{                     /* どの失敗に効くかを明示して、前のセクションを回収する */
+  margin-top:var(--s-4);padding-top:var(--s-3);
+  border-top:1px dashed var(--c-line);
+  font-size:var(--fs-200);line-height:1.6;color:var(--c-accent-deep);font-weight:700;
+}
+.card__to::before{content:"→ ";}
+@media (min-width:860px){
+  .shien{grid-template-columns:repeat(2,1fr);gap:var(--s-5);}
+  .card{padding:var(--s-6);}
+  .card__h{font-size:var(--fs-600);}
+  .card__d{font-size:var(--fs-400);}
+}
+
 /* ---------- Buttons ---------- */
 .ctas{margin-top:var(--s-6);display:flex;flex-direction:column;gap:var(--s-3);}
 @media (min-width:860px){
