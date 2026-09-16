@@ -773,6 +773,8 @@ body[data-domain="kotehi"] .catch{font-size:min(6.6vw, 26px);}
   padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));
   display:grid;grid-template-columns:1fr 1.32fr 1fr;gap:8px;
 }
+/* 予約ページだけ2枠。外へ出す導線を減らして、予約に集中させる */
+.bar--two{grid-template-columns:1fr 1.32fr;}
 @media (min-width:860px){ .bar{display:none;} }
 .bar a{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
