@@ -677,6 +677,13 @@ body[data-domain="kotehi"]  .shot__img{aspect-ratio:2/3;}
   border-radius:var(--r-2);padding:var(--s-5);position:relative;box-shadow:var(--sh-1);
 }
 @media (min-width:860px){ .sheet{display:block;margin-top:190px;} }
+/* スマホでも表示する。05は診断を持たないぶん、FVで唯一の「重くない入口」が
+   この見本になる。商談で何を作るのかが先に見えれば、予約の心理的な重さが下がる。
+   PCのような190pxの下げは不要なので、キャッチ側の流れに素直に続ける。 */
+@media (max-width:859px){
+  .sheet{display:block;margin-top:var(--s-6);}
+  body[data-domain="shikin"] .fv__in{display:flex;flex-direction:column;}
+}
 .sheet__label{
   position:absolute;top:-11px;left:12px;font-size:var(--fs-100);
   letter-spacing:.08em;color:var(--c-ink-2);background:var(--c-bg);
