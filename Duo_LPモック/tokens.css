@@ -701,6 +701,11 @@ body[data-domain="kotehi"]  .shot__img{aspect-ratio:2/3;}
 .ch-dot-out{fill:#fff;stroke:var(--c-ink);stroke-opacity:.5;stroke-width:1.8;}
 .ch-t{fill:var(--c-ink-3);font-family:var(--f-body);font-size:9px;}
 .ch-lbl{fill:var(--c-warn);font-family:var(--f-head);font-size:9.5px;font-weight:700;}
+/* 実績と予定の境目。05の価値は「先を読む」ことなので、どこから先が予定かを図で示す */
+.ch-now{stroke:var(--c-line-strong);stroke-width:1;stroke-dasharray:2 3;}
+.ch-era{fill:var(--c-ink-3);font-family:var(--f-head);font-size:8.5px;font-weight:700;letter-spacing:.04em;}
+.ch-era--now{fill:var(--c-ink-2);}
+.ch-fut{fill:var(--c-accent);fill-opacity:.045;}
 .ch-key{display:flex;gap:var(--s-4);margin-top:var(--s-2);font-size:var(--fs-100);color:var(--c-ink-2);}
 .ch-key i{display:inline-block;width:14px;height:0;border-top:2px solid var(--c-accent);margin-right:6px;vertical-align:4px;}
 .ch-key i.d{border-top:2px dashed var(--c-ink);opacity:.5;}
