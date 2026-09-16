@@ -212,6 +212,13 @@ img{max-width:100%;}
   text-wrap:balance;
 }
 @media (min-width:860px){ .catch{font-size:var(--fs-900);} }
+.catch-sub{                    /* キャッチ直下の一行。言い切りの姿勢を短く置く */
+  margin-top:var(--s-3);
+  font-family:var(--f-head);font-weight:500;
+  font-size:var(--fs-400);line-height:1.6;letter-spacing:.02em;
+  color:var(--c-ink);
+}
+@media (min-width:860px){ .catch-sub{font-size:var(--fs-500);margin-top:var(--s-4);} }
 .catch em{
   font-style:normal;
   background:linear-gradient(transparent 62%, color-mix(in srgb,var(--c-accent) 26%, transparent) 62%);
