@@ -670,7 +670,7 @@ body[data-domain="biyo"] .il-s--thin{stroke-width:.9;stroke-opacity:.38;}
 /* キャッチ「来月もそのままにしますか。」は13文字。
    左カラムの実寸を13文字で割った値を上限にして、2行で固定する。
    （860〜999pxは左カラムが最も狭くなるため、右カラムを360pxに絞ってある） */
-body[data-domain="inshoku"] .catch{font-size:min(6.6vw, 25px);}
+body[data-domain="inshoku"] .catch{font-size:min(6.4vw, 24px);}
 @media (min-width:860px){
   body[data-domain="inshoku"] .catch{font-size:clamp(27px, 3.1vw, 38px);}
 }
@@ -719,8 +719,15 @@ body[data-domain="kotehi"] .catch{font-size:min(6.6vw, 26px);}
    削るのは余白と行間だけにする（可読性を落とさない）。
    ============================================================ */
 @media (max-width:859px){
+  /* 左右の余白を20px→24pxに。日本語は行長が詰まると端で読みにくくなる */
+  .wrap{padding-inline:var(--s-6);}
+  /* キャッチは蛍光マーカー状の下地が入るため、行間が詰まると帯同士が接近する */
+  .catch{line-height:1.46;}
+  .catch-sub{margin-top:var(--s-4);line-height:1.75;}
+  .ctanote{line-height:1.9;letter-spacing:.01em;}
+  .trust li{line-height:1.85;}
   .fv__in{padding-top:var(--s-6);padding-bottom:var(--s-5);}
-  .sub{line-height:1.72;}
+  .sub{line-height:1.8;letter-spacing:.01em;}
   .komi{margin-top:var(--s-5);padding:var(--s-3) var(--s-4);}
   .ctas{margin-top:var(--s-5);}
   .trust{margin-top:var(--s-5);padding-top:var(--s-4);gap:var(--s-2);}
