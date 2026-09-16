@@ -147,6 +147,16 @@
     font-family:var(--f-head);font-weight:700;font-size:var(--fs-300);color:var(--c-accent-deep);
   }
   .nightband::after{content:"";flex:1;height:1px;background:var(--c-accent);opacity:.4;}
+  /* 30分刻みで行数が多いため、セルを詰めて一覧性を優先する */
+  .cal--fine{border-spacing:2px;}
+  .cal--fine .rowlabel{font-size:var(--fs-100);width:42px;}
+  .cal--fine .slot{min-height:30px;font-size:var(--fs-100);}
+  .cal--fine .slot--open{min-height:30px;font-size:var(--fs-100);}
+  .grouprow th{
+    text-align:left;padding:var(--s-4) 0 var(--s-2);
+    font-family:var(--f-head);font-weight:700;font-size:var(--fs-300);
+    color:var(--c-accent-deep);
+  }
   .cal-legend{display:flex;gap:var(--s-4);flex-wrap:wrap;margin-top:var(--s-4);font-size:var(--fs-200);color:var(--c-ink-2);}
   .cal-legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-2px;}
   .picked{
@@ -198,8 +208,8 @@
       </div>
 
       <div class="cal-scroll">
-        <table class="cal">
-          <caption class="visually-hidden" style="position:absolute;left:-9999px;">相談枠の空き状況（ダミー）</caption>
+        <table class="cal cal--fine">
+          <caption class="visually-hidden" style="position:absolute;left:-9999px;">相談枠の空き状況（ダミー）。8:00から翌0:30まで30分刻み。</caption>
           <thead>
             <tr>
               <th scope="col"></th>
@@ -214,7 +224,128 @@
           </thead>
           <tbody>
             <tr>
+              <th scope="row" class="rowlabel">8:00</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">8:30</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
               <th scope="row" class="rowlabel">9:00</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">9:30</th>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">10:00</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">10:30</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">11:00</th>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">11:30</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">12:00</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">12:30</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">13:00</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">13:30</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">14:00</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot" disabled>×</button></td>
@@ -223,51 +354,155 @@
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
             </tr>
             <tr>
-              <th scope="row" class="rowlabel">13:00</th>
-              <td><button class="slot" disabled>×</button></td>
+              <th scope="row" class="rowlabel">14:30</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot" disabled>×</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">15:00</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">15:30</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">16:00</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">16:30</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
             </tr>
             <tr>
               <th scope="row" class="rowlabel">17:00</th>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">17:30</th>
               <td><button class="slot" disabled>×</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">18:00</th>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">18:30</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">19:00</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">19:30</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+            </tr>
+          </tbody>
+          <tbody class="night">
+            <tr class="grouprow"><th scope="row" colspan="8">営業後の枠　20:00 − 翌1:00</th></tr>
+            <tr>
+              <th scope="row" class="rowlabel">20:00</th>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot" disabled>×</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
             </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p class="nightband">営業後の枠 20:00 − 翌1:00</p>
-
-      <div class="cal-scroll">
-        <table class="cal">
-          <tbody class="night">
             <tr>
-              <th scope="row" class="rowlabel">20:00</th>
+              <th scope="row" class="rowlabel">20:30</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot" disabled>×</button></td>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
-              <td><button class="slot" disabled>×</button></td>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
             </tr>
             <tr>
               <th scope="row" class="rowlabel">21:00</th>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="true">選択中</button></td>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot" disabled>×</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">21:30</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
             </tr>
@@ -277,16 +512,56 @@
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">22:30</th>
               <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
             </tr>
             <tr>
               <th scope="row" class="rowlabel">23:00</th>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">23:30</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">0:00</th>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">0:30</th>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
