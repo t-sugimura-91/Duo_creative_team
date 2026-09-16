@@ -1,5 +1,5 @@
 /* ============================================================
-   NEXTERA / デザイントークン + 共通コンポーネント
+   NXTERA / デザイントークン + 共通コンポーネント
    これは「ファーストビューのみ」のデザインモック用スタイルです。
    数値・金額・時間はすべて仮値。実績数値は一切含みません。
 
@@ -142,9 +142,9 @@ img{max-width:100%;}
   backdrop-filter:saturate(1.1) blur(6px);
 }
 .hd__in{display:flex;align-items:center;gap:var(--s-4);min-height:58px;}
-/* ロゴ「NEXTERA」。英字1語のため、旧案のカナ＋ラテン2段組みは解体した。
+/* ロゴ「NXTERA」。英字1語のため、旧案のカナ＋ラテン2段組みは解体した。
    マーク＝軒（店）と、その下に引かれた一本の線。
-   ※このマークは旧名の語義に合わせて作ったもので、NEXTERAとは意味が繋がらない。
+   ※このマークは旧名の語義に合わせて作ったもので、NXTERAとは意味が繋がらない。
      正式ロゴの制作時に見直す前提の仮組み。 */
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
 .logo__mark{width:26px;height:26px;position:relative;flex:none;}
