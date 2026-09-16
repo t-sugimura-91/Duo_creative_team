@@ -100,6 +100,10 @@ body[data-domain="kotehi"]{         /* 固定費：真鍮・書類の琥珀 */
 body[data-domain="shikin"]{         /* 資金繰り：濃紺。金融機関の文脈 */
   --c-accent:#2F5D8C; --c-accent-deep:#264B71; --c-accent-soft:#E5EBF2;
 }
+body[data-domain="tougou"]{         /* 統合版。業種に寄せずブランド色で通す */
+  --c-accent:var(--c-brand); --c-accent-deep:var(--c-brand-deep);
+  --c-accent-soft:var(--c-brand-soft);
+}
 body[data-domain="shindan"]{        /* 診断・予約：ブランド色そのまま */
   --c-accent:var(--c-brand); --c-accent-deep:var(--c-brand-deep);
   --c-accent-soft:var(--c-brand-soft);
@@ -378,6 +382,49 @@ img{max-width:100%;}
   .card__d{font-size:var(--fs-400);}
 }
 
+/* ---------- 統合版（06）専用 ---------- */
+/* 2業種を並べて、1枚で両方を扱うことを最初に示す */
+.shots{display:none;gap:var(--s-4);}
+@media (min-width:860px){
+  .shots{display:grid;grid-template-columns:1fr 1fr;align-content:center;}
+  body[data-domain="tougou"] .fv__in{grid-template-columns:minmax(0,1fr) 440px;align-items:center;}
+}
+@media (min-width:1120px){
+  body[data-domain="tougou"] .fv__in{grid-template-columns:minmax(0,1fr) 500px;}
+}
+.shots__i{margin:0;}
+.shots__i img{
+  display:block;width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;
+  border:1px solid var(--c-line);border-radius:var(--r-2);background:var(--c-bg-sunk);
+}
+.shots__i figcaption{
+  margin-top:var(--s-2);font-size:var(--fs-200);font-weight:700;
+  color:var(--c-ink-2);letter-spacing:.04em;text-align:center;
+}
+
+/* 業種タブ */
+.tabs{
+  display:flex;gap:var(--s-2);margin-top:var(--s-6);
+  border-bottom:1px solid var(--c-line);
+}
+.tab{
+  appearance:none;background:none;border:0;cursor:pointer;
+  padding:var(--s-3) var(--s-5);min-height:var(--tap);
+  font-family:var(--f-head);font-weight:700;font-size:var(--fs-400);
+  color:var(--c-ink-2);border-bottom:3px solid transparent;
+  margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;
+}
+.tab:hover{color:var(--c-ink);}
+.tab[aria-selected="true"]{color:var(--c-accent-deep);border-bottom-color:var(--c-accent);}
+.tab:focus-visible{outline:2px solid var(--c-accent);outline-offset:2px;}
+.panel{padding-top:var(--s-6);}
+.panel:focus{outline:none;}
+.eyebrow--sub{margin-top:var(--s-6);}
+.panel .fails,.panel .shien{margin-top:var(--s-4);}
+@media (min-width:860px){
+  .tab{font-size:var(--fs-500);padding:var(--s-3) var(--s-6);}
+}
+
 /* ---------- Buttons ---------- */
 .ctas{margin-top:var(--s-6);display:flex;flex-direction:column;gap:var(--s-3);}
 @media (min-width:860px){
@@ -616,8 +663,10 @@ body[data-domain="inshoku"] .catch{font-size:min(6.6vw, 25px);}
 /* 理美容のキャッチ1行目「予約が入らない理由、」は10文字。
    860〜999pxで左カラムが最も狭くなるため、そこを基準に上限を決める。 */
 body[data-domain="biyo"] .catch{font-size:min(6.8vw, 27px);}
+body[data-domain="tougou"] .catch{font-size:min(6.8vw, 27px);}
 @media (min-width:860px){
   body[data-domain="biyo"] .catch{font-size:clamp(27px, 3.3vw, 42px);}
+  body[data-domain="tougou"] .catch{font-size:clamp(27px, 3.1vw, 40px);}
 }
 @media (min-width:1120px){
   body[data-domain="biyo"] .fv__in{grid-template-columns:minmax(0,1fr) 520px;}

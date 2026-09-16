@@ -1,0 +1,260 @@
+<!doctype html>
+<!--
+  ============================================================
+  NXTERA / 集客LP（飲食・理美容の統合版）— 比較検討用のモック。
+  01（飲食）と02（理美容）を1枚にまとめたらどうなるか、を見るためのファイル。
+  01・02はそのまま残してあるので、置き換えではなく別案として比較する。
+
+  【構成】
+   FV（業種共通）→ 業種タブ →〔よくある失敗／できること〕→ CTA
+   タブで飲食・理美容を切り替える。切り替わるのはタブから下だけ。
+
+  【仮値の注記】
+   - ロゴ「NXTERA」はテキスト仮置き。
+   - 相談時間「30分」、受付時間「8:00〜翌1:00」は仮値です。
+   - 写真はAI生成の仮画像。本番は同構図で撮影する前提。
+   - 実績数値は意図的に一切掲載していません。
+  ============================================================
+-->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NXTERA｜集客LP（統合版）モック</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body data-domain="tougou">
+
+<p class="mockflag"><b>DESIGN MOCK</b>　01と02を1枚にまとめた比較用の別案／金額・時間・ロゴはすべて仮値です</p>
+
+<header class="hd">
+  <div class="wrap hd__in">
+    <a class="logo" href="#"><span class="logo__mark" aria-hidden="true"></span>
+      <span class="logo__txt">
+        <span class="logo__type">NXTERA</span>
+      </span>
+      <span class="logo__sub">飲食店・サロンの集客支援</span>
+    </a>
+    <nav class="hd__nav">
+      <a href="#">できること</a>
+      <a href="#">料金</a>
+      <a href="#">進め方</a>
+    </nav>
+  </div>
+</header>
+
+<main class="fv">
+  <div class="wrap fv__in">
+
+    <div>
+      <h1 class="catch">予約が入らない理由、<br><em>見えていますか。</em></h1>
+
+      <p class="catch-sub">勘ではなく、数字から「選ばれない理由」を見つける。</p>
+
+      <p class="sub">Googleマップの見え方、口コミ、掲載プランの内容。<br>飲食店とサロン、それぞれの集客で結果を左右するポイントを整理し、次にやるべきことを一緒に考えます。</p>
+
+      <div class="komi komi--strong">
+        <div class="komi__body">
+          <p class="komi__lead"><span class="komi__lead-s">当サイト限定</span><span class="komi__lead-b">特典</span></p>
+          <ul class="komi__list">
+            <li><span class="komi__item">PR用動画制作</span><span class="komi__q">2本無料</span></li>
+            <li><span class="komi__item">口コミ収集ツール利用</span><span class="komi__q">3か月無料</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ctas">
+        <a class="btn btn--main" href="05-shindan-yoyaku.html#yoyaku">相談スケジュールを選ぶ
+          <span class="btn__note">オンライン30分</span>
+        </a>
+        <a class="btn btn--sub" href="#">LINEで情報を得る</a>
+      </div>
+
+      <p class="ctanote">受付：8:00〜翌1:00<br>全国オンライン・1回30分。カメラはオフでも構いません。その場でのご契約は不要です。</p>
+
+      <div class="trust">
+        <ul>
+          <li>日時は空いている枠から、ご自身で選べます。電話を待つ必要はありません</li>
+          <li>施策ごとに業者を分けません。マップも口コミもSNSも同じ担当が見ます</li>
+          <li>全国オンライン完結。お店を閉めてからで間に合います</li>
+        </ul>
+      </div>
+
+      <p class="more">このあと：業種を選ぶ／よくある失敗と、その理由／できること</p>
+    </div>
+
+    <!-- 2業種を並べて、1枚で両方を扱うことを最初に示す -->
+    <aside class="shots" aria-label="飲食店とサロンの写真">
+      <figure class="shots__i">
+        <img src="images/01-inshoku-hero-v.webp" width="880" height="1320" loading="eager" decoding="async"
+             alt="閉店後の居酒屋のカウンター。伝票の束と電卓を前にしてスマートフォンを見る店主。">
+        <figcaption>飲食店</figcaption>
+      </figure>
+      <figure class="shots__i">
+        <img src="images/02-biyo-hero-v2.webp" width="880" height="1320" loading="eager" decoding="async"
+             alt="美容室のセット面。予約台帳とタブレット、はさみとコームが並ぶカウンターの先で、スタッフがタブレットに書き込んでいる。">
+        <figcaption>美容室・サロン</figcaption>
+      </figure>
+    </aside>
+
+  </div>
+</main>
+
+<section class="sec" id="gyoushu">
+  <div class="wrap">
+    <p class="eyebrow">業種を選ぶ</p>
+    <h2 class="sec__h">起きている失敗は、業種で違います。<br><em>お店はどちらですか。</em></h2>
+
+    <div class="tabs" role="tablist" aria-label="業種">
+      <button class="tab" role="tab" id="tab-inshoku" aria-controls="panel-inshoku" aria-selected="true">飲食店</button>
+      <button class="tab" role="tab" id="tab-biyo" aria-controls="panel-biyo" aria-selected="false" tabindex="-1">美容室・サロン</button>
+    </div>
+
+    <!-- ============ 飲食 ============ -->
+    <div class="panel" role="tabpanel" id="panel-inshoku" aria-labelledby="tab-inshoku" tabindex="0">
+
+      <p class="eyebrow eyebrow--sub">よくある失敗</p>
+      <ul class="fails">
+        <li class="fail">
+          <p class="fail__q">MEO対策を頼んで、Googleマップの順位は上がった。<br>でも来たのは値引き目当ての一見客で、再来しなかった。</p>
+          <p class="fail__a"><span class="fail__mark">なぜ</span>順位を上げる施策と、再来する人を増やす施策は別物だからです。露出が増えるほど、価格で店を選ぶ人の割合も一緒に増えます。</p>
+        </li>
+        <li class="fail">
+          <p class="fail__q">Instagramの運用を外に任せた。<br>投稿は増えたが、予約は増えなかった。</p>
+          <p class="fail__a"><span class="fail__mark">なぜ</span>投稿の先に、予約までの道がなかったからです。プロフィールから予約完了まで3タップ以上かかると、ほとんどの人はそこで離れます。</p>
+        </li>
+        <li class="fail">
+          <p class="fail__q">グルメ媒体の掲載プランを上げた。<br>客数は増えたのに、手元に残るお金は減った。</p>
+          <p class="fail__a"><span class="fail__mark">なぜ</span>掲載費とクーポンの原資が同時に増えるからです。客数ではなく「1人あたりいくら残るか」で見ないと、増えるほど苦しくなります。</p>
+        </li>
+        <li class="fail">
+          <p class="fail__q">忙しい月に施策を止めた。<br>その2ヶ月後、予約がすとんと落ちた。</p>
+          <p class="fail__a"><span class="fail__mark">なぜ</span>集客の効果は1〜2ヶ月遅れて出るからです。止めた月ではなく、その先に谷が来ます。忙しいときほど止めてはいけない理由がここにあります。</p>
+        </li>
+      </ul>
+
+      <p class="eyebrow eyebrow--sub">できること</p>
+      <ul class="shien">
+        <li class="card">
+          <h3 class="card__h">Googleマップと口コミを、来店後まで設計する</h3>
+          <p class="card__d">見つけてもらう対策だけで止めません。来た人に口コミをお願いする流れまで作ります。特典の口コミ収集ツールは、ここで使うものです。</p>
+          <p class="card__to">「順位は上がったのに、再来しない」に効きます</p>
+        </li>
+        <li class="card">
+          <h3 class="card__h">予約までの道を、1〜2タップに縮める</h3>
+          <p class="card__d">プロフィールから入っても、投稿から入っても、マップから入っても、同じ予約画面に着くようにします。途中で迷う場所をなくします。</p>
+          <p class="card__to">「投稿は増えたのに、予約が増えない」に効きます</p>
+        </li>
+        <li class="card">
+          <h3 class="card__h">「1人呼ぶのに、いくらかかっているか」を出す</h3>
+          <p class="card__d">ホットペッパーや食べログの掲載費に、クーポンの値引き分を足して、お客様1人あたりの集客コストを出します。その人が実際に使ってくれた額と並べれば、プランを上げるべきか下げるべきかが数字で決まります。</p>
+          <p class="card__to">「客数は増えたのに、残るお金は減った」に効きます</p>
+        </li>
+        <li class="card">
+          <h3 class="card__h">1年分の集客カレンダーをつくる</h3>
+          <p class="card__d">効果が出るのは1〜2ヶ月先です。閑散月の2ヶ月前から仕込み、忙しい月こそ止めない形にします。何月に何をするかを先に決めておきます。</p>
+          <p class="card__to">「止めた2ヶ月後に、予約が落ちた」に効きます</p>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ============ 理美容 ============ -->
+    <div class="panel" role="tabpanel" id="panel-biyo" aria-labelledby="tab-biyo" tabindex="0" hidden>
+
+      <p class="eyebrow eyebrow--sub">よくある失敗</p>
+      <ul class="fails">
+        <li class="fail">
+          <p class="fail__q">掲載プランを上げて、新規は増えた。<br>でも2回目に来てくれる人は、増えなかった。</p>
+          <p class="fail__a"><span class="fail__mark">なぜ</span>クーポンで来た人は、次もクーポンのある店を探すからです。掲載を強くするほど、価格でサロンを選ぶ人の割合が増えます。</p>
+        </li>
+        <li class="fail">
+          <p class="fail__q">Instagramにスタイル写真を出し続けた。<br>フォロワーは増えたが、予約は増えなかった。</p>
+          <p class="fail__a"><span class="fail__mark">なぜ</span>見ているのが同業とサロン好きで、通える距離の人ではなかったからです。届く相手を決めないまま出し続けても、予約には変わりません。</p>
+        </li>
+        <li class="fail">
+          <p class="fail__q">次回予約の声かけをスタッフに任せた。<br>人によってばらつき、そのうち誰もやらなくなった。</p>
+          <p class="fail__a"><span class="fail__mark">なぜ</span>やり方が個人の裁量のままだからです。忙しい日から先に崩れ、一度崩れると戻りません。</p>
+        </li>
+        <li class="fail">
+          <p class="fail__q">クーポンの割引を小さくしたら、客足が落ちた。<br>戻そうとしたら、元の単価に戻せなくなっていた。</p>
+          <p class="fail__a"><span class="fail__mark">なぜ</span>値引きで集めた客層にとっては、値引きが来店の条件だからです。同じ客層のまま単価だけを戻すことはできません。</p>
+        </li>
+      </ul>
+
+      <p class="eyebrow eyebrow--sub">できること</p>
+      <ul class="shien">
+        <li class="card">
+          <h3 class="card__h">クーポン以外の入口を増やす</h3>
+          <p class="card__d">掲載は残したまま、Googleマップ・口コミ・紹介からの流入を育てます。価格以外の理由で選ばれる入口が増えるほど、掲載への依存が下がります。特典の口コミ収集ツールは、ここで使うものです。</p>
+          <p class="card__to">「新規は増えたのに、2回目が増えない」に効きます</p>
+        </li>
+        <li class="card">
+          <h3 class="card__h">Instagramを「通える人に届く」設定に変える</h3>
+          <p class="card__d">投稿の内容と位置情報、プロフィールからの導線を見直して、通える距離の人に届くようにします。予約までのタップ数も減らします。</p>
+          <p class="card__to">「フォロワーは増えたのに、予約が増えない」に効きます</p>
+        </li>
+        <li class="card">
+          <h3 class="card__h">次回予約を、個人技から仕組みに変える</h3>
+          <p class="card__d">お会計のときの声かけを裁量に任せず、誰がやっても同じ流れになる形にします。次に来る日が決まっている人が増えれば、月ごとの予約の波も読めるようになります。</p>
+          <p class="card__to">「声かけが人によってばらついた」に効きます</p>
+        </li>
+        <li class="card">
+          <h3 class="card__h">「1人呼ぶのに、いくらかかっているか」を出す</h3>
+          <p class="card__d">掲載費にクーポンの値引き分を足して、お客様1人あたりの集客コストを出します。単価を戻す手順も、いつからどれだけ動かすかも、その数字をもとに決めます。</p>
+          <p class="card__to">「元の単価に戻せなくなった」に効きます</p>
+        </li>
+      </ul>
+    </div>
+
+    <p class="sec__close">どちらの業種でも、<b>やりっぱなしにしないための仕組み</b>をつくります。<br>
+    毎月いっしょに数字を見ながら、次の一手を決めていきます。</p>
+
+    <div class="ctas ctas--center">
+      <a class="btn btn--main" href="05-shindan-yoyaku.html#yoyaku">相談スケジュールを選ぶ
+        <span class="btn__note">オンライン30分</span>
+      </a>
+      <a class="btn btn--sub" href="#">LINEで情報を得る</a>
+    </div>
+    <p class="ctanote ctanote--center">受付：8:00〜翌1:00　全国オンライン・1回30分。カメラはオフでも構いません。その場でのご契約は不要です。</p>
+  </div>
+</section>
+
+<nav class="bar" aria-label="主要アクション">
+  <a class="bar__s" href="#">LINEで<br>情報</a>
+  <a class="bar__p" href="05-shindan-yoyaku.html#yoyaku">日程を選ぶ<small>8:00〜翌1:00</small></a>
+  <a class="bar__s" href="#gyoushu">業種を<br>選ぶ</a>
+</nav>
+
+<script>
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  if (!tabs.length) return;
+
+  function select(tab) {
+    tabs.forEach(function (t) {
+      var on = (t === tab);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { select(tab); });
+    tab.addEventListener('keydown', function (e) {
+      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      e.preventDefault();
+      var next = tabs[(i + d + tabs.length) % tabs.length];
+      select(next);
+      next.focus();
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
