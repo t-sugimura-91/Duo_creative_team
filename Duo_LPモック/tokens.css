@@ -243,6 +243,42 @@ img{max-width:100%;}
 .komi__txt{font-size:var(--fs-300);line-height:1.7;color:var(--c-ink);}
 @media (min-width:860px){ .komi__txt{font-size:var(--fs-400);} }
 
+/* 込み帯の強調版（.komi--strong）
+   景品ではなく「取引内容」として大きく打つための型。
+   上限規制がかからないぶん、遠慮せず面積と級数を与えてよい箇所。 */
+.komi--strong{
+  background:var(--c-accent-soft);
+  border-color:color-mix(in srgb,var(--c-accent) 26%, transparent);
+  border-left-width:6px;
+  padding:var(--s-4) var(--s-5);
+  gap:var(--s-4);
+  box-shadow:var(--sh-2);
+}
+.komi--strong .komi__tag{ font-size:var(--fs-300); padding:5px 11px; letter-spacing:.1em; }
+.komi__body{ flex:1 1 auto; min-width:0; }
+.komi__lead{
+  font-family:var(--f-head); font-weight:700; font-size:var(--fs-400);
+  line-height:1.5; color:var(--c-accent-deep);
+}
+.komi__list{ list-style:none; margin:var(--s-3) 0 0; padding:0; display:flex; flex-direction:column; gap:var(--s-2); }
+.komi__list li{
+  display:flex; align-items:baseline; gap:var(--s-2);
+  padding-bottom:var(--s-2);
+  border-bottom:1px solid color-mix(in srgb,var(--c-accent) 20%, transparent);
+}
+.komi__list li:last-child{ border-bottom:0; padding-bottom:0; }
+.komi__item{ font-size:var(--fs-400); font-weight:500; color:var(--c-ink); }
+.komi__q{
+  margin-left:auto; font-family:var(--f-head); font-weight:700;
+  font-size:var(--fs-600); line-height:1; color:var(--c-accent-deep);
+  font-variant-numeric:tabular-nums; white-space:nowrap;
+}
+.komi__note{ margin-top:var(--s-3); font-size:var(--fs-200); color:var(--c-ink-2); line-height:1.6; }
+@media (min-width:860px){
+  .komi--strong .komi__lead{ font-size:var(--fs-500); }
+  .komi__q{ font-size:var(--fs-700); }
+}
+
 /* ---------- Buttons ---------- */
 .ctas{margin-top:var(--s-6);display:flex;flex-direction:column;gap:var(--s-3);}
 @media (min-width:860px){
