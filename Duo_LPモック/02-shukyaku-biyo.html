@@ -1,0 +1,108 @@
+<!doctype html>
+<!--
+  ============================================================
+  Duo / 集客LP（理美容）— ファーストビューのみのデザインモックです。
+  1画面目の見え方を確認するためのファイルで、ページ全体ではありません。
+
+  【仮値の注記】
+   - ロゴ「Duo」はテキスト仮置き。
+   - 「20:00〜23:00」「火曜（定休日想定）」「返信は翌営業日中」は仮値。
+   - 写真は使用していません。PCでは写真が入る領域に撮影指示を記載。
+   - 実績数値（導入サロン数・削減率等）は一切掲載していません。
+  ============================================================
+-->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duo｜集客LP（理美容）FVモック</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* 理美容だけ、余白と罫をわずかに広く・細く取り、温度を下げる。
+     ブランド構造（要素の並び・型）は01と完全に共通。 */
+  body[data-domain="biyo"] .catch{letter-spacing:.02em;}
+  body[data-domain="biyo"] .fv::before{opacity:.38;}
+  body[data-domain="biyo"] .fv__in{padding-top:var(--s-10);}
+  body[data-domain="biyo"] .trust li{color:var(--c-ink-2);}
+</style>
+</head>
+<body data-domain="biyo">
+
+<p class="mockflag"><b>DESIGN MOCK</b>　ファーストビューのみ／金額・時間・ロゴはすべて仮値です</p>
+
+<header class="hd">
+  <div class="wrap hd__in">
+    <a class="logo" href="#"><span class="logo__mark"></span>
+      <span class="logo__type">Duo</span>
+      <span class="logo__sub">サロンの経営支援</span>
+    </a>
+    <nav class="hd__nav">
+      <a href="#">できること</a>
+      <a href="#">料金</a>
+      <a href="#">進め方</a>
+      <a href="#">よくある質問</a>
+    </nav>
+    <span class="hd__tel">相談は全国オンライン／返信は翌営業日中</span>
+  </div>
+</header>
+
+<main class="fv">
+  <div class="wrap fv__in">
+
+    <div>
+      <p class="eyebrow">集客・固定費・資金繰りを1社で</p>
+
+      <h1 class="catch">掲載料は上がって、<br><em>再来率は下がって</em>いませんか。</h1>
+
+      <p class="sub">掲載プランの中身と、値引きで集めた客層と、指名の戻り方。この3つを分けて見ないと、来月も同じ請求書が届きます。まず3分の診断で現在地だけ確認してください。</p>
+
+      <div class="komi">
+        <span class="komi__tag">込み</span>
+        <p class="komi__txt">スタイル動画2本／LINE予約・再来促進ツール3ヶ月ぶんが込み。追加費用はありません。</p>
+      </div>
+
+      <div class="ctas">
+        <a class="btn btn--main" href="05-shindan-yoyaku.html">掲載料のムダを3分で診断する
+          <span class="btn__note">5問・その場で結果</span>
+        </a>
+        <a class="btn btn--sub" href="05-shindan-yoyaku.html#yoyaku">営業後20〜23時・火曜の相談枠を見る</a>
+      </div>
+
+      <div class="trust">
+        <ul>
+          <li>商談は営業後20:00〜23:00と定休日の枠から、ご自身で選べます</li>
+          <li>診断は3分・5問。その場で結果が出ます</li>
+          <li>全国オンライン完結。サロンを閉めてからで間に合います</li>
+        </ul>
+      </div>
+
+      <p class="shotnote">撮影指示：閉店後のセット面。鏡・シャンプー台の直線を活かし、余白を多く取る（人物は後ろ姿のみ）。</p>
+
+      <p class="more">このあと：診断でわかること／料金の内訳／進め方</p>
+    </div>
+
+    <!-- 写真が入る領域（ダミー画像は読み込まない） -->
+    <aside class="shot" aria-label="写真が入る領域と撮影指示">
+      <span class="shot__label">PHOTO AREA ／ 写真が入る領域</span>
+      <p class="shot__t">被写体：閉店後のセット面と、片付け中のスタイリスト</p>
+      <p class="shot__d">
+        <b>構図</b>：鏡面を画面右2/3に、垂直・水平をきっちり出す。人物は後ろ姿かシルエットで小さく。床とミラーの反射で明るさを作る。<br>
+        <b>光</b>：白〜ニュートラル。色被りを残さない（清潔感が最優先）。<br>
+        <b>避ける</b>：施術中のビフォーアフター、モデルのアップ、ピンク系の照明。
+      </p>
+    </aside>
+
+  </div>
+</main>
+
+<nav class="bar" aria-label="主要アクション">
+  <a class="bar__s" href="#">LINEで<br>聞く</a>
+  <a class="bar__p" href="05-shindan-yoyaku.html">3分診断<small>5問・無料</small></a>
+  <a class="bar__s" href="05-shindan-yoyaku.html#yoyaku">夜・火曜<br>の枠</a>
+</nav>
+
+</body>
+</html>

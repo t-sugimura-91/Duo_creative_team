@@ -1,0 +1,415 @@
+<!doctype html>
+<!--
+  ============================================================
+  Duo / 診断・予約画面 — デザインモックです（3画面を縦に並べた1ファイル）。
+  5-1 診断 開始画面 ／ 5-2 診断 結果画面 ／ 5-3 予約カレンダー画面
+  実装ではそれぞれ別画面になります。ここでは見え方の確認のみ。
+
+  【仮値の注記】
+   - ロゴ「Duo」はテキスト仮置き。
+   - 相談時間「45分」、受付「20:00〜23:00」、カレンダーの日付・空き状況は仮値。
+   - 結果画面のレンジ金額（例：月 3.2万〜7.8万円）はすべてダミーです。
+     必ずレンジ表示とし、単一の金額・単一の%は表示しません。
+   - 実績数値（削減率・導入店舗数等）は一切掲載していません。
+  ============================================================
+-->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duo｜診断・予約画面 モック</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* ---------- 画面の区切り ---------- */
+  .screen{padding:var(--s-8) 0 var(--s-10);}
+  .screen + .screen{border-top:1px solid var(--c-line-strong);}
+  .screen__flag{
+    display:inline-block;font-family:var(--f-head);font-weight:700;
+    font-size:var(--fs-200);letter-spacing:.08em;color:#EDEAE4;background:#2B2E33;
+    padding:4px 10px;border-radius:var(--r-1);margin-bottom:var(--s-5);
+  }
+  .h2{font-family:var(--f-head);font-weight:700;font-size:clamp(22px,5.6vw,30px);
+      line-height:1.36;letter-spacing:var(--ls-head);}
+  .lead{margin-top:var(--s-4);color:var(--c-ink-2);font-size:var(--fs-400);max-width:40em;}
+  .note-s{margin-top:var(--s-4);font-size:var(--fs-300);color:var(--c-ink-3);}
+  .panel{
+    background:var(--c-surface);border:1px solid var(--c-line);
+    border-radius:var(--r-3);padding:var(--s-5);margin-top:var(--s-6);box-shadow:var(--sh-1);
+  }
+  @media (min-width:860px){ .panel{padding:var(--s-8);} }
+
+  /* ---------- ステップインジケータ ---------- */
+  .steps{display:flex;gap:6px;list-style:none;margin:0 0 var(--s-5);padding:0;}
+  .steps li{
+    flex:1;font-size:var(--fs-100);color:var(--c-ink-3);line-height:1.4;
+    border-top:4px solid var(--c-line);padding-top:6px;
+  }
+  .steps li[aria-current="step"]{color:var(--c-ink);border-top-color:var(--c-accent);font-weight:700;}
+  .steps b{display:block;font-family:var(--f-head);font-size:var(--fs-200);}
+
+  /* ---------- 設問・選択肢 ---------- */
+  .q{font-family:var(--f-head);font-weight:700;font-size:var(--fs-600);line-height:1.5;}
+  .q__n{color:var(--c-accent);margin-right:8px;}
+  .opts{display:grid;gap:var(--s-3);margin-top:var(--s-5);}
+  @media (min-width:640px){ .opts{grid-template-columns:1fr 1fr;} }
+  .opt{
+    display:flex;align-items:center;gap:var(--s-3);min-height:var(--tap);
+    border:1px solid var(--c-line-strong);border-radius:var(--r-2);
+    padding:var(--s-3) var(--s-4);background:var(--c-surface);cursor:pointer;
+    font-size:var(--fs-400);transition:border-color .15s, background .15s;
+  }
+  .opt:hover{background:var(--c-bg-sunk);border-color:var(--c-ink-3);}
+  .opt input{appearance:none;width:20px;height:20px;flex:none;margin:0;
+    border:2px solid var(--c-line-strong);border-radius:50%;}
+  .opt input:checked{border-color:var(--c-accent);box-shadow:inset 0 0 0 4px var(--c-accent);}
+  .opt:has(input:checked){border-color:var(--c-accent);background:var(--c-accent-soft);font-weight:700;}
+  .opt:has(input:focus-visible){outline:3px solid var(--c-focus);outline-offset:2px;}
+
+  /* ---------- 結果：レンジ表示 ---------- */
+  .res{display:grid;gap:var(--s-4);margin-top:var(--s-5);}
+  .res__item{border:1px solid var(--c-line);border-radius:var(--r-2);padding:var(--s-4);background:var(--c-bg);}
+  .res__head{display:flex;align-items:baseline;gap:var(--s-3);flex-wrap:wrap;}
+  .res__name{font-family:var(--f-head);font-weight:700;font-size:var(--fs-500);}
+  .res__range{font-family:var(--f-num);font-weight:700;font-size:var(--fs-700);letter-spacing:.01em;}
+  .res__unit{font-size:var(--fs-300);font-weight:400;color:var(--c-ink-2);}
+  .res--a .res__range{color:#C1440E;} /* 集客 */
+  .res--b .res__range{color:#9A6410;} /* 固定費 */
+  .res--c .res__range{color:#2F5D8C;} /* 資金繰り */
+  .track{position:relative;height:14px;background:var(--c-bg-sunk);border:1px solid var(--c-line);
+         border-radius:2px;margin-top:var(--s-3);}
+  .track span{position:absolute;top:-1px;bottom:-1px;border-radius:2px;
+    background:repeating-linear-gradient(135deg, currentColor 0 5px, color-mix(in srgb,currentColor 55%, #fff) 5px 10px);}
+  .res--a .track span{color:#C1440E;}
+  .res--b .track span{color:#9A6410;}
+  .res--c .track span{color:#2F5D8C;}
+  .track__scale{display:flex;justify-content:space-between;font-size:10px;color:var(--c-ink-3);margin-top:4px;}
+  .res__why{margin-top:var(--s-3);font-size:var(--fs-300);color:var(--c-ink-2);line-height:1.7;}
+
+  /* ---------- 3領域のバランス図 ---------- */
+  .balance{margin-top:var(--s-6);padding:var(--s-5);background:var(--c-bg-sunk);
+           border:1px solid var(--c-line);border-radius:var(--r-2);}
+  .balance__t{font-family:var(--f-head);font-weight:700;font-size:var(--fs-300);margin-bottom:var(--s-4);}
+  .bal{display:flex;height:34px;border-radius:2px;overflow:hidden;border:1px solid var(--c-line-strong);}
+  .bal i{display:block;font-style:normal;}
+  .bal__a{background:#C1440E;}
+  .bal__b{background:#9A6410;}
+  .bal__c{background:#2F5D8C;}
+  .bal__legend{display:flex;gap:var(--s-4);flex-wrap:wrap;margin-top:var(--s-3);font-size:var(--fs-200);color:var(--c-ink-2);}
+  .bal__legend i{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px;}
+  .caution{
+    margin-top:var(--s-5);padding:var(--s-4);background:var(--c-surface);
+    border:1px solid var(--c-line);border-left:3px solid var(--c-warn);border-radius:var(--r-1);
+    font-size:var(--fs-200);line-height:1.8;color:var(--c-ink-2);
+  }
+
+  /* ---------- 予約カレンダー ---------- */
+  .calhead{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);margin-bottom:var(--s-4);}
+  .calhead__m{font-family:var(--f-head);font-weight:700;font-size:var(--fs-500);}
+  .calhead__nav{display:flex;gap:var(--s-2);}
+  .navbtn{min-width:44px;min-height:44px;border:1px solid var(--c-line-strong);background:var(--c-surface);
+    border-radius:var(--r-2);font-size:var(--fs-300);cursor:pointer;color:var(--c-ink);}
+  .navbtn:hover{background:var(--c-bg-sunk);}
+  .navbtn[disabled]{background:var(--c-disabled-bg);color:var(--c-disabled-ink);cursor:not-allowed;border-color:transparent;}
+
+  /* 2つの表（日中／夜）で列位置を揃えるため table-layout:fixed */
+  .cal{width:100%;min-width:330px;border-collapse:separate;border-spacing:3px;table-layout:fixed;}
+  .cal th{font-weight:400;font-size:var(--fs-100);color:var(--c-ink-2);padding-bottom:2px;}
+  .cal th b{display:block;font-family:var(--f-head);font-size:var(--fs-300);color:var(--c-ink);}
+  .cal th.sat b{color:#2B5C85;} .cal th.sun b{color:#9B2C1F;}
+  .cal .rowlabel{font-size:var(--fs-200);color:var(--c-ink-2);text-align:right;
+    white-space:nowrap;width:46px;padding-right:2px;}
+  .slot{
+    width:100%;min-height:40px;border-radius:var(--r-2);border:1px solid var(--c-line);
+    background:var(--c-bg-sunk);color:var(--c-disabled-ink);font-size:var(--fs-200);
+    font-family:var(--f-head);cursor:not-allowed;
+  }
+  .slot--open{
+    width:100%;font-size:var(--fs-200);font-family:var(--f-head);border-radius:var(--r-2);
+    background:var(--c-surface);border:1px solid var(--c-accent);
+    color:var(--c-accent-deep);font-weight:700;cursor:pointer;min-height:44px;
+    transition:background .15s, color .15s;
+  }
+  .slot--open:hover{background:var(--c-accent-soft);}
+  .slot--open[aria-pressed="true"]{background:var(--c-accent);color:var(--c-on-accent);border-color:var(--c-accent-deep);}
+  .night th,.night td{position:relative;}
+  .night .rowlabel{color:var(--c-ink);font-weight:700;}
+  .nightband{
+    display:flex;align-items:center;gap:var(--s-2);margin:var(--s-4) 0 var(--s-2);
+    font-family:var(--f-head);font-weight:700;font-size:var(--fs-300);color:var(--c-accent-deep);
+  }
+  .nightband::after{content:"";flex:1;height:1px;background:var(--c-accent);opacity:.4;}
+  .cal-legend{display:flex;gap:var(--s-4);flex-wrap:wrap;margin-top:var(--s-4);font-size:var(--fs-200);color:var(--c-ink-2);}
+  .cal-legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-2px;}
+  .picked{
+    margin-top:var(--s-5);padding:var(--s-4);border:1px solid var(--c-accent);
+    background:var(--c-accent-soft);border-radius:var(--r-2);
+    font-size:var(--fs-400);
+  }
+  .picked b{font-family:var(--f-head);font-size:var(--fs-500);}
+  .picked span{display:block;font-size:var(--fs-200);color:var(--c-ink-2);margin-top:4px;}
+  .cal-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+</style>
+</head>
+<body data-domain="shindan">
+
+<p class="mockflag"><b>DESIGN MOCK</b>　診断・予約の3画面／日付・空き状況・レンジ金額はすべてダミーです</p>
+
+<header class="hd">
+  <div class="wrap hd__in">
+    <a class="logo" href="#"><span class="logo__mark"></span>
+      <span class="logo__type">Duo</span>
+      <span class="logo__sub">3分診断・相談予約</span>
+    </a>
+    <nav class="hd__nav">
+      <a href="01-shukyaku-inshoku.html">集客（飲食）</a>
+      <a href="02-shukyaku-biyo.html">集客（理美容）</a>
+      <a href="03-kotehi.html">固定費</a>
+      <a href="04-shikinguri.html">資金繰り</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ========== 5-1 診断 開始画面 ========== -->
+<section class="screen" id="shindan">
+  <div class="wrap">
+    <p class="screen__flag">5-1 ／ 診断 開始画面</p>
+
+    <h1 class="h2">3分・5問。<br>いまのムダを、その場で。</h1>
+    <p class="lead">家賃、電力、決済手数料、集客費、入金のタイミング。この5つについて、おおよその金額をお選びいただくだけです。入力は選択式のみ、途中で保存もできます。</p>
+
+    <div class="panel">
+      <ol class="steps">
+        <li aria-current="step"><b>Q1</b>業種と店舗数</li>
+        <li><b>Q2</b>月商レンジ</li>
+        <li><b>Q3</b>家賃レンジ</li>
+        <li><b>Q4</b>販促費レンジ</li>
+        <li><b>Q5</b>資金繰り感</li>
+      </ol>
+
+      <p class="q"><span class="q__n">Q1.</span>業種と店舗数を教えてください</p>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q1">飲食店／1店舗</label>
+        <label class="opt"><input type="radio" name="q1" checked>飲食店／2〜3店舗</label>
+        <label class="opt"><input type="radio" name="q1">理美容／1店舗</label>
+        <label class="opt"><input type="radio" name="q1">理美容／2〜3店舗</label>
+        <label class="opt"><input type="radio" name="q1">その他の店舗業</label>
+        <label class="opt"><input type="radio" name="q1">これから開業する</label>
+      </div>
+
+      <div class="ctas">
+        <a class="btn btn--main" href="#kekka">診断をはじめる
+          <span class="btn__note">3分・5問</span>
+        </a>
+        <a class="btn btn--sub" href="#yoyaku">先に相談枠だけ見る</a>
+      </div>
+
+      <p class="note-s">氏名・電話番号の入力は、結果を見たあとで構いません。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 5-2 診断 結果画面 ========== -->
+<section class="screen" id="kekka">
+  <div class="wrap">
+    <p class="screen__flag">5-2 ／ 診断 結果画面</p>
+
+    <h2 class="h2">見直しの余地がありそうな項目は、3つです。</h2>
+    <p class="lead">この結果は、ご入力いただいたおおよその金額からの推定です。実際にどこまで動かせるかは、請求書1枚を見ながら確認します。金額のお約束をするものではありません。</p>
+
+    <div class="panel">
+      <div class="res">
+
+        <div class="res__item res--a">
+          <div class="res__head">
+            <span class="res__name">集客</span>
+            <span class="res__range">月 3.2万〜7.8万円<span class="res__unit"> の見直し余地</span></span>
+          </div>
+          <div class="track"><span style="left:18%;right:36%"></span></div>
+          <div class="track__scale"><span>0万</span><span>10万</span><span>20万</span></div>
+          <p class="res__why">掲載費と代行費の重なり、曜日ごとの空席の出方から推定しています。</p>
+        </div>
+
+        <div class="res__item res--b">
+          <div class="res__head">
+            <span class="res__name">固定費</span>
+            <span class="res__range">月 1.8万〜5.4万円<span class="res__unit"> の見直し余地</span></span>
+          </div>
+          <div class="track"><span style="left:9%;right:55%"></span></div>
+          <div class="track__scale"><span>0万</span><span>10万</span><span>20万</span></div>
+          <p class="res__why">家賃・電力・決済手数料・通信の4費目について、レンジから推定しています。</p>
+        </div>
+
+        <div class="res__item res--c">
+          <div class="res__head">
+            <span class="res__name">資金繰り</span>
+            <span class="res__range">月 0.9万〜3.1万円<span class="res__unit"> の改善余地</span></span>
+          </div>
+          <div class="track"><span style="left:4%;right:74%"></span></div>
+          <div class="track__scale"><span>0万</span><span>10万</span><span>20万</span></div>
+          <p class="res__why">入金と支払いの時期のズレから、薄くなりやすい月を推定しています。</p>
+        </div>
+
+      </div>
+
+      <div class="balance">
+        <p class="balance__t">3領域のバランス（どこに比重があるか）</p>
+        <div class="bal" role="img" aria-label="集客が最も大きく、次に固定費、資金繰りの順のバランス図（ダミー）">
+          <i class="bal__a" style="width:48%"></i>
+          <i class="bal__b" style="width:33%"></i>
+          <i class="bal__c" style="width:19%"></i>
+        </div>
+        <div class="bal__legend">
+          <span><i class="bal__a"></i>集客</span>
+          <span><i class="bal__b"></i>固定費</span>
+          <span><i class="bal__c"></i>資金繰り</span>
+        </div>
+      </div>
+
+      <div class="ctas">
+        <a class="btn btn--main" href="#yoyaku">この結果を持って、相談枠を押さえる
+          <span class="btn__note">20〜23時も選べます</span>
+        </a>
+        <a class="btn btn--sub" href="#">結果をLINEで受け取る（あとで読む）</a>
+      </div>
+
+      <p class="note-s">今日決める必要はありません。持ち帰って比べていただいて構いません。</p>
+
+      <p class="caution">本診断は入力いただいたレンジ情報のみに基づく簡易的な目安であり、削減額・改善額を保証するものではありません。契約条件・所在地・使用状況等により結果は大きく異なります。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 5-3 予約カレンダー画面 ========== -->
+<section class="screen" id="yoyaku">
+  <div class="wrap">
+    <p class="screen__flag">5-3 ／ 予約カレンダー画面</p>
+
+    <h2 class="h2">営業後20:00〜23:00の枠から、選べます。</h2>
+    <p class="lead">45分のオンライン相談です。カメラはオフでも構いません。当日は、いまの状況を伺って、手をつける順番の整理までを一緒に行います。</p>
+
+    <div class="panel">
+      <div class="calhead">
+        <span class="calhead__m">10月 6日（月）〜 12日（日）</span>
+        <span class="calhead__nav">
+          <button class="navbtn" disabled aria-label="前の週（これより前は表示できません）">‹</button>
+          <button class="navbtn" aria-label="次の週">›</button>
+        </span>
+      </div>
+
+      <div class="cal-scroll">
+        <table class="cal">
+          <caption class="visually-hidden" style="position:absolute;left:-9999px;">相談枠の空き状況（ダミー）</caption>
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">6<b>月</b></th>
+              <th scope="col">7<b>火</b></th>
+              <th scope="col">8<b>水</b></th>
+              <th scope="col">9<b>木</b></th>
+              <th scope="col">10<b>金</b></th>
+              <th scope="col" class="sat">11<b>土</b></th>
+              <th scope="col" class="sun">12<b>日</b></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" class="rowlabel">13:00</th>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">17:00</th>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot" disabled>×</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="nightband">営業後の枠 20:00 − 23:00</p>
+
+      <div class="cal-scroll">
+        <table class="cal">
+          <tbody class="night">
+            <tr>
+              <th scope="row" class="rowlabel">20:00</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">21:00</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="true">選択中</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="rowlabel">22:00</th>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot" disabled>×</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cal-legend">
+        <span><i style="background:#fff;border:1px solid var(--c-accent);"></i>選べる枠</span>
+        <span><i style="background:var(--c-accent);border:1px solid var(--c-accent-deep);"></i>選択中</span>
+        <span><i style="background:var(--c-bg-sunk);border:1px solid var(--c-line);"></i>受付なし</span>
+      </div>
+
+      <p class="picked">
+        <b>10月7日（火）21:00 − 21:45</b>
+        <span>オンライン相談 45分／カメラオフ可。日付・空き状況はモック上のダミーです。</span>
+      </p>
+
+      <div class="ctas">
+        <a class="btn btn--main" href="#">この枠で予約する</a>
+        <a class="btn btn--sub" href="#">別の日を見る</a>
+      </div>
+
+      <div class="trust">
+        <ul>
+          <li>オンライン完結。来店も出張も不要です</li>
+          <li>その場でご契約いただく必要はありません</li>
+          <li>日程はLINEからいつでも変更できます</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="bar" aria-label="主要アクション">
+  <a class="bar__s" href="#">LINEで<br>聞く</a>
+  <a class="bar__p" href="#shindan">3分診断<small>5問・無料</small></a>
+  <a class="bar__s" href="#yoyaku">夜の枠を<br>見る</a>
+</nav>
+
+</body>
+</html>

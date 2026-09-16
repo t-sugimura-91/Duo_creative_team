@@ -1,0 +1,154 @@
+<!doctype html>
+<!--
+  ============================================================
+  Duo / 資金繰りLP — ファーストビューのみのデザインモックです。
+  1画面目の見え方を確認するためのファイルで、ページ全体ではありません。
+
+  【仮値の注記】
+   - ロゴ「Duo」はテキスト仮置き。
+   - 「後払い・初回手数料0円」の適用条件は未確定の仮値。
+     条件が付く場合は、この帯に条件を併記する必要があります。
+   - 右カラムの資金繰り表はCSSで描いたサンプル表示で、数値は入れていません
+     （実データ・実績値ではありません）。
+   - 実績数値（調達実績・改善率等）は一切掲載していません。
+  ============================================================
+-->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duo｜資金繰りLP FVモック</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* 右カラム：入金と支払いを並べた資金繰り表の「形」だけを示す。
+     金額は入れない（推定値の独り歩きを避けるため）。 */
+  .sheet{
+    display:none;background:var(--c-surface);border:1px solid var(--c-line);
+    border-radius:var(--r-2);padding:var(--s-5);position:relative;box-shadow:var(--sh-1);
+  }
+  @media (min-width:860px){ .sheet{display:block;} }
+  .sheet__label{
+    position:absolute;top:-11px;left:12px;font-size:var(--fs-100);
+    letter-spacing:.08em;color:var(--c-ink-2);background:var(--c-bg);
+    border:1px solid var(--c-line);padding:2px 8px;border-radius:var(--r-1);
+  }
+  .sheet__t{font-family:var(--f-head);font-weight:700;font-size:var(--fs-300);margin-bottom:var(--s-4);}
+  .grid{display:grid;grid-template-columns:52px repeat(6,1fr);gap:6px;align-items:end;}
+  .grid__h{font-size:10px;color:var(--c-ink-3);text-align:center;}
+  .grid__rl{font-size:var(--fs-100);color:var(--c-ink-2);line-height:1.3;}
+  .bar-in,.bar-out{border-radius:1px;}
+  .bar-in{background:color-mix(in srgb,var(--c-accent) 62%, #fff);}
+  .bar-out{background:color-mix(in srgb,var(--c-ink) 22%, #fff);}
+  .thin{outline:2px solid var(--c-warn);outline-offset:2px;}
+  .sheet__legend{
+    margin-top:var(--s-4);padding-top:var(--s-3);border-top:1px solid var(--c-line);
+    display:flex;gap:var(--s-4);font-size:var(--fs-100);color:var(--c-ink-2);flex-wrap:wrap;
+  }
+  .sheet__legend i{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px;}
+  .sheet__note{margin-top:var(--s-3);font-size:var(--fs-100);color:var(--c-ink-3);line-height:1.7;}
+</style>
+</head>
+<body data-domain="shikin">
+
+<p class="mockflag"><b>DESIGN MOCK</b>　ファーストビューのみ／金額・時間・ロゴ・適用条件はすべて仮値です</p>
+
+<header class="hd">
+  <div class="wrap hd__in">
+    <a class="logo" href="#"><span class="logo__mark"></span>
+      <span class="logo__type">Duo</span>
+      <span class="logo__sub">資金繰りの整理</span>
+    </a>
+    <nav class="hd__nav">
+      <a href="#">できること</a>
+      <a href="#">料金</a>
+      <a href="#">進め方</a>
+      <a href="#">よくある質問</a>
+    </nav>
+    <span class="hd__tel">相談は全国オンライン／返信は翌営業日中</span>
+  </div>
+</header>
+
+<main class="fv">
+  <div class="wrap fv__in">
+
+    <div>
+      <p class="eyebrow">入金と支払いを、並べて見る</p>
+
+      <h1 class="catch">2店舗目を出した直後に、<br><em>手元が締まって</em>いませんか。</h1>
+
+      <p class="sub">入金と支払いの時期を並べた資金繰り表をつくり、どの月が薄いかを見える化します。金融機関に出す必要書類の整理と、面談の準備までご一緒します。</p>
+
+      <div class="komi">
+        <span class="komi__tag">込み</span>
+        <p class="komi__txt">後払い・初回手数料0円。先にお支払いいただくものはありません。</p>
+      </div>
+
+      <div class="ctas">
+        <a class="btn btn--main" href="05-shindan-yoyaku.html">3分で資金繰りの現在地を確認する
+          <span class="btn__note">5問・その場で結果</span>
+        </a>
+        <a class="btn btn--sub" href="05-shindan-yoyaku.html#yoyaku">相談枠を見る（その場で契約する必要はありません）</a>
+      </div>
+
+      <div class="trust">
+        <ul>
+          <li>入金と支払いを並べた資金繰り表を、一緒に作るところから始めます</li>
+          <li>金融機関へ出す必要書類の整理と、面談の準備までを支援します</li>
+          <li>商談は営業後20:00〜23:00の枠から、ご自身で選べます</li>
+        </ul>
+      </div>
+
+      <p class="shotnote">撮影指示：机上の通帳・手書きのメモ・電卓を真上から。人物は手だけ（顔は写さない）。</p>
+
+      <p class="more">このあと：資金繰り表の作り方／料金の内訳／進め方</p>
+    </div>
+
+    <!-- 資金繰り表のサンプル表示（CSSのみ。金額・実データは入れていません） -->
+    <aside class="sheet" aria-label="資金繰り表のサンプル表示">
+      <span class="sheet__label">SAMPLE ／ 表示イメージ</span>
+      <p class="sheet__t">入金と支払いを、月ごとに並べる</p>
+
+      <div class="grid" aria-hidden="true">
+        <span class="grid__rl">入金</span>
+        <span class="bar-in" style="height:54px"></span>
+        <span class="bar-in" style="height:44px"></span>
+        <span class="bar-in" style="height:60px"></span>
+        <span class="bar-in" style="height:30px"></span>
+        <span class="bar-in" style="height:38px"></span>
+        <span class="bar-in" style="height:52px"></span>
+
+        <span class="grid__rl">支払い</span>
+        <span class="bar-out" style="height:40px"></span>
+        <span class="bar-out" style="height:46px"></span>
+        <span class="bar-out" style="height:42px"></span>
+        <span class="bar-out thin" style="height:58px"></span>
+        <span class="bar-out" style="height:44px"></span>
+        <span class="bar-out" style="height:41px"></span>
+
+        <span></span>
+        <span class="grid__h">1月</span><span class="grid__h">2月</span><span class="grid__h">3月</span>
+        <span class="grid__h">4月</span><span class="grid__h">5月</span><span class="grid__h">6月</span>
+      </div>
+
+      <div class="sheet__legend">
+        <span><i class="bar-in"></i>入金</span>
+        <span><i class="bar-out"></i>支払い</span>
+        <span><i class="bar-out thin"></i>薄くなりそうな月</span>
+      </div>
+      <p class="sheet__note">※ 形を示すためのサンプル表示です。金額・実データは含まれていません。<br>※ 実際の表は、ご自身の入出金の予定をもとに一緒に作成します。</p>
+    </aside>
+
+  </div>
+</main>
+
+<nav class="bar" aria-label="主要アクション">
+  <a class="bar__s" href="#">LINEで<br>聞く</a>
+  <a class="bar__p" href="05-shindan-yoyaku.html">3分診断<small>5問・無料</small></a>
+  <a class="bar__s" href="05-shindan-yoyaku.html#yoyaku">夜の枠を<br>見る</a>
+</nav>
+
+</body>
+</html>

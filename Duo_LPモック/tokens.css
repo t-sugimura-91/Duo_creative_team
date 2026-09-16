@@ -1,0 +1,365 @@
+/* ============================================================
+   Duo / デザイントークン + 共通コンポーネント
+   これは「ファーストビューのみ」のデザインモック用スタイルです。
+   数値・金額・時間はすべて仮値。実績数値は一切含みません。
+
+   使い方:
+     <body data-domain="inshoku|biyo|kotehi|shikin|shindan">
+   トークン（--c-accent 系）の差し替えだけで領域を切り替えます。
+   ============================================================ */
+
+/* ---------- 1. Color ----------
+   背景は紙のようなウォームオフホワイト。競合（MEO/SNS代行）に多い
+   白地＋青紫グラデ＋蛍光オレンジCTAから距離を取るための土台。   */
+:root{
+  --c-bg:            #FAF8F4;   /* 紙 */
+  --c-bg-sunk:       #F2EEE6;   /* 一段沈んだ面（帯・図の地） */
+  --c-surface:       #FFFFFF;
+  --c-ink:           #17191C;   /* 本文  on --c-bg = 約15.6:1 */
+  --c-ink-2:         #474C52;   /* 副文  on --c-bg = 約8.4:1  */
+  --c-ink-3:         #666C73;   /* 注記  on --c-bg = 約5.0:1  */
+  --c-line:          #DED8CD;
+  --c-line-strong:   #B6AE9F;
+
+  /* ブランド色：深い墨緑。帳簿・実務・落ち着き。白文字で約10:1 */
+  --c-brand:         #1E4A3D;
+  --c-brand-deep:    #163A30;
+  --c-brand-soft:    #E8EFEB;
+
+  /* 領域アクセント（既定＝ブランド色） */
+  --c-accent:        var(--c-brand);
+  --c-accent-deep:   var(--c-brand-deep);
+  --c-accent-soft:   var(--c-brand-soft);
+  --c-on-accent:     #FFFFFF;
+
+  /* 状態色 */
+  --c-ok:            #1F6B45;
+  --c-warn:          #8A5A12;
+  --c-err:           #9B2C1F;
+  --c-info:          #2B5C85;
+  --c-focus:         #1B63C9;
+  --c-disabled-bg:   #E6E2DA;
+  --c-disabled-ink:  #8A8F95;   /* 非活性は意図的に低コントラスト */
+
+  /* ---------- 2. Type ----------
+     見出し = Zen Kaku Gothic New（字面が大きく、角がわずかに丸い。
+     ゴシックの強さを保ちつつ威圧しない）
+     本文  = Noto Sans JP（深夜のスマホ・小さめ表示でも読み負けない） */
+  --f-head:'Zen Kaku Gothic New','Hiragino Kaku Gothic ProN','Yu Gothic Medium','Meiryo',sans-serif;
+  --f-body:'Noto Sans JP','Hiragino Kaku Gothic ProN','Yu Gothic','Meiryo',sans-serif;
+  --f-num:'Zen Kaku Gothic New','Helvetica Neue',Arial,sans-serif;
+
+  /* 文字サイズ段階（本文は16px下限。40〜60代のオーナーが読者） */
+  --fs-100: 12px;  /* 注記のみ。3行以上には使わない */
+  --fs-200: 13px;
+  --fs-300: 14px;
+  --fs-400: 16px;  /* 本文 */
+  --fs-500: 18px;
+  --fs-600: 20px;
+  --fs-700: 24px;
+  --fs-800: clamp(26px, 7.2vw, 34px);   /* SPキャッチ */
+  --fs-900: clamp(30px, 3.6vw, 46px);   /* PCキャッチ */
+
+  --lh-tight: 1.34;
+  --lh-base:  1.78;
+  --ls-head:  0.01em;
+  --ls-body:  0.02em;
+
+  /* ---------- 3. Space（4px単位） ---------- */
+  --s-1:4px;  --s-2:8px;  --s-3:12px; --s-4:16px; --s-5:20px;
+  --s-6:24px; --s-8:32px; --s-10:40px; --s-12:48px; --s-16:64px;
+
+  /* ---------- 4. Radius ----------
+     角丸は最小限。丸め過ぎると「アプリっぽい軽さ」が出て
+     コンサルの実務感が落ちるため、2/4/6pxの3段階だけ。 */
+  --r-1:2px; --r-2:4px; --r-3:6px;
+
+  /* ---------- 5. Shadow ----------
+     影は"浮かせる"のではなく"紙が重なっている"程度。 */
+  --sh-1:0 1px 0 rgba(23,25,28,.06);
+  --sh-2:0 1px 2px rgba(23,25,28,.08), 0 6px 16px rgba(23,25,28,.06);
+  --sh-bar:0 -1px 0 var(--c-line), 0 -8px 24px rgba(23,25,28,.08);
+
+  --tap:48px;              /* 最小タップ領域 */
+  --wrap:1120px;
+  --bar-h:70px;            /* SP固定CTAバー高 */
+}
+
+/* ---------- 領域別トークン差し替え ---------- */
+body[data-domain="inshoku"]{        /* 飲食：炭火・窯の赤茶。食欲と活気 */
+  --c-accent:#C1440E; --c-accent-deep:#9C360A; --c-accent-soft:#F7E9E0;
+  --c-bg:#FBF8F3; --c-bg-sunk:#F4EDE4;
+}
+body[data-domain="biyo"]{           /* 理美容：くすんだ青灰。清潔感と洗練 */
+  --c-accent:#46707F; --c-accent-deep:#375A67; --c-accent-soft:#E6EDEF;
+  --c-bg:#F9F9F7; --c-bg-sunk:#EFF0EE;
+}
+body[data-domain="kotehi"]{         /* 固定費：真鍮・書類の琥珀 */
+  --c-accent:#9A6410; --c-accent-deep:#7C500B; --c-accent-soft:#F4ECDC;
+}
+body[data-domain="shikin"]{         /* 資金繰り：濃紺。金融機関の文脈 */
+  --c-accent:#2F5D8C; --c-accent-deep:#264B71; --c-accent-soft:#E5EBF2;
+}
+body[data-domain="shindan"]{        /* 診断・予約：ブランド色そのまま */
+  --c-accent:var(--c-brand); --c-accent-deep:var(--c-brand-deep);
+  --c-accent-soft:var(--c-brand-soft);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  background:var(--c-bg);
+  color:var(--c-ink);
+  font-family:var(--f-body);
+  font-size:var(--fs-400);
+  line-height:var(--lh-base);
+  letter-spacing:var(--ls-body);
+  padding-bottom:calc(var(--bar-h) + env(safe-area-inset-bottom,0px));
+}
+@media (min-width:860px){ body{padding-bottom:0;} }
+h1,h2,h3,p{margin:0;}
+a{color:inherit;}
+img{max-width:100%;}
+:focus-visible{
+  outline:3px solid var(--c-focus);
+  outline-offset:2px;
+  border-radius:var(--r-1);
+}
+.wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--s-5);}
+@media (min-width:860px){ .wrap{padding-inline:var(--s-8);} }
+
+/* ============================================================
+   Header / ロゴ
+   ============================================================ */
+.hd{
+  border-bottom:1px solid var(--c-line);
+  background:color-mix(in srgb, var(--c-bg) 88%, #fff);
+  position:sticky; top:0; z-index:30;
+  backdrop-filter:saturate(1.1) blur(6px);
+}
+.hd__in{display:flex;align-items:center;gap:var(--s-4);min-height:58px;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo__mark{
+  width:26px;height:26px;position:relative;flex:none;
+}
+.logo__mark::before,.logo__mark::after{
+  content:"";position:absolute;top:3px;width:14px;height:20px;
+  border:2px solid var(--c-brand);border-radius:2px 8px 2px 8px;
+}
+.logo__mark::before{left:0;}
+.logo__mark::after{right:0;border-color:var(--c-accent);opacity:.85;}
+.logo__type{
+  font-family:var(--f-head);font-weight:700;font-size:var(--fs-600);
+  letter-spacing:.06em;color:var(--c-brand);line-height:1;
+}
+.logo__sub{
+  font-size:var(--fs-200);color:var(--c-ink-3);letter-spacing:.04em;
+  padding-left:var(--s-3);margin-left:var(--s-1);
+  border-left:1px solid var(--c-line);
+}
+.hd__nav{margin-left:auto;display:none;gap:var(--s-6);align-items:center;}
+@media (min-width:860px){ .hd__nav{display:flex;} }
+.hd__nav a{
+  font-size:var(--fs-300);color:var(--c-ink-2);text-decoration:none;
+  padding:var(--s-2) 0;border-bottom:2px solid transparent;
+}
+.hd__nav a:hover{color:var(--c-ink);border-bottom-color:var(--c-accent);}
+.hd__tel{font-size:var(--fs-200);color:var(--c-ink-3);display:none;}
+@media (min-width:1024px){ .hd__tel{display:block;} }
+
+/* ============================================================
+   First View
+   ============================================================ */
+.fv{position:relative;overflow:hidden;}
+/* 地の質感：写真の代わりに、極薄の罫と斜光のみ。装飾は足さない。 */
+.fv::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(180deg, color-mix(in srgb,var(--c-accent) 6%, transparent) 0%, transparent 42%),
+    repeating-linear-gradient(0deg, transparent 0 31px, color-mix(in srgb,var(--c-line) 55%, transparent) 31px 32px);
+  opacity:.5;
+}
+.fv__in{position:relative;padding:var(--s-8) 0 var(--s-6);}
+@media (min-width:860px){
+  .fv__in{
+    display:grid;grid-template-columns:minmax(0,1fr) 380px;
+    gap:var(--s-12);align-items:start;padding:var(--s-12) 0 var(--s-10);
+  }
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:var(--s-2);
+  font-family:var(--f-head);font-size:var(--fs-200);font-weight:500;
+  letter-spacing:.08em;color:var(--c-accent-deep);
+  padding:5px var(--s-3);background:var(--c-accent-soft);
+  border-left:3px solid var(--c-accent);border-radius:0 var(--r-1) var(--r-1) 0;
+}
+.catch{
+  font-family:var(--f-head);font-weight:700;
+  font-size:var(--fs-800);line-height:var(--lh-tight);
+  letter-spacing:var(--ls-head);margin-top:var(--s-5);
+  text-wrap:balance;
+}
+@media (min-width:860px){ .catch{font-size:var(--fs-900);} }
+.catch em{
+  font-style:normal;
+  background:linear-gradient(transparent 62%, color-mix(in srgb,var(--c-accent) 26%, transparent) 62%);
+}
+.sub{
+  margin-top:var(--s-4);color:var(--c-ink-2);
+  font-size:var(--fs-400);line-height:var(--lh-base);max-width:34em;
+}
+@media (min-width:860px){ .sub{font-size:var(--fs-500);} }
+
+/* 「込み」帯：請求が増えない約束。FVで最も誤解されたくない要素なので
+   ボタンではなく"伝票の帯"として扱う。 */
+.komi{
+  margin-top:var(--s-6);display:flex;gap:var(--s-3);align-items:flex-start;
+  background:var(--c-surface);border:1px solid var(--c-line);
+  border-left:4px solid var(--c-accent);border-radius:var(--r-1);
+  padding:var(--s-4);box-shadow:var(--sh-1);
+}
+.komi__tag{
+  font-family:var(--f-head);font-weight:700;font-size:var(--fs-200);
+  color:var(--c-on-accent);background:var(--c-accent);
+  padding:3px 9px;border-radius:var(--r-1);flex:none;letter-spacing:.06em;
+  margin-top:2px;
+}
+.komi__txt{font-size:var(--fs-300);line-height:1.7;color:var(--c-ink);}
+@media (min-width:860px){ .komi__txt{font-size:var(--fs-400);} }
+
+/* ---------- Buttons ---------- */
+.ctas{margin-top:var(--s-6);display:flex;flex-direction:column;gap:var(--s-3);}
+@media (min-width:860px){
+  .ctas{flex-direction:row;align-items:center;gap:var(--s-4);}
+}
+.btn{
+  display:inline-flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:var(--tap);padding:var(--s-3) var(--s-6);
+  font-family:var(--f-head);font-weight:700;font-size:var(--fs-500);
+  text-decoration:none;border-radius:var(--r-2);border:1px solid transparent;
+  cursor:pointer;transition:background .15s ease, border-color .15s ease, transform .06s ease;
+  text-align:center;line-height:1.4;
+}
+.btn__note{font-family:var(--f-body);font-weight:400;font-size:var(--fs-200);opacity:.92;margin-top:2px;letter-spacing:.02em;}
+.btn--main{
+  background:var(--c-accent);color:var(--c-on-accent);
+  box-shadow:var(--sh-2);min-height:56px;
+}
+.btn--main:hover{background:var(--c-accent-deep);}
+.btn--main:active{transform:translateY(1px);box-shadow:var(--sh-1);}
+.btn--sub{
+  background:var(--c-surface);color:var(--c-ink);
+  border-color:var(--c-line-strong);
+}
+.btn--sub:hover{background:var(--c-bg-sunk);border-color:var(--c-ink-3);}
+.btn--sub:active{transform:translateY(1px);}
+.btn--ghost{background:transparent;color:var(--c-accent-deep);border-color:transparent;text-decoration:underline;text-underline-offset:4px;}
+.btn[disabled],.btn[aria-disabled="true"]{
+  background:var(--c-disabled-bg);color:var(--c-disabled-ink);
+  border-color:transparent;box-shadow:none;cursor:not-allowed;
+}
+
+/* ---------- 信頼の補助テキスト ---------- */
+.trust{
+  margin-top:var(--s-6);padding-top:var(--s-5);
+  border-top:1px solid var(--c-line);
+  display:grid;gap:var(--s-3);
+}
+@media (min-width:860px){ .trust{grid-template-columns:repeat(3,1fr);gap:var(--s-5);} }
+.trust li{
+  list-style:none;display:flex;gap:10px;align-items:flex-start;
+  font-size:var(--fs-300);line-height:1.66;color:var(--c-ink-2);
+}
+.trust ul{margin:0;padding:0;display:contents;}
+.trust li::before{
+  content:"";flex:none;width:8px;height:8px;margin-top:8px;
+  border-left:2px solid var(--c-accent);border-bottom:2px solid var(--c-accent);
+  transform:rotate(-45deg);
+}
+
+/* ---------- 写真スロット（撮影指示つき） ---------- */
+.shot{
+  position:relative;border:1px dashed var(--c-line-strong);border-radius:var(--r-2);
+  background:
+    linear-gradient(135deg, color-mix(in srgb,var(--c-accent) 14%, var(--c-bg-sunk)) 0%, var(--c-bg-sunk) 58%),
+    var(--c-bg-sunk);
+  padding:var(--s-5);min-height:300px;display:none;
+  flex-direction:column;justify-content:flex-end;gap:var(--s-3);
+}
+@media (min-width:860px){ .shot{display:flex;} }
+.shot__label{
+  position:absolute;top:10px;left:10px;
+  font-size:var(--fs-100);letter-spacing:.08em;color:var(--c-ink-2);
+  background:var(--c-surface);border:1px solid var(--c-line);
+  padding:2px 8px;border-radius:var(--r-1);
+}
+.shot__t{font-family:var(--f-head);font-weight:700;font-size:var(--fs-300);color:var(--c-ink);}
+.shot__d{font-size:var(--fs-200);line-height:1.7;color:var(--c-ink-2);}
+.shot__d b{font-weight:700;color:var(--c-ink);}
+/* SP用：1行の撮影メモ */
+.shotnote{
+  margin-top:var(--s-5);font-size:var(--fs-100);color:var(--c-ink-3);
+  border-left:2px solid var(--c-line-strong);padding-left:var(--s-3);line-height:1.6;
+}
+@media (min-width:860px){ .shotnote{display:none;} }
+
+/* ---------- 続きの示唆 ---------- */
+.more{
+  margin-top:var(--s-6);padding:var(--s-3) 0 var(--s-2);
+  border-top:1px solid var(--c-line);
+  display:flex;align-items:center;gap:var(--s-2);
+  font-size:var(--fs-200);color:var(--c-ink-3);
+}
+.more::after{
+  content:"";width:9px;height:9px;flex:none;
+  border-right:2px solid var(--c-ink-3);border-bottom:2px solid var(--c-ink-3);
+  transform:translateY(-3px) rotate(45deg);
+}
+
+/* ============================================================
+   SP固定CTAバー（3ラベル・44px以上）
+   ============================================================ */
+.bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  background:var(--c-surface);box-shadow:var(--sh-bar);
+  padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));
+  display:grid;grid-template-columns:1fr 1.32fr 1fr;gap:8px;
+}
+@media (min-width:860px){ .bar{display:none;} }
+.bar a{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:52px;border-radius:var(--r-2);text-decoration:none;
+  font-family:var(--f-head);font-weight:700;font-size:var(--fs-300);
+  line-height:1.3;text-align:center;padding:4px 2px;
+}
+.bar__s{background:var(--c-surface);color:var(--c-ink);border:1px solid var(--c-line-strong);}
+.bar__s:active{background:var(--c-bg-sunk);}
+.bar__p{background:var(--c-accent);color:var(--c-on-accent);font-size:var(--fs-400);}
+.bar__p:active{background:var(--c-accent-deep);}
+.bar small{display:block;font-family:var(--f-body);font-weight:400;font-size:10px;opacity:.9;letter-spacing:0;}
+
+/* ============================================================
+   SP（〜859px）最終調整
+   FVを概ね1〜1.2画面に収めるための詰め。本文16pxは維持し、
+   削るのは余白と行間だけにする（可読性を落とさない）。
+   ============================================================ */
+@media (max-width:859px){
+  .fv__in{padding-top:var(--s-6);padding-bottom:var(--s-5);}
+  .sub{line-height:1.72;}
+  .komi{margin-top:var(--s-5);padding:var(--s-3) var(--s-4);}
+  .ctas{margin-top:var(--s-5);}
+  .trust{margin-top:var(--s-5);padding-top:var(--s-4);gap:var(--s-2);}
+  .shotnote{margin-top:var(--s-4);}
+  .more{margin-top:var(--s-4);}
+}
+
+/* ---------- モック用の注記バッジ ---------- */
+.mockflag{
+  background:#2B2E33;color:#EDEAE4;font-size:var(--fs-100);
+  letter-spacing:.04em;padding:6px var(--s-5);text-align:center;line-height:1.6;
+}
+.mockflag b{color:#F0C36D;font-weight:700;}
