@@ -345,6 +345,10 @@ img{max-width:100%;}
 }
 @media (min-width:860px){ .shot{display:flex;} }
 .shot__fig{display:block;width:100%;height:auto;background:var(--c-bg-sunk);}
+.shot__img{                    /* 写真版。生成AIの出力に合わせて3:2 */
+  display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;
+  background:var(--c-bg-sunk);
+}
 .shot__label{
   position:absolute;top:10px;left:10px;z-index:2;
   font-size:var(--fs-100);letter-spacing:.08em;color:var(--c-ink-2);
