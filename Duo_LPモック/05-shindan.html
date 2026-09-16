@@ -1,13 +1,14 @@
 <!doctype html>
 <!--
   ============================================================
-  NXTERA / 診断・予約画面 — デザインモックです（3画面を縦に並べた1ファイル）。
-  5-1 診断 開始画面 ／ 5-2 診断 結果画面 ／ 5-3 予約カレンダー画面
-  実装ではそれぞれ別画面になります。ここでは見え方の確認のみ。
+  NXTERA / 3分診断 — デザインモックです（開始画面と結果画面を縦に並べた1ファイル）。
+  予約カレンダーは 07-yoyaku.html に分離しました。
+  予約への入口が診断以外にも複数あり（各LPのCTA・固定バー）、
+  診断を通らない人のほうが多数派になるため、別ページにしています。
 
   【仮値の注記】
    - ロゴ「NXTERA」はテキスト仮置き。
-   - 相談時間「30分」、受付「20:00〜23:00」、カレンダーの日付・空き状況は仮値。
+   - 相談時間「30分」、受付「8:00〜翌1:00」、カレンダーの日付・空き状況は仮値。
    - 結果画面のレンジ金額（例：月 3.2万〜7.8万円）はすべてダミーです。
      必ずレンジ表示とし、単一の金額・単一の%は表示しません。
    - 実績数値（削減率・導入店舗数等）は一切掲載していません。
@@ -17,7 +18,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NXTERA｜診断・予約画面 モック</title>
+<title>NXTERA｜3分診断 モック</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
@@ -167,7 +168,7 @@
       <span class="logo__txt">
         <span class="logo__type">NXTERA</span>
       </span>
-      <span class="logo__sub">3分診断・相談予約</span>
+      <span class="logo__sub">3分診断</span>
     </a>
     <nav class="hd__nav">
       <a href="01-shukyaku-inshoku.html">集客（飲食）</a>
@@ -178,7 +179,6 @@
   </div>
 </header>
 
-<!-- ========== 5-1 診断 開始画面 ========== -->
 <section class="screen" id="shindan">
   <div class="wrap">
     <p class="screen__flag">5-1 ／ 診断 開始画面</p>
@@ -209,7 +209,7 @@
         <a class="btn btn--main" href="#kekka">診断をはじめる
           <span class="btn__note">3分・5問</span>
         </a>
-        <a class="btn btn--sub" href="#yoyaku">先に相談枠だけ見る</a>
+        <a class="btn btn--sub" href="07-yoyaku.html">先に相談枠だけ見る</a>
       </div>
 
       <p class="note-s">氏名・電話番号の入力は、結果を見たあとで構いません。</p>
@@ -301,7 +301,7 @@
       </div>
 
       <div class="ctas">
-        <a class="btn btn--main" href="#yoyaku">この結果を持って、相談枠を押さえる
+        <a class="btn btn--main" href="07-yoyaku.html">この結果を持って、相談枠を押さえる
           <span class="btn__note">20〜23時も選べます</span>
         </a>
         <a class="btn btn--sub" href="#">結果をLINEで受け取る（あとで読む）</a>
@@ -314,133 +314,10 @@
   </div>
 </section>
 
-<!-- ========== 5-3 予約カレンダー画面 ========== -->
-<section class="screen" id="yoyaku">
-  <div class="wrap">
-    <p class="screen__flag">5-3 ／ 予約カレンダー画面</p>
-
-    <h2 class="h2">営業後20:00〜23:00の枠から、選べます。</h2>
-    <p class="lead">30分のオンライン相談です。カメラはオフでも構いません。当日は、いまの状況を伺って、手をつける順番の整理までを一緒に行います。</p>
-
-    <div class="panel">
-      <div class="calhead">
-        <span class="calhead__m">10月 6日（月）〜 12日（日）</span>
-        <span class="calhead__nav">
-          <button class="navbtn" disabled aria-label="前の週（これより前は表示できません）">‹</button>
-          <button class="navbtn" aria-label="次の週">›</button>
-        </span>
-      </div>
-
-      <div class="cal-scroll">
-        <table class="cal">
-          <caption class="visually-hidden" style="position:absolute;left:-9999px;">相談枠の空き状況（ダミー）</caption>
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">6<b>月</b></th>
-              <th scope="col">7<b>火</b></th>
-              <th scope="col">8<b>水</b></th>
-              <th scope="col">9<b>木</b></th>
-              <th scope="col">10<b>金</b></th>
-              <th scope="col" class="sat">11<b>土</b></th>
-              <th scope="col" class="sun">12<b>日</b></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row" class="rowlabel">13:00</th>
-              <td><button class="slot" disabled>×</button></td>
-              <td><button class="slot" disabled>×</button></td>
-              <td><button class="slot" disabled>×</button></td>
-              <td><button class="slot" disabled>×</button></td>
-              <td><button class="slot" disabled>×</button></td>
-              <td><button class="slot" disabled>×</button></td>
-              <td><button class="slot" disabled>×</button></td>
-            </tr>
-            <tr>
-              <th scope="row" class="rowlabel">17:00</th>
-              <td><button class="slot" disabled>×</button></td>
-              <td><button class="slot" disabled>×</button></td>
-              <td><button class="slot" disabled>×</button></td>
-              <td><button class="slot" disabled>×</button></td>
-              <td><button class="slot" disabled>×</button></td>
-              <td><button class="slot" disabled>×</button></td>
-              <td><button class="slot" disabled>×</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p class="nightband">営業後の枠 20:00 − 23:00</p>
-
-      <div class="cal-scroll">
-        <table class="cal">
-          <tbody class="night">
-            <tr>
-              <th scope="row" class="rowlabel">20:00</th>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
-              <td><button class="slot" disabled>×</button></td>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
-              <td><button class="slot" disabled>×</button></td>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
-            </tr>
-            <tr>
-              <th scope="row" class="rowlabel">21:00</th>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
-              <td><button class="slot--open" type="button" aria-pressed="true">選択中</button></td>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
-              <td><button class="slot" disabled>×</button></td>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
-            </tr>
-            <tr>
-              <th scope="row" class="rowlabel">22:00</th>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
-              <td><button class="slot" disabled>×</button></td>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
-              <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="cal-legend">
-        <span><i style="background:#fff;border:1px solid var(--c-accent);"></i>選べる枠</span>
-        <span><i style="background:var(--c-accent);border:1px solid var(--c-accent-deep);"></i>選択中</span>
-        <span><i style="background:var(--c-bg-sunk);border:1px solid var(--c-line);"></i>受付なし</span>
-      </div>
-
-      <p class="picked">
-        <b>10月7日（火）21:00 − 21:30</b>
-        <span>オンライン相談 30分／カメラオフ可。日付・空き状況はモック上のダミーです。</span>
-      </p>
-
-      <div class="ctas">
-        <a class="btn btn--main" href="#">この枠で予約する</a>
-        <a class="btn btn--sub" href="#">別の日を見る</a>
-      </div>
-
-      <div class="trust">
-        <ul>
-          <li>オンライン完結。来店も出張も不要です</li>
-          <li>その場でご契約いただく必要はありません</li>
-          <li>日程はLINEからいつでも変更できます</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
 <nav class="bar" aria-label="主要アクション">
-  <a class="bar__s" href="#">LINEで<br>聞く</a>
+  <a class="bar__s" href="#">LINEで<br>情報</a>
   <a class="bar__p" href="#shindan">3分診断<small>5問・無料</small></a>
-  <a class="bar__s" href="#yoyaku">夜の枠を<br>見る</a>
+  <a class="bar__s" href="07-yoyaku.html">日程を<br>選ぶ</a>
 </nav>
 
 </body>
