@@ -491,6 +491,18 @@ body[data-domain="biyo"] .il-s--thin{stroke-width:.9;stroke-opacity:.38;}
 @media (min-width:860px){
   body[data-domain="biyo"] .fv__in{grid-template-columns:minmax(0,1fr) 440px;gap:var(--s-16);}
 }
+/* 飲食：右カラムは写真1枚のみ（キャプションを外した）。
+   縦に切ると奥の客席が切れて「閉店後」が伝わらなくなるため、比率は3:2のまま。
+   代わりに幅を広げ、余った縦方向は上下に振り分けて中央に置く。 */
+@media (min-width:860px){
+  body[data-domain="inshoku"] .fv__in{
+    grid-template-columns:minmax(0,1fr) 440px;
+    align-items:center;
+  }
+}
+@media (min-width:1120px){
+  body[data-domain="inshoku"] .fv__in{grid-template-columns:minmax(0,1fr) 500px;}
+}
 @media (min-width:1120px){
   body[data-domain="biyo"] .fv__in{grid-template-columns:minmax(0,1fr) 520px;}
 }
