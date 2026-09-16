@@ -1,0 +1,240 @@
+<!doctype html>
+<!--
+  NXTERA / 資金繰りLP — FV＋2セクションのデザインモック。
+  構成は 02〜04 と同じ：FV → よくある失敗 → できること → CTA。
+  FV内の順番は「支援の範囲 → 人 → 条件 → CTA → 数字」。人はCTAの真上に置く。
+  仮値：ロゴ、後払い・初回手数料0円の適用条件（未確定）、山谷図の曲線。
+  担当者は個人名・顔を出さず「体制」として示す（複数名対応の可能性／個人写真は失注要因）。
+  資格名（税理士・中小企業診断士など）は未取得のため記載していません。
+  金額・実データ・実績数値はゼロ。画像の読み込みもゼロ（すべてインラインSVG）。
+  スタイルは tokens.css に集約（.who / .scope / .sheet / .ch-*）。
+-->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NXTERA｜資金繰りLP FVモック</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body data-domain="shikin">
+
+<p class="mockflag"><b>DESIGN MOCK</b>　適用条件は未確定</p>
+
+<header class="hd">
+  <div class="wrap hd__in">
+    <a class="logo" href="#"><span class="logo__mark" aria-hidden="true"></span>
+      <span class="logo__txt">
+        <span class="logo__type">NXTERA</span>
+      </span>
+      <span class="logo__sub">資金繰りの整理</span>
+    </a>
+    <nav class="hd__nav">
+      <a href="#">できること</a>
+      <a href="#">料金</a>
+      <a href="#">進め方</a>
+    </nav>
+  </div>
+</header>
+
+<main class="fv">
+  <div class="wrap fv__in">
+
+    <div>
+      <h1 class="catch">月末が近づくたび、<br><em>通帳を見に行って</em>いませんか。</h1>
+
+      <p class="catch-sub">勘ではなく、入金と支払いの日付から「薄くなる月」を見つける。</p>
+      <p class="sub">入金と支払いの時期を並べた資金繰り表をつくり、どの月が薄いかを見える化します。金融機関に出す必要書類の整理と、面談の準備までご一緒します。</p>
+
+      <!-- どこまでやって、どこからはやらないか。条件とCTAより上に置く。 -->
+      <div class="scope">
+        <p class="scope__t">支援の範囲</p>
+        <ul>
+          <li>入金と支払いを並べた資金繰り表を、一緒に作るところから始めます</li>
+          <li>金融機関へ出す必要書類の整理と、面談の準備までを支援します</li>
+          <li>商談は営業後20:00〜23:00の枠から、ご自身で選べます</li>
+        </ul>
+      </div>
+
+      <!-- 「支援の範囲」を読んだ直後、CTAの真上に置く。誰がやるのかへの答え。
+           個人は出さない。複数名で対応する可能性があり、担当個人の写真・氏名は失注要因にもなるため。 -->
+      <aside class="who">
+        <svg class="who__fig" viewBox="0 0 400 190" preserveAspectRatio="xMidYMid slice" role="img"
+             aria-label="机をはさんで向かい合う2人。机の上に資金繰り表が1枚置かれている線画。">
+          <rect class="il-bg" width="400" height="190"/>
+          <circle class="il-ink12" cx="90" cy="74" r="26"/>
+          <path class="il-ink12" d="M38 150c4-34 26-50 52-50s48 16 52 50z"/>
+          <circle class="il-s il-accs" cx="310" cy="70" r="26"/>
+          <path class="il-s il-accs" d="M258 150c4-36 26-52 52-52s48 16 52 52z"/>
+          <g transform="rotate(-3 200 136)">
+            <rect class="il-s il-pa" x="152" y="120" width="96" height="30" rx="2"/>
+            <path class="il-s il-s--thin" d="M160 130h60M160 138h72"/>
+          </g>
+          <path class="il-s" d="M268 142 246 150"/>
+          <rect class="il-ink20" x="0" y="150" width="400" height="7"/>
+          <rect class="il-ink06" x="0" y="157" width="400" height="33"/>
+        </svg>
+        <div>
+          <p class="who__name">ひとりで作らなくて大丈夫です</p>
+          <p class="who__role">資金繰り表づくりから、書類の整理と面談の準備まで。相談から同じ担当が通して見ます（内容に応じて複数名で対応します）。</p>
+        </div>
+      </aside>
+
+      <div class="komi">
+        <span class="komi__tag">込み</span>
+        <p class="komi__txt">後払い・初回手数料0円。先にお支払いいただくものはありません。</p>
+      </div>
+
+      <div class="ctas">
+        <a class="btn btn--main" href="06-shindan.html">3分で資金繰りの現在地を確認する
+          <span class="btn__note">5問・その場で結果</span>
+        </a>
+        <a class="btn btn--sub" href="07-yoyaku.html">相談枠を見る（その場で契約する必要はありません）</a>
+      </div>
+
+      <p class="ctanote">商談枠：営業後 20:00〜23:00<br>全国オンライン・1回30分。カメラはオフでも構いません。その場でのご契約は不要です。</p>
+
+      <p class="more">このあと：よくある失敗と、その理由／できること</p>
+    </div>
+
+    <!-- 数字は人より下。金額・実データは入れていない。 -->
+    <aside class="sheet" aria-label="資金繰り表のサンプル表示">
+      <span class="sheet__label">SAMPLE</span>
+      <p class="sheet__t">入金と支払いを、月ごとに並べる</p>
+
+      <svg class="chart" viewBox="0 0 330 132" role="img"
+           aria-label="入金の折れ線と支払いの破線が4月で逆転し、支払いが入金を上回る月に帯が立っているサンプル図。金額は表示していません。">
+        <rect class="ch-gap" x="168" y="14" width="48" height="90"/>
+        <path class="ch-ax" d="M14 104h306"/>
+        <path class="ch-out" d="M30 62 84 56 138 60 192 34 246 58 300 62"/>
+        <path class="ch-in" d="M30 44 84 58 138 36 192 82 246 66 300 46"/>
+        <path class="ch-gapline" d="M192 36V80"/>
+        <circle class="ch-dot-out" cx="192" cy="34" r="4"/>
+        <circle class="ch-dot-in" cx="192" cy="82" r="4.5"/>
+        <text class="ch-lbl" x="216" y="26">支払いが入金を</text>
+        <text class="ch-lbl" x="216" y="38">上回る月</text>
+        <g class="ch-t" text-anchor="middle">
+          <text x="30" y="120">1月</text><text x="84" y="120">2月</text><text x="138" y="120">3月</text>
+          <text x="192" y="120">4月</text><text x="246" y="120">5月</text><text x="300" y="120">6月</text>
+        </g>
+      </svg>
+
+      <div class="ch-key">
+        <span><i></i>入金</span>
+        <span><i class="d"></i>支払い</span>
+      </div>
+      <p class="sheet__note">※ 形を示すためのサンプルです。金額は含まれていません。</p>
+    </aside>
+
+  </div>
+</main>
+
+<section class="sec" id="shippai">
+  <div class="wrap">
+    <p class="eyebrow">よくある失敗</p>
+    <h2 class="sec__h">「今月は大丈夫」が<br><em>急に崩れる理由があります。</em></h2>
+
+    <ul class="fails">
+      <li class="fail">
+        <p class="fail__q">通帳の残高を見て、大丈夫だと思っていた。<br>月末の支払いで、一気に足りなくなった。</p>
+        <p class="fail__a"><span class="fail__mark">なぜ</span>残高は終わったことの結果で、これから出ていくお金が入っていないからです。家賃・仕入れ・税金・返済は日付が決まっていて、入金より先に来る月があります。</p>
+      </li>
+      <li class="fail">
+        <p class="fail__q">売上は伸びていた。<br>なのに、手元のお金は増えなかった。</p>
+        <p class="fail__a"><span class="fail__mark">なぜ</span>売上が立つ日と、お金が入る日が違うからです。カード・電子マネー・掛けの入金は遅れて届くのに、仕入れと人件費は先に出ていきます。伸びるほど、先に出る分も大きくなります。</p>
+      </li>
+      <li class="fail">
+        <p class="fail__q">借入を申し込んだら、資料を何度も求められた。<br>やり取りをしているうちに、必要な時期を過ぎていた。</p>
+        <p class="fail__a"><span class="fail__mark">なぜ</span>試算表と資金繰り表が手元になかったからです。書類が揃ってから審査が始まるので、揃える時間のぶんだけ入金も後ろへずれます。</p>
+      </li>
+      <li class="fail">
+        <p class="fail__q">2店舗目を出した直後に、手元が締まった。<br>既存店は変わっていないのに、月末が回らなくなった。</p>
+        <p class="fail__a"><span class="fail__mark">なぜ</span>出店の費用は先に全額出るのに、新店が軌道に乗るまでには数ヶ月かかるからです。その間ずっと、既存店の利益で新店の不足を埋めることになります。</p>
+      </li>
+      <li class="fail">
+        <p class="fail__q">仕入先への支払いは月末にまとめて。<br>入金より先に出ていくのに、条件を見直したことがなかった。</p>
+        <p class="fail__a"><span class="fail__mark">なぜ</span>支払いの条件は、契約したときのまま動かないからです。入金を早める話はしても、支払いを後ろにずらす話は誰からも出てきません。</p>
+      </li>
+      <li class="fail">
+        <p class="fail__q">使える補助金があると聞いた。<br>調べているうちに、募集が終わっていた。</p>
+        <p class="fail__a"><span class="fail__mark">なぜ</span>公募の期間が短く、必要書類に事業計画まで含まれるからです。見つけてから準備を始めると、ほとんど間に合いません。</p>
+      </li>
+    </ul>
+
+    <p class="sec__close">どれも、<b>残高だけを見ていると気づけません。</b><br>
+    NXTERAは、入金と支払いを日付で並べて、薄くなる月を先に見つけます。</p>
+
+  </div>
+</section>
+
+<section class="sec sec--alt" id="shien">
+  <div class="wrap">
+    <p class="eyebrow">できること</p>
+    <h2 class="sec__h">表をつくって終わりにしない。<br><em>毎月、薄い月を先に見つけます。</em></h2>
+
+    <ul class="shien">
+      <li class="card">
+        <h3 class="card__h">入金と支払いを、日付で並べる</h3>
+        <p class="card__d">残高ではなく、これから出ていくお金を日付順に並べた資金繰り表を一緒に作ります。どの月のどの週が薄くなるかを、その月が来る前に見えるようにします。</p>
+        <p class="card__to">「残高を見て大丈夫だと思っていた」に効きます</p>
+      </li>
+      <li class="card">
+        <h3 class="card__h">売上ではなく、お金が入る日で見る</h3>
+        <p class="card__d">現金・カード・電子マネー・掛けごとに、入金までの日数を出します。仕入れと人件費の支払日と並べれば、伸びているのに苦しい理由が日付で見えます。</p>
+        <p class="card__to">「売上は伸びたのに、手元が増えない」に効きます</p>
+      </li>
+      <li class="card">
+        <h3 class="card__h">金融機関に出す書類を、先に揃える</h3>
+        <p class="card__d">試算表、資金繰り表、直近の売上の内訳。いつまでに何を用意するかを必要な時期から逆算して整理し、面談で必ず聞かれることへの答えも一緒に準備します。</p>
+        <p class="card__to">「資料のやり取りで時期を過ぎた」に効きます</p>
+      </li>
+      <li class="card">
+        <h3 class="card__h">出店の前に、薄くなる数ヶ月を見込む</h3>
+        <p class="card__d">出店にかかる費用、新店が軌道に乗るまでの月数、その間に既存店から出ていく額。2店舗目を出すかどうかを、出す前の資金繰り表で判断できるようにします。</p>
+        <p class="card__to">「2店舗目の直後に手元が締まった」に効きます</p>
+      </li>
+      <li class="card">
+        <h3 class="card__h">お金が出ていく日を、後ろにずらせないか見る</h3>
+        <p class="card__d">仕入先ごとの支払日と、入金までの日数を並べます。金額はそのままでも、出ていく日が数日ずれるだけで薄い月が消えることがあります。見直せる条件があるかを、一緒に確認します。</p>
+        <p class="card__to">「入金より先に支払いが来る」に効きます</p>
+      </li>
+      <li class="card">
+        <h3 class="card__h">使える補助金・助成金を、先に一覧にする</h3>
+        <p class="card__d">公募が始まる前に、対象になりそうな制度と必要書類を整理しておきます。見つけてから動くと間に合わないので、準備のほうを先に済ませておく形です。</p>
+        <p class="card__to">「調べているうちに募集が終わっていた」に効きます</p>
+      </li>
+    </ul>
+
+    <p class="sec__close">担当するのは、<b>資金繰り表づくりと、書類の整理・面談の準備まで</b>です。<br>
+    融資のお申し込みと、金融機関へのご説明はオーナーご自身で行っていただきます。<br>
+    補助金も、<b>制度の整理と必要書類の確認まで</b>です。申請書類の作成代行は行っていません。</p>
+
+    <div class="ctas ctas--center">
+      <a class="btn btn--main" href="06-shindan.html">3分で資金繰りの現在地を確認する
+        <span class="btn__note">5問・その場で結果</span>
+      </a>
+      <a class="btn btn--sub" href="07-yoyaku.html">相談枠を見る（その場で契約する必要はありません）</a>
+    </div>
+    <p class="ctanote ctanote--center">商談枠：営業後 20:00〜23:00　全国オンライン・1回30分。カメラはオフでも構いません。その場でのご契約は不要です。</p>
+  </div>
+</section>
+
+<nav class="bar" aria-label="主要アクション">
+  <a class="bar__s" href="#">LINEで<br>聞く</a>
+  <a class="bar__p" href="06-shindan.html">3分診断<small>5問・無料</small></a>
+  <a class="bar__s" href="#shippai">よくある<br>失敗</a>
+</nav>
+
+<script>
+  /* 戻る操作やブラウザのスクロール位置の復元で、ページ途中から表示されることがある。
+     ハッシュ指定がないときは必ず先頭から見せる。 */
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.addEventListener('load', function () {
+    if (!location.hash) window.scrollTo(0, 0);
+  });
+</script>
+
+</body>
+</html>

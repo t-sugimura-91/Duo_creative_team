@@ -382,7 +382,7 @@ img{max-width:100%;}
   .card__d{font-size:var(--fs-400);}
 }
 
-/* ---------- 統合版（06）専用 ---------- */
+/* ---------- 統合版（01）専用 ---------- */
 /* 統合版のFV右カラム。1枚（業種を特定しない写真）に統一した */
 @media (min-width:860px){
   body[data-domain="tougou"] .fv__in{grid-template-columns:minmax(0,1fr) 440px;align-items:center;}
@@ -514,7 +514,8 @@ img{max-width:100%;}
    キャプションを外したあとの縦の余白が埋まる。 */
 body[data-domain="inshoku"] .shot__img,
 body[data-domain="biyo"]    .shot__img,
-body[data-domain="tougou"]  .shot__img{aspect-ratio:2/3;}
+body[data-domain="tougou"]  .shot__img,
+body[data-domain="kotehi"]  .shot__img{aspect-ratio:2/3;}
 
 /* SPでは縦位置のまま縮小するとFVが1画面に収まらないため、横長の別ファイルへ
    差し替える（<picture>のsourceで切替）。キャッチより上に置き、開いた瞬間に
@@ -524,19 +525,60 @@ body[data-domain="tougou"]  .shot__img{aspect-ratio:2/3;}
 @media (max-width:859px){
   body[data-domain="inshoku"] .fv__in,
   body[data-domain="biyo"]    .fv__in,
-  body[data-domain="tougou"]  .fv__in{display:flex;flex-direction:column;}
+  body[data-domain="tougou"]  .fv__in,
+  body[data-domain="kotehi"]  .fv__in{display:flex;flex-direction:column;}
   body[data-domain="inshoku"] .shot,
   body[data-domain="biyo"]    .shot,
-  body[data-domain="tougou"]  .shot{display:block;order:-1;margin-bottom:var(--s-5);}
+  body[data-domain="tougou"]  .shot,
+  body[data-domain="kotehi"]  .shot{display:block;order:-1;margin-bottom:var(--s-5);}
   body[data-domain="inshoku"] .shot__img,
   body[data-domain="biyo"]    .shot__img,
-  body[data-domain="tougou"]  .shot__img{aspect-ratio:3/2;}
+  body[data-domain="tougou"]  .shot__img,
+  body[data-domain="kotehi"]  .shot__img{aspect-ratio:3/2;}
+}
+@media (max-width:859px){
+  body[data-domain="tougou"] .shot{order:0;margin-top:var(--s-6);margin-bottom:0;}
 }
 .shot__label{
   position:absolute;top:10px;left:10px;z-index:2;
   font-size:var(--fs-100);letter-spacing:.08em;color:var(--c-ink-2);
   background:var(--c-surface);border:1px solid var(--c-line);
   padding:2px 8px;border-radius:var(--r-1);
+}
+
+
+/* 写真に重ねる費目チップ（.shot__over）— 04 固定費専用。
+   「費目名を画像に入れたい」への実装。**文字は画像に焼き込まない。**
+   理由は2つで、(1) 画像生成AIは日本語を崩す（4-9で計算の図をSVGにしたのと同じ制約）、
+   (2) 焼き込むと文字が画像と一緒に縮み、スマホで読めなくなるうえ、
+       費目を1つ足すたびに画像を作り直すことになる。
+   HTMLのテキストとして重ねれば、拡大しても潰れず、検索にも読み上げにも乗る。
+   出すのは配点上位だけ。15費目すべては下の自己診断が持っている。 */
+.shot__over{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;
+  padding:var(--s-8) var(--s-4) var(--s-4);
+  background:linear-gradient(to top, rgba(28,26,23,.88) 0%, rgba(28,26,23,.72) 55%, rgba(28,26,23,0) 100%);
+}
+.shot__over-t{
+  font-family:var(--f-head);font-weight:700;font-size:var(--fs-200);
+  letter-spacing:.06em;color:#fff;opacity:.85;
+}
+.shot__chips{
+  list-style:none;margin:var(--s-3) 0 0;padding:0;
+  display:flex;flex-wrap:wrap;gap:6px;
+}
+.shot__chips li{
+  font-family:var(--f-head);font-weight:700;font-size:var(--fs-200);
+  color:#fff;background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.34);
+  border-radius:var(--r-1);padding:4px 9px;line-height:1.3;
+  backdrop-filter:blur(2px);
+}
+.shot__chips li.is-more{background:none;border-style:dashed;opacity:.85;}
+@media (min-width:860px){
+  .shot__over{padding:var(--s-10) var(--s-5) var(--s-5);}
+  .shot__over-t{font-size:var(--fs-300);}
+  .shot__chips li{font-size:var(--fs-300);padding:5px 11px;}
 }
 .shot__cap{padding:var(--s-4) var(--s-5) var(--s-5);border-top:1px solid var(--c-line);}
 .shot__t{font-family:var(--f-head);font-weight:700;font-size:var(--fs-300);color:var(--c-ink);}
@@ -599,9 +641,11 @@ body[data-domain="tougou"]  .shot__img{aspect-ratio:2/3;}
   background:var(--c-bg-sunk);border:1px solid var(--c-line);
 }
 @media (min-width:860px){ .who__fig{width:168px;height:84px;} }
-.who__name{font-family:var(--f-head);font-weight:700;font-size:var(--fs-500);line-height:1.3;}
-.who__kari{font-family:var(--f-body);font-weight:400;font-size:var(--fs-200);color:var(--c-ink-3);}
-.who__role{font-size:var(--fs-200);color:var(--c-ink-2);letter-spacing:.04em;}
+/* 担当者カードは「個人」ではなく「体制」を示す枠。
+   氏名・顔は出さない（複数名で対応する可能性があり、担当個人の写真は失注要因にもなるため）。
+   .who__name は短い約束の一行、.who__role はその中身。 */
+.who__name{font-family:var(--f-head);font-weight:700;font-size:var(--fs-400);line-height:1.5;}
+.who__role{margin-top:6px;font-size:var(--fs-200);line-height:1.75;color:var(--c-ink-2);letter-spacing:.04em;}
 
 /* ============================================================
    支援の範囲（.scope）
@@ -710,7 +754,7 @@ body[data-domain="kotehi"] .catch{font-size:min(6.6vw, 26px);}
 @media (min-width:1120px){
   body[data-domain="biyo"] .fv__in{grid-template-columns:minmax(0,1fr) 520px;}
 }
-/* ビジュアルは01と同じくPCのみ表示。縦位置の写真に差し替える前提のため、
+/* ビジュアルは02と同じくPCのみ表示。縦位置の写真に差し替える前提のため、
    SPで横帯に切り抜く旧仕様（高さ104px）は廃止した。 */
 
 /* ============================================================
