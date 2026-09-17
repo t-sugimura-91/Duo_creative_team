@@ -1,605 +1,201 @@
 <!doctype html>
-<!--
-  ============================================================
-  NXTERA / 固定費LP — FV＋3セクションのデザインモック。
-  構成は 02・03 に自己診断を足した形：FV → よくある失敗 → 自己診断 → できること → CTA。
-  06（3領域横断の診断）へは飛ばさない。固定費で来た人に月商や販促費を聞かないため。
-
-  【仮値の注記】
-   - ロゴ「NXTERA」はテキスト仮置き。
-   - 相談時間「30分」、受付時間「8:00〜翌1:00」は仮値です。
-   - 初期費用無料の適用条件は未確定です。
-   - 右カラムの費目一覧に金額や削減率は載せていません（実績がないため）。
-   - 実績数値は意図的に一切掲載していません。
-
-  【表現の制約】
-   - 賃料は「交渉」と書かず、資料づくりと論点整理までに留めています（弁護士法72条）。
-   - 電力は「切替代行」と書かず、診断と比較情報の提供までに留めています。
-  ============================================================
--->
+<!-- 固定費LP構成モック。料金・紹介条件・運営情報は未確定。比較表は架空の説明例です。 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NXTERA｜固定費LP FVモック</title>
+<meta name="robots" content="noindex, nofollow">
+<title>NXTERA｜店舗の固定費見直し</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens.css">
-<style>
-  /* 自己診断（.chk）— 04専用。
-     費目にチェックを入れさせて、配点の合計を「改善余地スコア」として返すだけ。
-     1段目のスコアでは金額を出さない。金額は2段目（.est）で、公表相場との差としてのみ扱う。 */
-  .chk{
-    margin-top:var(--s-8);background:var(--c-surface);
-    border:1px solid var(--c-line);border-radius:var(--r-2);
-    padding:var(--s-5);box-shadow:var(--sh-1);
-  }
-  @media (min-width:860px){ .chk{padding:var(--s-8);} }
-  .chk__set{border:0;margin:0;padding:0;}
-  .chk__legend{
-    font-family:var(--f-head);font-weight:700;font-size:var(--fs-400);
-    color:var(--c-ink);padding:0;margin-bottom:var(--s-4);
-  }
-  .chk__list{
-    list-style:none;margin:0;padding:0;
-    display:grid;grid-template-columns:1fr;gap:var(--s-2);
-  }
-  @media (min-width:560px){ .chk__list{grid-template-columns:1fr 1fr;} }
-  @media (min-width:860px){ .chk__list{grid-template-columns:repeat(3,1fr);gap:var(--s-3);} }
-  .chk__item{
-    display:flex;align-items:center;gap:var(--s-3);min-height:var(--tap);
-    border:1px solid var(--c-line-strong);border-radius:var(--r-2);
-    padding:var(--s-3) var(--s-4);background:var(--c-bg);cursor:pointer;
-    font-size:var(--fs-300);line-height:1.4;
-    transition:border-color .15s, background .15s;
-  }
-  .chk__item:hover{background:var(--c-bg-sunk);border-color:var(--c-ink-3);}
-  .chk__item input{
-    appearance:none;width:20px;height:20px;flex:none;margin:0;
-    border:2px solid var(--c-line-strong);border-radius:3px;background:var(--c-surface);
-  }
-  .chk__item input:checked{
-    border-color:var(--c-accent);background:var(--c-accent);
-    box-shadow:inset 0 0 0 2px var(--c-surface), inset 0 0 0 20px var(--c-accent);
-  }
-  .chk__item:has(input:checked){border-color:var(--c-accent);background:var(--c-accent-soft);font-weight:700;}
-  .chk__item:has(input:focus-visible){outline:3px solid var(--c-focus);outline-offset:2px;}
-
-  /* 診断の実行ボタン。押すまでスコアは出さない */
-  .chk__go{margin-top:var(--s-6);display:flex;}
-  .chk__go .btn{flex:1;}
-  .chk__go .btn[disabled]{
-    background:var(--c-disabled-bg);color:var(--c-disabled-ink);
-    border-color:transparent;cursor:not-allowed;
-  }
-  .chk__out{
-    display:block;margin-top:var(--s-5);padding:var(--s-5);
-    background:var(--c-bg-sunk);border:1px solid var(--c-line);
-    border-left:3px solid var(--c-accent);border-radius:var(--r-2);
-  }
-  .chk__out:focus{outline:3px solid var(--c-focus);outline-offset:2px;}
-  .chk__out[hidden]{display:none;}
-
-  .chk__legend-n{
-    margin-top:var(--s-4);font-size:var(--fs-200);line-height:1.8;color:var(--c-ink-3);
-  }
-  .chk__legend-n b{color:var(--c-ink-2);font-weight:700;}
-
-  /* 改善余地スコア。配点の合計がそのまま0〜100になる（15費目で合計100点）。
-     スコアは削減額とは無関係。金額はここでは一切出さない。 */
-  .score{
-    padding-bottom:var(--s-4);margin-bottom:var(--s-4);
-    border-bottom:1px solid var(--c-line);
-  }
-  .score__t{
-    font-family:var(--f-head);font-weight:700;font-size:var(--fs-200);
-    letter-spacing:.08em;color:var(--c-ink-2);
-  }
-  .score__v{display:flex;align-items:baseline;gap:6px;margin-top:2px;}
-  .score__v b{
-    font-family:var(--f-num);font-weight:700;line-height:1;
-    font-size:clamp(40px,11vw,56px);color:var(--c-accent-deep);
-    font-variant-numeric:tabular-nums;
-  }
-  .score__v span{font-size:var(--fs-300);color:var(--c-ink-3);}
-  .score__bar{
-    position:relative;height:12px;margin-top:var(--s-3);
-    background:var(--c-surface);border:1px solid var(--c-line-strong);border-radius:2px;
-    overflow:hidden;
-  }
-  .score__bar span{
-    display:block;height:100%;width:0;
-    background:var(--c-line-strong);
-    transition:width .25s ease, background-color .25s ease;
-  }
-  /* 帯ごとに濃さを変える。色相は変えず、ブランドのアクセント内で段階をつける */
-  .score__bar span.is-lo{background:color-mix(in srgb, var(--c-accent) 45%, #fff);}
-  .score__bar span.is-mid{background:var(--c-accent);}
-  .score__bar span.is-hi{background:var(--c-accent-deep);}
-  .score__band{
-    margin-top:var(--s-3);font-size:var(--fs-300);line-height:1.75;color:var(--c-ink);
-  }
-
-
-  /* 2段目：任意の金額入力と、相場との差の試算。
-     数値はすべて仮値。単一額は出さず、必ずレンジで表示する。 */
-  .est{
-    margin-top:var(--s-5);padding:var(--s-5);
-    background:var(--c-bg);border:1px dashed var(--c-line-strong);border-radius:var(--r-2);
-  }
-  .est__h{
-    font-family:var(--f-head);font-weight:700;font-size:var(--fs-400);
-    display:flex;align-items:center;gap:var(--s-3);flex-wrap:wrap;
-  }
-  .est__opt{
-    font-family:var(--f-body);font-weight:400;font-size:var(--fs-100);
-    color:var(--c-ink-2);background:var(--c-bg-sunk);
-    border:1px solid var(--c-line);border-radius:var(--r-1);padding:2px 8px;
-  }
-  .est__rows{margin-top:var(--s-4);display:grid;gap:var(--s-3);}
-  @media (min-width:640px){ .est__rows{grid-template-columns:1fr 1fr;gap:var(--s-3) var(--s-5);} }
-  .est__row{display:flex;align-items:center;gap:var(--s-3);min-height:var(--tap);}
-  .est__row[hidden]{display:none;}
-  .est__lbl{flex:1;font-size:var(--fs-300);color:var(--c-ink-2);}
-  .est__in{
-    width:84px;min-height:var(--tap);padding:0 var(--s-3);
-    font-family:var(--f-num);font-size:var(--fs-400);text-align:right;color:var(--c-ink);
-    background:var(--c-surface);border:1px solid var(--c-line-strong);border-radius:var(--r-1);
-  }
-  .est__in:focus-visible{outline:3px solid var(--c-focus);outline-offset:1px;}
-  .est__u{font-size:var(--fs-200);color:var(--c-ink-2);width:2.5em;}
-  .est__out{
-    margin-top:var(--s-4);padding:var(--s-4);border-radius:var(--r-1);
-    background:var(--c-bg-sunk);border:1px solid var(--c-line);
-    font-size:var(--fs-300);line-height:1.7;color:var(--c-ink-2);
-  }
-  .est__out--on{background:var(--c-accent-soft);border-color:var(--c-accent);}
-  .est__out b{
-    display:inline-block;margin-top:4px;
-    font-family:var(--f-num);font-size:var(--fs-700);font-weight:700;
-    color:var(--c-accent-deep);letter-spacing:.01em;
-  }
-  .est__note{
-    margin-top:var(--s-4);font-size:var(--fs-100);line-height:1.8;color:var(--c-ink-3);
-  }
-  .est__note b{color:var(--c-ink-2);font-weight:700;}
-
-  .chk__note{
-    margin-top:var(--s-5);padding-top:var(--s-4);border-top:1px solid var(--c-line);
-    font-size:var(--fs-200);line-height:1.8;color:var(--c-ink-3);
-  }
-</style>
+<link rel="stylesheet" href="04-kotehi.css">
+<script src="04-kotehi.js" defer></script>
 </head>
-<body data-domain="kotehi">
-
-<p class="mockflag"><b>DESIGN MOCK</b>　金額・適用条件はすべて仮値／自己診断の入力は送信されません</p>
-
+<body data-domain="kotehi" id="top">
+<p class="mockflag"><b>DESIGN MOCK</b>　料金・契約条件・運営情報は確認中／チェック内容は送信されません</p>
 <header class="hd">
   <div class="wrap hd__in">
-    <a class="logo" href="#"><span class="logo__mark" aria-hidden="true"></span>
-      <span class="logo__txt">
-        <span class="logo__type">NXTERA</span>
-      </span>
-      <span class="logo__sub">店舗の固定費見直し</span>
-    </a>
-    <nav class="hd__nav">
-      <a href="#">見直せる費目</a>
-      <a href="#">料金</a>
-      <a href="#">進め方</a>
-    </nav>
+    <a class="logo" href="#top" aria-label="NXTERA ページの先頭へ"><span class="logo__mark" aria-hidden="true"></span><span class="logo__txt"><span class="logo__type">NXTERA</span></span><span class="logo__sub">店舗の固定費見直し</span></a>
+    <nav class="hd__nav" aria-label="ページ内メニュー"><a href="#shindan">費目チェック</a><a href="#shien">支援範囲</a><a href="#price">料金</a><a href="#flow">進め方</a></nav>
   </div>
 </header>
-
-<main class="fv">
-  <div class="wrap fv__in">
-
-    <div>
-      <h1 class="catch">毎月の固定費、<br><em>見直したのはいつですか。</em></h1>
-
-      <p class="catch-sub">勘ではなく、契約と月々の数字から「下げられる余地」を見つける。</p>
-
-      <p class="sub">家賃、電気、通信、決済手数料、リース。<br>何にいくら払っているかを整理して、見直せるものから順番に手をつけます。</p>
-
-      <div class="komi komi--strong">
-        <div class="komi__body">
-          <p class="komi__lead"><span class="komi__lead-s">当サイト限定</span><span class="komi__lead-b">特典</span></p>
-          <ul class="komi__list">
-            <li><span class="komi__item">初期費用</span><span class="komi__q">無料</span></li>
-          </ul>
-        </div>
+<main>
+  <section class="fv" aria-labelledby="hero-title">
+    <div class="wrap fv__in">
+      <div>
+        <p class="eyebrow">店舗オーナー向け</p>
+        <h1 class="catch" id="hero-title">店舗の固定費、<br><em>まとめて見直し。</em></h1>
+        <p class="catch-sub">契約条件と変更にかかる費用を並べ、<br>見直す順番を一緒に整理します。</p>
+        <p class="sub">家賃・電気・通信・決済手数料。固定費を中心に、毎月の支出を確認。必要な機能やお店の運営への影響まで見て、変えるかどうかを判断します。</p>
+        <div class="ctas"><a class="btn btn--main" href="#shindan">見直す費目をチェック<span class="btn__note">連絡先の入力不要・確認ポイントが分かる</span></a><a class="cost-text-link" href="07-yoyaku.html">30分相談の日程を選ぶ</a></div>
+        <p class="ctanote">全国オンライン・受付 8:00〜翌1:00。カメラオフ可。<br>その場でのご契約は不要です。<a href="#price">相談料・契約条件は確認中</a></p>
       </div>
-
-      <div class="ctas">
-        <a class="btn btn--main" href="#shindan">3分で固定費のムダを診断</a>
-        <a class="btn btn--sub" href="07-yoyaku.html">相談スケジュールを選ぶ</a>
-      </div>
-
-      <p class="ctanote">受付：8:00〜翌1:00<br>全国オンライン・1回30分。カメラはオフでも構いません。その場でのご契約は不要です。</p>
-
-      <div class="trust">
-        <ul>
-          <li>日時は空いている枠から、ご自身で選べます。電話を待つ必要はありません</li>
-          <li>事前にご用意いただくものはありません。資料を揃えてからでなくて構いません</li>
-          <li>全国オンライン完結。お店を閉めてからで間に合います</li>
-        </ul>
-      </div>
-
-      <p class="more">このあと：よくある失敗と、その理由／自己診断／できること</p>
+      <aside class="shot" aria-label="店舗の支出を見直すイメージ">
+        <picture><img class="shot__img" src="images/04-kotehi-hero-v2.webp" width="1536" height="1024" loading="eager" fetchpriority="high" decoding="async" alt="店舗のカウンターで、オーナーが複数の明細書とタブレットの比較表を見比べる手元。"></picture>
+      </aside>
     </div>
+    <div class="cost-principles"><ul class="wrap"><li><strong>支出をまとめる</strong><span>費目・契約・更新時期を一覧に</span></li><li><strong>総額で比べる</strong><span>月額と変更にかかる費用を確認</span></li><li><strong>運営への影響を見る</strong><span>必要な機能・手間・入金時期も</span></li></ul></div>
+  </section>
 
-    <!-- 業種を特定しない1枚。固定費は全業種が対象なので、店の種類を読ませない。
-         費目の一覧は下の自己診断（チェックボックス15項目）が引き継いだ。 -->
-    <aside class="shot" aria-label="閉店後の店内で、契約したまま動き続けている機器の写真">
-      <picture>
-        <source media="(max-width:859px)" srcset="images/04-kotehi-sp.webp" width="800" height="533">
-        <img class="shot__img" src="images/04-kotehi-hero-v.webp"
-           width="880" height="1320" loading="eager" decoding="async"
-           alt="閉店後のカウンター。誰も見ていないのに電源が入ったままのタブレットとカード決済端末、その奥に通信機器のランプ。手前に契約書らしい紙が伏せて置かれている。">
-      </picture>
-      <div class="shot__over">
-        <p class="shot__over-t">見直しを診断できる費目</p>
-        <ul class="shot__chips">
-          <li>決済手数料</li>
-          <li>サブスク・SaaS</li>
-          <li>通信・回線</li>
-          <li>掲載媒体の月額</li>
-          <li class="is-more">ほか11費目</li>
-        </ul>
+  <section class="sec sec--alt" id="shindan" aria-labelledby="check-title">
+    <div class="wrap">
+      <p class="eyebrow">見直しチェック</p>
+      <h2 class="sec__h" id="check-title">気になる支出から、<br><em>確認することを見つける。</em></h2>
+      <p class="cost-intro">契約がそのままになっているもの、内容が気になるもの。１費目から確認できます。</p>
+      <div class="cost-check">
+        <form id="cost-form">
+          <fieldset class="cost-group"><legend>店舗・設備</legend><div class="cost-options"><label class="cost-option"><input type="checkbox" name="cost" value="rent" aria-controls="result-rent"><span>家賃・共益費</span></label><label class="cost-option"><input type="checkbox" name="cost" value="power" aria-controls="result-power"><span>電気</span></label><label class="cost-option"><input type="checkbox" name="cost" value="gas" aria-controls="result-gas"><span>ガス</span></label><label class="cost-option"><input type="checkbox" name="cost" value="lease" aria-controls="result-lease"><span>リース</span></label></div></fieldset>
+<fieldset class="cost-group"><legend>決済・通信</legend><div class="cost-options"><label class="cost-option"><input type="checkbox" name="cost" value="payment" aria-controls="result-payment"><span>決済手数料</span></label><label class="cost-option"><input type="checkbox" name="cost" value="network" aria-controls="result-network"><span>通信・回線</span></label></div></fieldset>
+<fieldset class="cost-group"><legend>店舗システム</legend><div class="cost-options"><label class="cost-option"><input type="checkbox" name="cost" value="pos" aria-controls="result-pos"><span>POS・レジ</span></label><label class="cost-option"><input type="checkbox" name="cost" value="booking" aria-controls="result-booking"><span>予約システム</span></label><label class="cost-option"><input type="checkbox" name="cost" value="subscription" aria-controls="result-subscription"><span>サブスク・SaaS</span></label><label class="cost-option"><input type="checkbox" name="cost" value="media" aria-controls="result-media"><span>掲載媒体の月額</span></label></div></fieldset>
+<fieldset class="cost-group"><legend>その他の継続費用</legend><div class="cost-options"><label class="cost-option"><input type="checkbox" name="cost" value="insurance" aria-controls="result-insurance"><span>保険料</span></label><label class="cost-option"><input type="checkbox" name="cost" value="waste" aria-controls="result-waste"><span>廃棄物処理</span></label><label class="cost-option"><input type="checkbox" name="cost" value="copier" aria-controls="result-copier"><span>複合機</span></label></div></fieldset>
+          <label class="cost-unknown"><input type="checkbox" name="cost" value="unknown" aria-controls="result-unknown"><span><strong>契約内容が分からない・何から見るか迷う</strong><small>まずは毎月の引き落としや請求先から整理</small></span></label>
+          <div class="cost-check-actions"><button class="btn btn--main" id="cost-run" type="submit" disabled>確認ポイントを見る</button><button class="cost-clear" id="cost-clear" type="reset" disabled>選択をクリア</button><p class="cost-note" id="cost-selection" role="status">気になる費目を選んでください</p></div>
+          <p class="cost-note">削減額や削減の可否を判定するものではありません。選択内容はこの画面内で処理され、送信されません。</p>
+        </form>
+        <noscript><p class="cost-notice">チェック結果の表示にはJavaScriptが必要です。<a href="#shien">費目別の支援範囲</a>からも相談内容をご確認いただけます。</p></noscript>
+        <section class="cost-results" id="cost-results" aria-labelledby="results-title" hidden>
+          <div class="cost-results-head"><div><p class="cost-label">あなたの確認メモ</p><h3 id="results-title" tabindex="-1">選んだ費目の確認ポイント</h3></div><a class="cost-save" id="cost-save" download="NXTERA-fixed-cost-check.txt" hidden>確認メモを保存（.txt）</a></div>
+          <p class="cost-note">分かるものからで構いません。必要な資料と見直す順番は、相談のなかで整理します。</p>
+          <div id="cost-result-list">
+            <article class="cost-result" id="result-unknown" data-cost-result="unknown" hidden><h4>まずは契約の一覧づくりから</h4><dl><div><dt>確認すること</dt><dd>毎月の引き落とし先、請求元、使っている機器・サービス、契約情報を確認できる人。</dd></div><div><dt>資料の例</dt><dd>手元の請求書、購入履歴、口座・カードの支払履歴。共有時は必要な箇所だけに絞ります。</dd></div><div><dt>次の行動</dt><dd>支払先・用途・月額を書き出し、不明な契約を洗い出します。分からない費目を無理に選ぶ必要はありません。</dd></div></dl></article>
+            <article class="cost-result" id="result-rent" data-cost-result="rent" hidden>
+<h4>家賃・共益費</h4><dl><div><dt>確認すること</dt><dd>賃料と共益費の内訳、契約期間、更新・通知期限、近隣の比較条件。</dd></div><div><dt>資料の例</dt><dd>賃貸借契約書、直近の請求明細、更新の案内。</dd></div><div><dt>次の行動</dt><dd>契約上の期限を確認し、貸主へ相談するための資料と論点を整理します。</dd></div></dl></article>
+<article class="cost-result" id="result-power" data-cost-result="power" hidden>
+<h4>電気</h4><dl><div><dt>確認すること</dt><dd>使用量と契約容量、基本料金、燃料費調整・市場連動の条件、解約費用。</dd></div><div><dt>資料の例</dt><dd>料金プランが分かる書類、使用量と請求内訳が分かる明細（可能なら過去12ヶ月分）。</dd></div><div><dt>次の行動</dt><dd>同じ使用量・期間を前提に、料金の内訳と変動条件を比較します。</dd></div></dl></article>
+<article class="cost-result" id="result-gas" data-cost-result="gas" hidden>
+<h4>ガス</h4><dl><div><dt>確認すること</dt><dd>基本料金と従量料金、使用量、設備の契約条件、変更時の工事・解約費用。</dd></div><div><dt>資料の例</dt><dd>使用量と料金の明細、契約内容、設備の貸与条件が分かる書類。</dd></div><div><dt>次の行動</dt><dd>契約と設備の条件を整理し、変更にかかる費用も確認します。</dd></div></dl></article>
+<article class="cost-result" id="result-lease" data-cost-result="lease" hidden>
+<h4>リース</h4><dl><div><dt>確認すること</dt><dd>残りの契約期間、残債、中途解約の可否、再リース・返却の条件。</dd></div><div><dt>資料の例</dt><dd>リース契約書、支払予定表、満了・再リースの案内。</dd></div><div><dt>次の行動</dt><dd>満了時期から逆算し、継続・返却・購入の比較条件を整理します。</dd></div></dl></article>
+<article class="cost-result" id="result-payment" data-cost-result="payment" hidden>
+<h4>決済手数料</h4><dl><div><dt>確認すること</dt><dd>ブランド別の料率と対象決済額、月額・振込費用、入金サイクル、優遇料率の適用条件。</dd></div><div><dt>資料の例</dt><dd>決済ブランド別の取扱額と手数料が分かる明細、加盟店契約・料金表。</dd></div><div><dt>次の行動</dt><dd>月商全体ではなく対象の決済額で比較し、入金時期や端末の使い勝手も確認します。</dd></div></dl></article>
+<article class="cost-result" id="result-network" data-cost-result="network" hidden>
+<h4>通信・回線</h4><dl><div><dt>確認すること</dt><dd>回線とオプションの重複、契約更新、解約・工事費用、POSや決済端末への影響。</dd></div><div><dt>資料の例</dt><dd>通信会社の請求明細、契約内容、利用中の回線・機器の一覧。</dd></div><div><dt>次の行動</dt><dd>必要な回線を特定し、変更時の停止時間と初年度の総額を比較します。</dd></div></dl></article>
+<article class="cost-result" id="result-pos" data-cost-result="pos" hidden>
+<h4>POS・レジ</h4><dl><div><dt>確認すること</dt><dd>利用中の機能、端末費・月額費、決済や会計との連携、データ移行と操作習得の負担。</dd></div><div><dt>資料の例</dt><dd>契約プラン、請求明細、利用機能と連携サービスの一覧。</dd></div><div><dt>次の行動</dt><dd>必要な機能を先に整理し、移行費用や研修時間も含めて検討します。</dd></div></dl></article>
+<article class="cost-result" id="result-booking" data-cost-result="booking" hidden>
+<h4>予約システム</h4><dl><div><dt>確認すること</dt><dd>予約経路、使っている機能、顧客データの移行可否、解約時のデータ保持。</dd></div><div><dt>資料の例</dt><dd>料金プラン、利用明細、予約・顧客管理の運用が分かるもの。</dd></div><div><dt>次の行動</dt><dd>予約受付が止まらない切替手順と、残したい機能を確認します。</dd></div></dl></article>
+<article class="cost-result" id="result-subscription" data-cost-result="subscription" hidden>
+<h4>サブスク・SaaS</h4><dl><div><dt>確認すること</dt><dd>利用していない契約・アカウント、重複機能、年払いの更新日、データの保存条件。</dd></div><div><dt>資料の例</dt><dd>請求・購入履歴、利用アカウントの一覧、更新の案内。</dd></div><div><dt>次の行動</dt><dd>利用実態を確かめ、継続・プラン変更・解約の候補を分けます。</dd></div></dl></article>
+<article class="cost-result" id="result-media" data-cost-result="media" hidden>
+<h4>掲載媒体の月額</h4><dl><div><dt>確認すること</dt><dd>契約期間、掲載機能、予約・問い合わせへの寄与、オプション費用、解約期限。</dd></div><div><dt>資料の例</dt><dd>掲載契約、月額の内訳、予約・問い合わせの実績。</dd></div><div><dt>次の行動</dt><dd>費用だけでなく集客への影響を確認し、継続やプラン変更を検討します。</dd></div></dl></article>
+<article class="cost-result" id="result-insurance" data-cost-result="insurance" hidden>
+<h4>保険料</h4><dl><div><dt>確認すること</dt><dd>補償の対象・期間、重複している契約、更新時期、変更すると失われる補償。</dd></div><div><dt>資料の例</dt><dd>保険証券、更新案内、加入契約の一覧。</dd></div><div><dt>次の行動</dt><dd>契約情報と相談事項を整理し、補償の適否や商品変更は保険会社・代理店へ確認します。</dd></div></dl></article>
+<article class="cost-result" id="result-waste" data-cost-result="waste" hidden>
+<h4>廃棄物処理</h4><dl><div><dt>確認すること</dt><dd>回収頻度・量、分別区分、追加料金、回収時間や保管スペースとの相性。</dd></div><div><dt>資料の例</dt><dd>委託契約書、請求明細、回収量・頻度が分かるもの。</dd></div><div><dt>次の行動</dt><dd>必要な回収条件をそろえ、適切に対応できる事業者の条件を比較します。</dd></div></dl></article>
+<article class="cost-result" id="result-copier" data-cost-result="copier" hidden>
+<h4>複合機</h4><dl><div><dt>確認すること</dt><dd>印刷枚数、カウンター料金、最低料金、保守範囲、リース残期間。</dd></div><div><dt>資料の例</dt><dd>保守・リース契約書、印刷枚数と料金の明細。</dd></div><div><dt>次の行動</dt><dd>実際の利用量と必要な保守を整理し、機器更新の時期も確認します。</dd></div></dl></article>
+          </div>
+          <div class="cost-results-foot"><a class="btn btn--main" href="07-yoyaku.html">固定費について相談する<span class="btn__note">全国オンライン・30分</span></a><p class="cost-note">選択内容は予約先へ自動送信されません。<br>相談料・支援料は<a href="#price">確認中</a>です。</p><p class="cost-note" id="cost-save-status" role="status"></p></div>
+        </section>
       </div>
-    </aside>
+    </div>
+  </section>
 
-  </div>
+  <section class="sec" id="comparison" aria-labelledby="comparison-title">
+    <div class="wrap">
+      <p class="eyebrow">比較表のサンプル</p>
+      <h2 class="sec__h" id="comparison-title">月額だけで決めず、<br><em>変更後にかかる総額まで。</em></h2>
+      <p class="cost-intro">同じ期間・利用条件で比べ、解約費用や必要な機能も確認します。今の契約を続ける判断も含めて整理します。</p>
+      <figure class="cost-comparison">
+        <figcaption><strong>通信契約を比べる架空の例</strong><span>実績・相場・実在する料金プランではありません。金額は税込の仮定です。</span></figcaption>
+        <div class="cost-table-scroll" tabindex="0" role="region" aria-label="通信契約の比較表">
+          <table class="cost-table"><caption>今すぐ変更した場合の12ヶ月間を比較</caption><thead><tr><th scope="col">確認項目</th><th scope="col">現在の契約を継続</th><th scope="col">候補へ変更</th></tr></thead><tbody>
+            <tr><th scope="row">月額</th><td>12,000円</td><td>9,000円</td></tr>
+            <tr><th scope="row">12ヶ月の利用料</th><td>144,000円</td><td>108,000円</td></tr>
+            <tr><th scope="row">解約・工事などの一時費用</th><td>0円</td><td>48,000円</td></tr>
+            <tr class="cost-total"><th scope="row">初年度の比較対象額</th><td>144,000円</td><td>156,000円</td></tr>
+            <tr><th scope="row">機能・機器との相性</th><td>現在の利用状況を確認</td><td>POS・決済端末との接続を確認</td></tr>
+            <tr><th scope="row">作業と変更時期</th><td>更新・解約期限を確認</td><td>工事日と停止時間を確認</td></tr>
+          </tbody></table>
+        </div>
+        <p class="cost-comparison-note">初年度の比較対象額 ＝ 12ヶ月の利用料 ＋ 一時費用。NXTERAの支援料など、未確定の費用は含みません。実際の比較では、発生する費用を加えて判断します。</p>
+      </figure>
+      <div class="cost-decision"><strong>この条件なら、今すぐ変えると初年度は12,000円高くなる。</strong><p>月額の差だけでは決められません。利用を続ける期間や更新時期、変更作業も確認して、いつ見直すかを考えます。</p></div>
+    </div>
+  </section>
+
+  <section class="sec sec--alt" id="shien" aria-labelledby="scope-title">
+    <div class="wrap">
+      <p class="eyebrow">費目別の支援範囲</p>
+      <h2 class="sec__h" id="scope-title">比較するところから、<br><em>動くための準備まで。</em></h2>
+      <p class="cost-intro">契約の整理、比較情報、確認事項をまとめます。申込みや契約変更を誰が行うかも、先に確認します。</p>
+      <p class="cost-note">支援内容の構成案です。成果物の形式、対応領域・条件は公開前に確定します。</p>
+      <div class="cost-scope-list">
+        <article><h3>電気・ガス</h3><dl><div><dt>NXTERA</dt><dd>契約・使用状況の整理と比較情報の提供。単価の変動条件や変更費用を確認します。</dd></div><div><dt>オーナー</dt><dd>明細の共有、契約先の選択、切替の申込み。</dd></div></dl></article>
+        <article><h3>通信・決済・店舗システム</h3><dl><div><dt>NXTERA</dt><dd>料金・機能・条件の比較と、移行前に確認する項目を整理します。</dd></div><div><dt>オーナー</dt><dd>必要な機能の確認、提供会社との契約・申込み。設定・データ移行などの担当は個別に確認します。</dd></div></dl></article>
+        <article><h3>家賃・共益費</h3><dl><div><dt>NXTERA</dt><dd>契約内容、比較資料、相談する論点と期限を整理します。</dd></div><div><dt>オーナー</dt><dd>貸主への相談と条件の確認。代理交渉を行う支援ではありません。</dd></div></dl></article>
+        <article><h3>リース・保険・その他</h3><dl><div><dt>NXTERA</dt><dd>契約・利用実態の一覧化と確認事項の整理。保険商品の選定・推奨は支援範囲に含めません。</dd></div><div><dt>オーナー</dt><dd>契約先や専門家への確認、継続・変更の判断と手続き。</dd></div></dl></article>
+      </div>
+      <div class="cost-deliverables"><h3>相談・支援で整理するもの</h3><ul><li><strong>契約一覧</strong><span>支払先・費用・更新期限</span></li><li><strong>比較表</strong><span>総額・機能・変更条件</span></li><li><strong>対応メモ</strong><span>確認先・担当・次の行動</span></li></ul><p class="cost-note">仕入れ単価・消耗品など変動費の相談は、個別に対応可否を確認します。</p></div>
+    </div>
+  </section>
+
+  <section class="sec" id="example" aria-labelledby="example-title">
+    <div class="wrap">
+      <p class="eyebrow">支援のイメージ</p>
+      <h2 class="sec__h" id="example-title">何を変えるか。何を残すか。<br><em>理由が分かる判断へ。</em></h2>
+      <p class="cost-note">以下は架空の支援例です。お客様の実績や削減効果を示すものではありません。</p>
+      <div class="cost-cases">
+        <article><span class="cost-label">例 01・サブスク</span><h3>使っていないアカウントから確認</h3><p>請求一覧と利用者を照合し、退職者のアカウントが残っていないか確認。データの保存と契約期間を確かめてから、プラン変更を検討します。</p><p class="cost-case-end">判断の軸：実際に使う人数と、残すべきデータ。</p></article>
+        <article><span class="cost-label">例 02・決済</span><h3>料率が下がっても、入金時期を確認</h3><p>手数料の低い候補でも、入金が遅くなると支払いに影響する場合があります。対象決済額・月額費用・入金サイクルを並べて判断します。</p><p class="cost-case-end">判断の軸：総額と、支払いに間に合う入金日。</p></article>
+      </div>
+      <p class="cost-team">比較資料を一緒に確認し、最終的な変更はオーナーご自身で判断します。担当体制・経歴・掲載可能な実績は<a href="#company">確認中</a>です。</p>
+    </div>
+  </section>
+
+  <section class="sec sec--alt" id="price" aria-labelledby="price-title">
+    <div class="wrap">
+      <p class="eyebrow">料金・紹介の仕組み</p>
+      <h2 class="sec__h" id="price-title">見直しでかかる費用も、<br><em>判断材料のひとつに。</em></h2>
+      <p class="cost-intro">料金・契約条件は確認中です。初期費用無料・成果報酬制を確約しているものではありません。</p>
+      <dl class="cost-facts">
+        <div><dt>初回30分の相談料</dt><dd><span class="cost-pending">確認中</span>無料／有料、税込金額</dd></div>
+        <div><dt>比較・見直しの支援料</dt><dd><span class="cost-pending">確認中</span>料金方式、対象費目、含まれる作業と成果物</dd></div>
+        <div><dt>成功報酬・追加費用</dt><dd><span class="cost-pending">確認中</span>有無、発生条件、削減額の算定期間・基準</dd></div>
+        <div><dt>初期費用・支払い時期</dt><dd><span class="cost-pending">確認中</span>無料条件の有無、請求と支払いの時期</dd></div>
+        <div><dt>契約期間・キャンセル</dt><dd><span class="cost-pending">確認中</span>最低契約期間、解約・キャンセル条件</dd></div>
+        <div><dt>紹介手数料と比較対象</dt><dd><span class="cost-pending">確認中</span>提供会社からの報酬の有無、提携先、比較できるサービスの範囲</dd></div>
+      </dl>
+      <p class="cost-note">外部サービスの利用料・解約料・工事費などは、NXTERAの支援料と分けて確認します。市場の全サービスを比較することや、中立性を確約するものではありません。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="flow" aria-labelledby="flow-title">
+    <div class="wrap">
+      <p class="eyebrow">ご相談と見直しの流れ</p>
+      <h2 class="sec__h" id="flow-title">まずは、気になる費目と<br><em>いまの状況を整理。</em></h2>
+      <p class="cost-intro">初回は、何を確認するとよいかを一緒に整理します。具体的な比較には、契約内容や利用状況の確認が必要です。</p>
+      <ol class="cost-flow">
+        <li><span>01</span><div><h3>30分のオンライン相談</h3><p>気になる支出や、変更すると困ることを伺います。手元の資料がそろっていなくても、まずは状況から整理します。</p></div></li>
+        <li><span>02</span><div><h3>必要な資料・支援条件を確認</h3><p>対象費目と必要な明細を確認。支援範囲・費用・契約条件をご案内し、進めるかをご判断いただきます。</p></div></li>
+        <li><span>03</span><div><h3>契約後、条件を比較</h3><p>現在の契約と候補の総額・機能・変更費用を整理し、確認事項をまとめます。</p></div></li>
+        <li><span>04</span><div><h3>実施するか、いつ動くかを決める</h3><p>変更・継続の判断と、手続きの担当を確認。変更後の請求・利用状況をどこまで確認するかも事前に決めます。</p></div></li>
+      </ol>
+      <p class="cost-note">流れは構成案です。資料の共有方法、比較にかかる期間、変更後の確認範囲は公開前に確定します。</p>
+      <div class="ctas"><a class="btn btn--main" href="07-yoyaku.html">30分相談の日程を選ぶ<span class="btn__note">カメラオフ可・その場での契約不要</span></a><a class="cost-text-link" href="#price">料金・契約条件を確認する</a></div>
+    </div>
+  </section>
+
+  <section class="sec sec--alt" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <p class="eyebrow">よくある質問</p><h2 class="sec__h" id="faq-title">相談の前に、気になること。</h2>
+      <p class="cost-note">回答は構成案です。対応条件は公開前に確認します。</p>
+      <div class="cost-faq">
+        <details><summary>１店舗・１費目だけでも相談できますか？</summary><p>まずは気になる費目から状況を伺う想定です。契約規模や対象サービスによって対応範囲が異なるため、支援の可否と費用は個別に確認します。</p></details>
+        <details><summary>請求書や契約書が見つからなくても大丈夫ですか？</summary><p>初回相談では、分かっている支払先や利用状況から整理します。具体的な金額や変更条件の比較には、契約書・請求明細などが必要になります。</p></details>
+        <details><summary>必ず契約先を変更しなければいけませんか？</summary><p>変更の判断はオーナーご自身で行います。総額、必要な機能、取引先との関係や作業負担を確認し、現在の契約を続けることも含めて検討します。</p></details>
+        <details><summary>契約変更や家賃の交渉を代行してもらえますか？</summary><p>電気・ガスは契約の整理と比較情報の提供、家賃は資料づくりと論点整理までです。切替の申込みや貸主への相談はオーナーご自身で行います。その他の設定・移行作業は担当範囲を個別に確認します。</p></details>
+        <details><summary>費用が下がらなかった場合、料金はかかりますか？</summary><p>支援料・成功報酬・キャンセルの条件は確認中です。成果が出なければ無料とは確定していません。<a href="#price">料金・契約条件</a>で確認事項を示しています。</p></details>
+        <details><summary>特定の会社やサービスだけを紹介しますか？</summary><p>比較対象の範囲、提携先、紹介手数料の有無は確認中です。支援のご案内時に、比較できる範囲と費用の仕組みを示す想定です。</p></details>
+        <details><summary>契約情報や明細はどう扱いますか？</summary><p>共有方法、閲覧権限、第三者提供、保管期間と削除方法は確認中です。正式な方針を掲載してからお預かりする想定です。このページの費目チェックは外部へ送信されません。</p></details>
+      </div>
+    </div>
+  </section>
+  <section class="sec cost-final" aria-labelledby="final-title"><div class="wrap"><p class="eyebrow">店舗の固定費見直し</p><h2 class="sec__h" id="final-title">次の契約更新の前に、<br><em>確認する順番を一緒に。</em></h2><div class="ctas"><a class="btn btn--main" href="07-yoyaku.html">30分相談の日程を選ぶ<span class="btn__note">全国オンライン・カメラオフ可</span></a><a class="cost-text-link" href="#shindan">先に費目をチェックする</a></div><p class="ctanote">受付 8:00〜翌1:00。その場でのご契約は不要です。<br>相談料・支援料は<a href="#price">確認中</a>です。</p></div></section>
 </main>
-
-<section class="sec" id="shippai">
-  <div class="wrap">
-    <p class="eyebrow">よくある失敗</p>
-    <h2 class="sec__h">「安くなったはず」が<br><em>続かない理由があります。</em></h2>
-
-    <ul class="fails">
-      <li class="fail">
-        <p class="fail__q">勧められるまま電力を切り替えた。<br>半年後、単価が元より上がっていた。</p>
-        <p class="fail__a"><span class="fail__mark">なぜ</span>市場の価格に連動するプランだったからです。契約書の「燃料費調整」や「市場連動」の項目を見ないと、乗り換えた時点の安さは続きません。</p>
-      </li>
-      <li class="fail">
-        <p class="fail__q">家賃を下げられないか考えていた。<br>言い出せないまま、更新日が過ぎた。</p>
-        <p class="fail__a"><span class="fail__mark">なぜ</span>いつまでに何を用意するかが決まっていなかったからです。近隣の相場を調べる時間まで含めると、更新日からの逆算が要ります。</p>
-      </li>
-      <li class="fail">
-        <p class="fail__q">決済手数料は契約時のまま。<br>売上が伸びるほど、負担も増えていた。</p>
-        <p class="fail__a"><span class="fail__mark">なぜ</span>手数料は率で決まるからです。売上が上がれば自動的に増えるのに、金額で見ていないと気づけません。</p>
-      </li>
-      <li class="fail">
-        <p class="fail__q">費目ごとに別の業者へ相談した。<br>結局、どれが得なのか分からなくなった。</p>
-        <p class="fail__a"><span class="fail__mark">なぜ</span>各社が自社の扱う費目だけを見るからです。全部を足したときに毎月いくら残るのかを、誰も見ていない状態になります。</p>
-      </li>
-    </ul>
-
-    <p class="sec__close">どれも、<b>費目を並べて見れば防げます。</b><br>
-    NXTERAは、費目ごとに業者を分けず、契約の中身まで一緒に読み解きます。</p>
-
-  </div>
-</section>
-
-<!-- 自己診断。失敗を読んだ直後に「で、うちはどれだ」を数えさせ、できることで受ける。
-     06（3領域横断の診断）へは飛ばさない。固定費で来た人に月商や販促費を聞かないため。
-
-     結果は2段階。
-      1段目：入力なしで「余地が出やすい順」と見直しポイント（金額は出さない）
-      2段目：金額が分かるものだけ任意入力 → 公表相場との差をレンジで試算
-
-     2段目で使う相場の数値（data-lo / data-hi / 料率の下限）はすべて仮値。
-     公開前に出典のある数値への差し替えが必要。README 仮値一覧に記載。
-     当社の実績にもとづく削減額は一切出していない。 -->
-<section class="sec sec--alt" id="shindan">
-  <div class="wrap">
-    <p class="eyebrow">かんたん自己診断</p>
-    <h2 class="sec__h">直近1年で見直していない費目に、<br><em>チェックを入れてください。</em></h2>
-
-    <div class="chk">
-      <fieldset class="chk__set">
-        <legend class="chk__legend">あてはまるものを、すべて選んでください</legend>
-        <ul class="chk__list" id="chk-list">
-          <li><label class="chk__item"><input type="checkbox" data-score="8">家賃・共益費</label></li>
-          <li><label class="chk__item"><input type="checkbox" data-score="9" data-est="denki">電気</label></li>
-          <li><label class="chk__item"><input type="checkbox" data-score="4">ガス</label></li>
-          <li><label class="chk__item"><input type="checkbox" data-score="10" data-est="tsushin">通信・回線</label></li>
-          <li><label class="chk__item"><input type="checkbox" data-score="14" data-est="kessai">決済手数料</label></li>
-          <li><label class="chk__item"><input type="checkbox" data-score="6">POS・レジ</label></li>
-          <li><label class="chk__item"><input type="checkbox" data-score="7">予約システム</label></li>
-          <li><label class="chk__item"><input type="checkbox" data-score="12" data-est="subsc">サブスク・SaaS</label></li>
-          <li><label class="chk__item"><input type="checkbox" data-score="9">掲載媒体の月額</label></li>
-          <li><label class="chk__item"><input type="checkbox" data-score="5">リース</label></li>
-          <li><label class="chk__item"><input type="checkbox" data-score="4">保険料</label></li>
-          <li><label class="chk__item"><input type="checkbox" data-score="3">廃棄物処理</label></li>
-          <li><label class="chk__item"><input type="checkbox" data-score="5">複合機</label></li>
-          <li><label class="chk__item"><input type="checkbox" data-score="2">消耗品</label></li>
-          <li><label class="chk__item"><input type="checkbox" data-score="2">仕入れ単価</label></li>
-        </ul>
-
-        <p class="chk__legend-n">配点は費目ごとに違います。<b>余地が見つかりやすく、月の金額が大きい費目ほど高い配点</b>にしてあります（合計100点）。</p>
-      </fieldset>
-
-      <!-- 診断の実行ボタン。スコアは押すまで出さない。
-           チェックを変えたら結果を隠し、押し直させる（古いスコアを残さないため）。 -->
-      <div class="chk__go">
-        <button class="btn btn--main" type="button" id="chk-run" disabled>
-          <span id="chk-run-label">診断する</span>
-          <span class="btn__note" id="chk-run-note">費目を1つ以上選んでください</span>
-        </button>
-      </div>
-
-      <!-- 1段目：スコア。金額は出さない。 -->
-      <output class="chk__out" for="chk-list" id="chk-out" tabindex="-1" aria-live="polite" hidden>
-        <div class="score">
-          <p class="score__t">改善余地スコア</p>
-          <p class="score__v"><b id="score-n">0</b><span>/ 100</span></p>
-          <div class="score__bar"><span id="score-fill" style="width:0%"></span></div>
-          <p class="score__band" id="score-band"></p>
-        </div>
-      </output>
-
-      <!-- 2段目：任意。チェックした費目のうち、金額で試算できるものだけ行を出す。 -->
-      <div class="est" id="est" hidden>
-        <p class="est__h">金額が分かるものだけ入れてください<span class="est__opt">任意</span></p>
-
-        <div class="est__rows">
-          <label class="est__row" data-est="kessai" hidden>
-            <span class="est__lbl">月商</span>
-            <input class="est__in" type="number" min="0" step="1" inputmode="decimal" id="est-uriage">
-            <span class="est__u">万円</span>
-          </label>
-          <label class="est__row" data-est="kessai" hidden>
-            <span class="est__lbl">決済手数料の料率</span>
-            <input class="est__in" type="number" min="0" step="0.01" inputmode="decimal" id="est-rate">
-            <span class="est__u">％</span>
-          </label>
-          <label class="est__row" data-est="denki" hidden>
-            <span class="est__lbl">電気の月額</span>
-            <input class="est__in" type="number" min="0" step="0.1" inputmode="decimal" id="est-denki">
-            <span class="est__u">万円</span>
-          </label>
-          <label class="est__row" data-est="tsushin" hidden>
-            <span class="est__lbl">通信・回線の月額</span>
-            <input class="est__in" type="number" min="0" step="0.1" inputmode="decimal" id="est-tsushin">
-            <span class="est__u">万円</span>
-          </label>
-          <label class="est__row" data-est="subsc" hidden>
-            <span class="est__lbl">サブスク・SaaSの月額</span>
-            <input class="est__in" type="number" min="0" step="0.1" inputmode="decimal" id="est-subsc">
-            <span class="est__u">万円</span>
-          </label>
-        </div>
-
-        <p class="est__out" id="est-out" aria-live="polite">金額を入れると、公表されている相場との差をお見せします。</p>
-
-        <p class="est__note">この試算は、公表されている料率・単価の目安と、入力された金額との差を機械的に計算したものです。<b>当社の実績にもとづくものではなく、削減額をお約束するものではありません。</b>契約条件・所在地・使用状況により、結果は大きく異なります。実際にどこまで動かせるかは、相談のなかで契約の中身を見ながら確認します。</p>
-      </div>
-
-      <div class="ctas">
-        <a class="btn btn--main" href="07-yoyaku.html">この結果を持って、相談スケジュールを選ぶ
-          <span class="btn__note">オンライン30分</span>
-        </a>
-      </div>
-
-      <p class="chk__note">この自己診断は、見直していない費目を数えるためのものです。入力内容はこの画面の中だけで処理され、送信されません。</p>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="shien">
-  <div class="wrap">
-    <p class="eyebrow">できること</p>
-    <h2 class="sec__h">下げて終わりにしない。<br><em>下がったままにする方法を考えます。</em></h2>
-
-    <ul class="shien">
-      <li class="card">
-        <h3 class="card__h">契約書の「後から上がる仕組み」を先に読む</h3>
-        <p class="card__d">燃料費調整、市場連動、最低利用期間、途中解約の違約金。安く見えるプランほど、後から効いてくる条件が隠れています。切り替える前に、その条件を一緒に確認します。</p>
-        <p class="card__to">「半年後に単価が上がっていた」に効きます</p>
-      </li>
-      <li class="card">
-        <h3 class="card__h">更新日から逆算して、段取りを組む</h3>
-        <p class="card__d">近隣の相場を調べ、いまの条件と並べた資料をつくります。いつまでに何を貸主に伝えるかの段取りまで整理します。話をされるのはオーナーご自身です。</p>
-        <p class="card__to">「言い出せないまま更新日が過ぎた」に効きます</p>
-      </li>
-      <li class="card">
-        <h3 class="card__h">率で決まる費用を、毎月の金額で見る</h3>
-        <p class="card__d">決済手数料のように売上に比例する費用は、率のままでは実感できません。毎月いくら出ていったかを金額で出し、売上が伸びたときの増え方まで見えるようにします。</p>
-        <p class="card__to">「売上が伸びるほど負担も増えていた」に効きます</p>
-      </li>
-      <li class="card">
-        <h3 class="card__h">払っているものを、全部ならべて出す</h3>
-        <p class="card__d">毎月出ていくお金を、費目ごとに一覧にします。資料を先に揃えていただく必要はありません。相談のなかで、手元にあるものを見ながら一緒に埋めていきます。費目ごとに業者を分けず、全部を足したときいくら残るかで判断できるようにします。</p>
-        <p class="card__to">「どれが得なのか分からなくなった」に効きます</p>
-      </li>
-    </ul>
-
-    <p class="sec__close">電気・ガスは<b>診断と比較情報の提供まで</b>、家賃は<b>資料づくりと論点の整理まで</b>を担当します。<br>
-    切り替えのお申し込みや、貸主とのお話はオーナーご自身で行っていただきます。</p>
-
-    <div class="ctas ctas--center">
-      <a class="btn btn--main" href="07-yoyaku.html">相談スケジュールを選ぶ
-        <span class="btn__note">オンライン30分</span>
-      </a>
-      <a class="btn btn--sub" href="#shindan">先に自己診断で費目を数える</a>
-    </div>
-    <p class="ctanote ctanote--center">受付：8:00〜翌1:00　全国オンライン・1回30分。カメラはオフでも構いません。その場でのご契約は不要です。</p>
-  </div>
-</section>
-
-<nav class="bar" aria-label="主要アクション">
-  <a class="bar__s" href="#">LINEで<br>情報</a>
-  <a class="bar__p" href="#shindan">自己診断<small>15費目・無料</small></a>
-  <a class="bar__s" href="#shippai">よくある<br>失敗</a>
-</nav>
-
-<script>
-/* 自己診断。「診断する」を押してから結果を出す。
-
-   1段目：チェックした費目の配点を合計して「改善余地スコア（0〜100）」を出す。
-          配点は data-score。余地が見つかりやすく、月の金額が大きい費目ほど高い。
-          15費目の合計がちょうど100点になるよう配分してあるので、
-          スコアはそのまま「見直していない費目が、全体のどれだけを占めるか」を表す。
-          ここでは金額を一切出さない。
-
-   2段目：チェックした費目のうち試算できるものだけ入力欄を出し、公表相場との差をレンジで返す。
-
-   チェックを変えたら結果は隠し、押し直させる。古いスコアが画面に残らないようにするため。
-
-   BAND の文言と RATE の数値はすべて仮値。公開前に出典のある数値へ差し替えること。
-   スコアは削減額とは無関係で、当社の実績にもとづく削減額は一切出さない。 */
-(function () {
-  var sec = document.getElementById('shindan');
-  if (!sec) return;
-
-  var boxes  = Array.prototype.slice.call(sec.querySelectorAll('.chk__item input'));
-  var run    = document.getElementById('chk-run');
-  var runLbl = document.getElementById('chk-run-label');
-  var runNote= document.getElementById('chk-run-note');
-  var out    = document.getElementById('chk-out');
-  var scoreN = document.getElementById('score-n');
-  var fill   = document.getElementById('score-fill');
-  var band   = document.getElementById('score-band');
-  var est    = document.getElementById('est');
-  var estOut = document.getElementById('est-out');
-  if (!boxes.length || !run || !runLbl || !runNote || !out || !scoreN || !fill || !band || !est || !estOut) return;
-
-  /* スコアの帯。min 以上でその文言を使う（降順に並べてある） */
-  var BAND = [
-    { min: 75, k: 'hi',  t: 'ほとんどの費目が手つかずです。順番に手をつければ、効き方が分かりやすいはずです。' },
-    { min: 50, k: 'hi',  t: 'まとめて見直す価値がありそうです。配点の高い費目から順に見ていきます。' },
-    { min: 25, k: 'mid', t: 'いくつかの費目に、見直しの余地がありそうです。' },
-    { min: 1,  k: 'lo',  t: '見直しの余地は限定的ですが、選ばれた費目は確認する価値があります。' }
-  ];
-
-  /* 相場の目安（すべて仮値）。
-     kessai は料率の下限レンジ（％）、ほかは月額に対する見直し余地の割合。 */
-  var RATE = {
-    kessai:  { lo: 2.80, hi: 3.24 },
-    denki:   { lo: 0.05, hi: 0.15 },
-    tsushin: { lo: 0.10, hi: 0.25 },
-    subsc:   { lo: 0.20, hi: 0.40 }
-  };
-
-  var rows = Array.prototype.slice.call(est.querySelectorAll('.est__row'));
-  var ins  = Array.prototype.slice.call(est.querySelectorAll('.est__in'));
-  var done = false;
-
-  function checked() {
-    return boxes.filter(function (b) { return b.checked; });
-  }
-  function score(input) { return +input.getAttribute('data-score') || 0; }
-  function num(id) {
-    var el = document.getElementById(id);
-    var v = el ? parseFloat(el.value) : NaN;
-    return isFinite(v) && v > 0 ? v : 0;
-  }
-
-  /* ---------- ボタンの状態 ---------- */
-  function ready() {
-    var n = checked().length;
-    run.disabled = (n === 0);
-    runLbl.textContent = done ? 'もう一度診断する' : '診断する';
-    runNote.textContent = n === 0 ? '費目を1つ以上選んでください' : n + '件を選択中';
-  }
-
-  /* チェックを変えたら結果を隠す。古いスコアを残さない。 */
-  function reset() {
-    out.hidden = true;
-    est.hidden = true;
-    ready();
-  }
-
-  /* ---------- 1段目：スコア ---------- */
-  function stage1() {
-    var total = checked().reduce(function (s, b) { return s + score(b); }, 0);
-
-    scoreN.textContent = total;
-    fill.style.width = total + '%';
-
-    var hit = null;
-    for (var i = 0; i < BAND.length; i++) {
-      if (total >= BAND[i].min) { hit = BAND[i]; break; }
-    }
-    fill.className = hit ? 'is-' + hit.k : '';
-    band.textContent = hit ? hit.t : '';
-
-    out.hidden = false;
-  }
-
-  /* ---------- 2段目：任意の金額試算 ---------- */
-  function stage2() {
-    var keys = {};
-    checked().forEach(function (b) {
-      var k = b.getAttribute('data-est');
-      if (k) keys[k] = true;
-    });
-
-    var any = false;
-    rows.forEach(function (r) {
-      var on = !!keys[r.getAttribute('data-est')];
-      r.hidden = !on;
-      if (on) any = true;
-      if (!on) { var i = r.querySelector('.est__in'); if (i) i.value = ''; }
-    });
-
-    est.hidden = !any;
-    if (any) calc();
-  }
-
-  function calc() {
-    var lo = 0, hi = 0;   /* 円 */
-
-    var uriage = num('est-uriage') * 10000;   /* 万円 → 円 */
-    var rate   = num('est-rate');
-    if (uriage && rate) {
-      lo += Math.max(0, uriage * (rate - RATE.kessai.hi) / 100);
-      hi += Math.max(0, uriage * (rate - RATE.kessai.lo) / 100);
-    }
-
-    [['est-denki', 'denki'], ['est-tsushin', 'tsushin'], ['est-subsc', 'subsc']].forEach(function (p) {
-      var yen = num(p[0]) * 10000;
-      if (!yen) return;
-      lo += yen * RATE[p[1]].lo;
-      hi += yen * RATE[p[1]].hi;
-    });
-
-    if (hi <= 0) {
-      estOut.textContent = '金額を入れると、公表されている相場との差をお見せします。';
-      estOut.classList.remove('est__out--on');
-      return;
-    }
-
-    var man = function (v) { return (v / 10000).toFixed(1); };
-    estOut.innerHTML = '公表されている相場との差は<br><b>月 ' + man(lo) + '〜' + man(hi) + '万円</b>ほどです';
-    estOut.classList.add('est__out--on');
-  }
-
-  run.addEventListener('click', function () {
-    if (!checked().length) return;
-    stage1();
-    stage2();
-    done = true;
-    ready();
-    out.focus();
-  });
-
-  boxes.forEach(function (b) { b.addEventListener('change', reset); });
-  ins.forEach(function (i) { i.addEventListener('input', calc); });
-  ready();
-})();
-</script>
-
-<script>
-  /* 戻る操作やブラウザのスクロール位置の復元で、ページ途中から表示されることがある。
-     ハッシュ指定がないときは必ず先頭から見せる。 */
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  window.addEventListener('load', function () {
-    if (!location.hash) window.scrollTo(0, 0);
-  });
-</script>
-
+<footer class="cost-footer" id="company"><div class="wrap"><p class="cost-label">NXTERA</p><h2>運営情報・資料の取り扱い</h2><p class="cost-note">正式な情報・方針は公開前に掲載します。</p><dl class="cost-facts"><div><dt>運営会社・責任者</dt><dd>正式名称・所在地・責任者・連絡先：確認中</dd></div><div><dt>担当体制・支援経験</dt><dd>担当範囲・経歴・掲載可能な実績：確認中</dd></div><div><dt>資料の取り扱い</dt><dd>共有手段・閲覧権限・第三者提供・保管と削除：確認中</dd></div></dl><details class="cost-policy" id="privacy"><summary>プライバシーポリシー（確認中）</summary><p>運営主体、利用目的、安全管理措置、第三者提供の条件、保存期間、開示・削除の窓口を確認後、正式な方針を掲載します。このモックには資料を送信する機能はありません。</p></details><nav class="cost-footer-nav" aria-label="フッターメニュー"><a href="#privacy">プライバシーポリシー</a><a href="#price">料金・紹介の仕組み</a><a href="#top">ページの先頭へ</a></nav></div></footer>
+<nav class="bar" aria-label="主要アクション"><a class="bar__s" href="#price">料金・条件</a><a class="bar__p" href="#shindan">費目チェック<small>連絡先の入力不要</small></a><a class="bar__s" href="07-yoyaku.html">30分相談</a></nav>
 </body>
 </html>

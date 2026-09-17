@@ -1,207 +1,37 @@
 <!doctype html>
-<!--
-  ============================================================
-  NXTERA / 相談スケジュール（予約カレンダー）— デザインモックです。
-  もとは診断（現 06-shindan.html）と1ファイルだったが、別ページに分けた。
-  理由：予約への入口が複数あり（各LPのCTA・固定バー）、直行組のほうが多数派になるため。
-  URLを分けることで、広告やLINE配信から直接送れて、計測も分離できる。
-  なお 06 は現在未使用で、このページからもリンクしていない（README 4-16）。
-  現在の入口は 02〜05 のCTAと固定バー、および広告・LINE配信からの直接流入。
-
-  【仮値の注記】
-   - ロゴ「NXTERA」はテキスト仮置き。
-   - 相談時間「30分」、受付「8:00〜翌1:00」、カレンダーの日付・空き状況は仮値。
-   - 結果画面のレンジ金額（例：月 3.2万〜7.8万円）はすべてダミーです。
-     必ずレンジ表示とし、単一の金額・単一の%は表示しません。
-   - 実績数値（削減率・導入店舗数等）は一切掲載していません。
-  ============================================================
--->
+<!-- Booking design mock. Availability, duration and reception hours are samples; no reservation is submitted. -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NXTERA｜相談スケジュール モック</title>
+<meta name="robots" content="noindex, nofollow">
+<title>相談日時を選ぶ｜NXTERA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens.css">
-<style>
-  /* ---------- 画面の区切り ---------- */
-  .screen{padding:var(--s-8) 0 var(--s-10);}
-  .screen + .screen{border-top:1px solid var(--c-line-strong);}
-  .screen__flag{
-    display:inline-block;font-family:var(--f-head);font-weight:700;
-    font-size:var(--fs-200);letter-spacing:.08em;color:#EDEAE4;background:#2B2E33;
-    padding:4px 10px;border-radius:var(--r-1);margin-bottom:var(--s-5);
-  }
-  .h2{font-family:var(--f-head);font-weight:700;font-size:clamp(22px,5.6vw,30px);
-      line-height:1.36;letter-spacing:var(--ls-head);}
-  .lead{margin-top:var(--s-4);color:var(--c-ink-2);font-size:var(--fs-400);max-width:40em;}
-  .note-s{margin-top:var(--s-4);font-size:var(--fs-300);color:var(--c-ink-3);}
-  .panel{
-    background:var(--c-surface);border:1px solid var(--c-line);
-    border-radius:var(--r-3);padding:var(--s-5);margin-top:var(--s-6);box-shadow:var(--sh-1);
-  }
-  @media (min-width:860px){ .panel{padding:var(--s-8);} }
-
-  /* ---------- ステップインジケータ ---------- */
-  .steps{display:flex;gap:6px;list-style:none;margin:0 0 var(--s-5);padding:0;}
-  .steps li{
-    flex:1;font-size:var(--fs-100);color:var(--c-ink-3);line-height:1.4;
-    border-top:4px solid var(--c-line);padding-top:6px;
-  }
-  .steps li[aria-current="step"]{color:var(--c-ink);border-top-color:var(--c-accent);font-weight:700;}
-  .steps b{display:block;font-family:var(--f-head);font-size:var(--fs-200);}
-
-  /* ---------- 設問・選択肢 ---------- */
-  .q{font-family:var(--f-head);font-weight:700;font-size:var(--fs-600);line-height:1.5;}
-  .q__n{color:var(--c-accent);margin-right:8px;}
-  .opts{display:grid;gap:var(--s-3);margin-top:var(--s-5);}
-  @media (min-width:640px){ .opts{grid-template-columns:1fr 1fr;} }
-  .opt{
-    display:flex;align-items:center;gap:var(--s-3);min-height:var(--tap);
-    border:1px solid var(--c-line-strong);border-radius:var(--r-2);
-    padding:var(--s-3) var(--s-4);background:var(--c-surface);cursor:pointer;
-    font-size:var(--fs-400);transition:border-color .15s, background .15s;
-  }
-  .opt:hover{background:var(--c-bg-sunk);border-color:var(--c-ink-3);}
-  .opt input{appearance:none;width:20px;height:20px;flex:none;margin:0;
-    border:2px solid var(--c-line-strong);border-radius:50%;}
-  .opt input:checked{border-color:var(--c-accent);box-shadow:inset 0 0 0 4px var(--c-accent);}
-  .opt:has(input:checked){border-color:var(--c-accent);background:var(--c-accent-soft);font-weight:700;}
-  .opt:has(input:focus-visible){outline:3px solid var(--c-focus);outline-offset:2px;}
-
-  /* ---------- 結果：レンジ表示 ---------- */
-  .res{display:grid;gap:var(--s-4);margin-top:var(--s-5);}
-  .res__item{border:1px solid var(--c-line);border-radius:var(--r-2);padding:var(--s-4);background:var(--c-bg);}
-  .res__head{display:flex;align-items:baseline;gap:var(--s-3);flex-wrap:wrap;}
-  .res__name{font-family:var(--f-head);font-weight:700;font-size:var(--fs-500);}
-  .res__range{font-family:var(--f-num);font-weight:700;font-size:var(--fs-700);letter-spacing:.01em;}
-  .res__unit{font-size:var(--fs-300);font-weight:400;color:var(--c-ink-2);}
-  .res--a .res__range{color:#C1440E;} /* 集客 */
-  .res--b .res__range{color:#9A6410;} /* 固定費 */
-  .res--c .res__range{color:#2F5D8C;} /* 資金繰り */
-  .track{position:relative;height:14px;background:var(--c-bg-sunk);border:1px solid var(--c-line);
-         border-radius:2px;margin-top:var(--s-3);}
-  .track span{position:absolute;top:-1px;bottom:-1px;border-radius:2px;
-    background:repeating-linear-gradient(135deg, currentColor 0 5px, color-mix(in srgb,currentColor 55%, #fff) 5px 10px);}
-  .res--a .track span{color:#C1440E;}
-  .res--b .track span{color:#9A6410;}
-  .res--c .track span{color:#2F5D8C;}
-  .track__scale{display:flex;justify-content:space-between;font-size:10px;color:var(--c-ink-3);margin-top:4px;}
-  .res__why{margin-top:var(--s-3);font-size:var(--fs-300);color:var(--c-ink-2);line-height:1.7;}
-
-  /* ---------- 3領域のバランス図 ---------- */
-  .balance{margin-top:var(--s-6);padding:var(--s-5);background:var(--c-bg-sunk);
-           border:1px solid var(--c-line);border-radius:var(--r-2);}
-  .balance__t{font-family:var(--f-head);font-weight:700;font-size:var(--fs-300);margin-bottom:var(--s-4);}
-  /* 3領域のバランス図：帯の長さ＝比重。比重の大きい順に番号を振り、
-     「どこから手をつけるか」が一目で分かるようにする。 */
-  .balfig{display:block;width:100%;height:auto;}
-  .bf-a{fill:#C1440E;} .bf-b{fill:#9A6410;} .bf-c{fill:#2F5D8C;}
-  .bf-lbl{fill:#fff;font-family:var(--f-head);font-weight:700;font-size:14px;}
-  .bf-num{fill:#fff;font-family:var(--f-head);font-weight:700;font-size:12px;}
-  .bf-ring{fill:#fff;fill-opacity:.26;}
-  .bf-div{stroke:#fff;stroke-width:2;}
-  .bf-axis{stroke:var(--c-line-strong);stroke-width:1;}
-  .bf-cap{fill:var(--c-ink-3);font-family:var(--f-body);font-size:11px;}
-  .bal__note{margin-top:var(--s-3);font-size:var(--fs-200);color:var(--c-ink-2);line-height:1.7;}
-  .caution{
-    margin-top:var(--s-5);padding:var(--s-4);background:var(--c-surface);
-    border:1px solid var(--c-line);border-left:3px solid var(--c-warn);border-radius:var(--r-1);
-    font-size:var(--fs-200);line-height:1.8;color:var(--c-ink-2);
-  }
-
-  /* ---------- 予約カレンダー ---------- */
-  .calhead{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);margin-bottom:var(--s-4);}
-  .calhead__m{font-family:var(--f-head);font-weight:700;font-size:var(--fs-500);}
-  .calhead__nav{display:flex;gap:var(--s-2);}
-  .navbtn{min-width:44px;min-height:44px;border:1px solid var(--c-line-strong);background:var(--c-surface);
-    border-radius:var(--r-2);font-size:var(--fs-300);cursor:pointer;color:var(--c-ink);}
-  .navbtn:hover{background:var(--c-bg-sunk);}
-  .navbtn[disabled]{background:var(--c-disabled-bg);color:var(--c-disabled-ink);cursor:not-allowed;border-color:transparent;}
-
-  /* 2つの表（日中／夜）で列位置を揃えるため table-layout:fixed */
-  .cal{width:100%;min-width:330px;border-collapse:separate;border-spacing:3px;table-layout:fixed;}
-  .cal th{font-weight:400;font-size:var(--fs-100);color:var(--c-ink-2);padding-bottom:2px;}
-  .cal th b{display:block;font-family:var(--f-head);font-size:var(--fs-300);color:var(--c-ink);}
-  .cal th.sat b{color:#2B5C85;} .cal th.sun b{color:#9B2C1F;}
-  .cal .rowlabel{font-size:var(--fs-200);color:var(--c-ink-2);text-align:right;
-    white-space:nowrap;width:46px;padding-right:2px;}
-  .slot{
-    width:100%;min-height:40px;border-radius:var(--r-2);border:1px solid var(--c-line);
-    background:var(--c-bg-sunk);color:var(--c-disabled-ink);font-size:var(--fs-200);
-    font-family:var(--f-head);cursor:not-allowed;
-  }
-  .slot--open{
-    width:100%;font-size:var(--fs-200);font-family:var(--f-head);border-radius:var(--r-2);
-    background:var(--c-surface);border:1px solid var(--c-accent);
-    color:var(--c-accent-deep);font-weight:700;cursor:pointer;min-height:44px;
-    transition:background .15s, color .15s;
-  }
-  .slot--open:hover{background:var(--c-accent-soft);}
-  .slot--open[aria-pressed="true"]{background:var(--c-accent);color:var(--c-on-accent);border-color:var(--c-accent-deep);}
-  /* 30分刻みで行数が多いため、セルを詰めて一覧性を優先する */
-  .cal--fine{border-spacing:2px;}
-  .cal--fine .rowlabel{font-size:var(--fs-100);width:42px;}
-  .cal--fine .slot{min-height:30px;font-size:var(--fs-100);}
-  .cal--fine .slot--open{min-height:30px;font-size:var(--fs-100);}
-  .cal-legend{display:flex;gap:var(--s-4);flex-wrap:wrap;margin-top:var(--s-4);font-size:var(--fs-200);color:var(--c-ink-2);}
-  .cal-legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-2px;}
-  .picked{
-    margin-top:var(--s-5);padding:var(--s-4);border:1px solid var(--c-accent);
-    background:var(--c-accent-soft);border-radius:var(--r-2);
-    font-size:var(--fs-400);
-  }
-  .picked b{font-family:var(--f-head);font-size:var(--fs-500);}
-  .picked span{display:block;font-size:var(--fs-200);color:var(--c-ink-2);margin-top:4px;}
-  .cal-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-</style>
+<link rel="stylesheet" href="07-yoyaku.css?v=20260917-1">
+<script src="07-yoyaku.js?v=20260917-1" defer></script>
 </head>
-<body data-domain="shindan">
-
-<p class="mockflag"><b>DESIGN MOCK</b>　診断・予約の3画面／日付・空き状況・レンジ金額はすべてダミーです</p>
-
-<header class="hd">
-  <div class="wrap hd__in">
-    <a class="logo" href="#"><span class="logo__mark" aria-hidden="true"></span>
-      <span class="logo__txt">
-        <span class="logo__type">NXTERA</span>
-      </span>
-      <span class="logo__sub">相談スケジュール</span>
-    </a>
-    <nav class="hd__nav">
-      <a href="02-shukyaku-inshoku.html">集客（飲食）</a>
-      <a href="03-shukyaku-biyo.html">集客（理美容）</a>
-      <a href="04-kotehi.html">固定費</a>
-      <a href="05-shikinguri.html">資金繰り</a>
-    </nav>
-  </div>
-</header>
-
-<!-- ========== 5-3 予約カレンダー画面 ========== -->
-<section class="screen" id="yoyaku">
-  <div class="wrap">
-    <p class="screen__flag">予約カレンダー画面</p>
-
-    <h2 class="h2">8:00から翌1:00まで、<br>空いている枠を選べます。</h2>
-    <p class="lead">30分のオンライン相談です。カメラはオフでも構いません。当日は、いまの状況を伺って、手をつける順番の整理までを一緒に行います。</p>
-
-    <div class="panel">
-      <div class="calhead">
-        <span class="calhead__m">10月 6日（月）〜 12日（日）</span>
-        <span class="calhead__nav">
-          <button class="navbtn" disabled aria-label="前の週（これより前は表示できません）">‹</button>
-          <button class="navbtn" aria-label="次の週">›</button>
-        </span>
-      </div>
-
-      <div class="cal-scroll">
-        <table class="cal cal--fine">
-          <caption class="visually-hidden" style="position:absolute;left:-9999px;">相談枠の空き状況（ダミー）。8:00から翌0:30まで30分刻み。</caption>
+<body class="booking-page" data-domain="shindan" id="top">
+<a class="booking-skip" href="#yoyaku">日時の選択へ</a>
+<p class="booking-mock"><b>DESIGN MOCK</b> 日付・空き状況はサンプルです。実際の予約は送信されません。</p>
+<header class="hd"><div class="wrap hd__in">
+<a class="logo" href="index.html" aria-label="NXTERA モック一覧へ"><span class="logo__mark" aria-hidden="true"></span><span class="logo__type">NXTERA</span><span class="logo__sub">ご相談予約</span></a>
+<a class="booking-back" href="index.html">サービス一覧へ <span aria-hidden="true">↗</span></a>
+</div></header>
+<main class="wrap booking-main">
+<div class="booking-intro"><p class="booking-kicker">お店のこれからを、一緒に。</p><h1>相談日時を選ぶ</h1><p>集客・固定費・資金繰り。<br class="sp-break">いま気になっていることから、ご相談ください。</p></div>
+<div class="booking-layout">
+<section class="booking-calendar" id="yoyaku" aria-labelledby="calendar-title">
+<div class="booking-section-head"><div><p class="booking-kicker">ご希望の日時</p><h2 id="calendar-title">10月6日<span>（月）</span>〜12日<span>（日）</span></h2></div><span class="booking-sample">サンプル週</span></div>
+<div class="cal-legend" aria-label="カレンダーの凡例"><span><i class="legend-open"></i>選択可能</span><span><i class="legend-picked"></i>選択中</span><span><i class="legend-closed"></i>受付なし</span><span class="booking-timezone">日本時間</span></div>
+<div class="cal-scroll" tabindex="0" role="region" aria-label="相談枠カレンダー">
+<table class="cal cal--fine">
+          <caption class="sr-only">相談枠のサンプル。10月6日から12日。深夜0時台は各列の翌日です。</caption>
           <thead>
             <tr>
-              <th scope="col"></th>
+              <th scope="col" class="rowlabel">時間</th>
               <th scope="col">6<b>月</b></th>
               <th scope="col">7<b>火</b></th>
               <th scope="col">8<b>水</b></th>
@@ -533,7 +363,7 @@
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
             </tr>
             <tr>
-              <th scope="row" class="rowlabel">0:00</th>
+              <th scope="row" class="rowlabel">翌0:00</th>
               <td><button class="slot" disabled>×</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
@@ -543,7 +373,7 @@
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
             </tr>
             <tr>
-              <th scope="row" class="rowlabel">0:30</th>
+              <th scope="row" class="rowlabel">翌0:30</th>
               <td><button class="slot" disabled>×</button></td>
               <td><button class="slot" disabled>×</button></td>
               <td><button class="slot--open" type="button" aria-pressed="false">空</button></td>
@@ -554,50 +384,27 @@
             </tr>
           </tbody>
         </table>
-      </div>
-
-      <div class="cal-legend">
-        <span><i style="background:#fff;border:1px solid var(--c-accent);"></i>選べる枠</span>
-        <span><i style="background:var(--c-accent);border:1px solid var(--c-accent-deep);"></i>選択中</span>
-        <span><i style="background:var(--c-bg-sunk);border:1px solid var(--c-line);"></i>受付なし</span>
-      </div>
-
-      <p class="picked">
-        <b>10月7日（火）21:00 − 21:30</b>
-        <span>オンライン相談 30分／カメラオフ可。日付・空き状況はモック上のダミーです。</span>
-      </p>
-
-      <div class="ctas">
-        <a class="btn btn--main" href="#">この枠で予約する</a>
-        <a class="btn btn--sub" href="#">別の日を見る</a>
-      </div>
-
-      <div class="trust">
-        <ul>
-          <li>オンライン完結。来店も出張も不要です</li>
-          <li>その場でご契約いただく必要はありません</li>
-          <li>日程は後から変更できます</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+</div>
+<p class="booking-note">表示は30分枠のサンプルです。所要時間・受付時間・相談方法は確認中です。深夜0時台は各列の翌日となります。</p>
 </section>
-
-<!-- 予約ページのバーは2枠。診断（06）へのリンクは外した（06は広告LPとして使わないため）。
-     予約ページから外へ出す導線を増やすと、予約そのものが漏れる。 -->
-<nav class="bar bar--two" aria-label="主要アクション">
-  <a class="bar__s" href="#">LINEで<br>情報</a>
-  <a class="bar__p" href="#yoyaku">この枠で予約<small>8:00〜翌1:00</small></a>
-</nav>
-
-<script>
-  /* 戻る操作やブラウザのスクロール位置の復元で、ページ途中から表示されることがある。
-     ハッシュ指定がないときは必ず先頭から見せる。 */
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  window.addEventListener('load', function () {
-    if (!location.hash) window.scrollTo(0, 0);
-  });
-</script>
-
+<aside class="booking-summary" aria-labelledby="summary-title">
+<p class="booking-kicker">選択内容</p><h2 id="summary-title">ご相談の日時</h2>
+<div class="booking-picked" role="status" aria-live="polite" aria-atomic="true"><p id="picked-date">10月7日（火）</p><strong id="picked-time">21:00〜21:30</strong><span>日本時間 / サンプル</span></div>
+<dl class="booking-facts"><div><dt>ご相談内容</dt><dd>集客・固定費・資金繰り</dd></div><div><dt>ご相談方法</dt><dd>オンラインを想定<span>正式な対応方法は確認中</span></dd></div><div><dt>相談料</dt><dd>確認中</dd></div></dl>
+<button type="button" class="booking-button" id="review-booking" disabled>選択内容を確認する <span aria-hidden="true">→</span></button>
+<p class="booking-note">この画面では予約は確定しません。</p>
+<noscript><p class="booking-note">日時の選択にはJavaScriptが必要です。実際の予約は受け付けていません。</p></noscript>
+<div class="booking-prep"><h3>相談したいことが、<br>まとまっていなくても。</h3><p>店舗ページのURLや、いま取り組んでいることなど。分かる範囲の情報からお話しください。</p></div>
+</aside>
+</div>
+<section class="booking-help" aria-labelledby="help-title"><h2 id="help-title">ご予約の前に</h2>
+<details><summary>日時の変更・キャンセルについて</summary><p>変更・キャンセルの期限、連絡方法、料金の有無は確認中です。正式な予約受付を開始する前にご案内します。</p></details>
+<details><summary>予約・個人情報の取り扱いについて</summary><p>現在は日時を選ぶ操作を確認するモックです。氏名・連絡先の入力や外部送信は行いません。正式な予約先・運営情報・個人情報の取り扱い方針は公開前に確定します。</p></details>
+</section>
+</main>
+<footer class="booking-footer"><div class="wrap"><p class="booking-brand">NXTERA</p><nav aria-label="サービスページ"><a href="01-shukyaku-tougou.html">店舗集客</a><a href="04-kotehi.html">固定費の見直し</a><a href="05-shikinguri.html">資金繰り</a></nav><p>運営情報・相談条件は確認中です。</p></div></footer>
+<dialog class="booking-dialog" id="booking-review" aria-labelledby="review-title" aria-describedby="review-note">
+<p class="booking-kicker">選択内容の確認</p><h2 id="review-title">ご希望の日時</h2><p class="booking-review-date" id="review-date"></p><p id="review-note">日時選択のモックです。予約は送信・確定されていません。</p><p class="booking-note">正式な受付先と相談条件は、公開前に確定します。</p><button type="button" class="booking-button" id="close-review">日時選択に戻る</button>
+</dialog>
 </body>
 </html>

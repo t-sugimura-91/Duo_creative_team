@@ -1,269 +1,155 @@
 <!doctype html>
-<!--
-  ============================================================
-  NXTERA / 集客LP（飲食・理美容の統合版）— 比較検討用のモック。
-  02（飲食）と03（理美容）を1枚にまとめたらどうなるか、を見るためのファイル。
-  02・03はそのまま残してあるので、置き換えではなく別案として比較する。
-
-  【構成】
-   FV（業種共通）→ 業種タブ →〔よくある失敗／できること〕→ CTA
-   タブで飲食・理美容を切り替える。切り替わるのはタブから下だけ。
-
-  【仮値の注記】
-   - ロゴ「NXTERA」はテキスト仮置き。
-   - 相談時間「30分」、受付時間「8:00〜翌1:00」は仮値です。
-   - 写真はAI生成の仮画像。業種が特定できない構図にしてある。
-   - 本番は同構図で撮影する前提。
-   - 実績数値は意図的に一切掲載していません。
-  ============================================================
--->
+<!-- 集客支援の構成モック。料金・提供範囲・運営情報は未確定。支援例と成果物は架空の説明用です。 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>飲食店・サロンの集客支援｜NXTERA（統合版モック）</title>
-<meta name="description" content="飲食店・美容室・サロン向けの集客支援。Googleマップ、口コミ、SNS、予約導線をまとめて整理し、数字から次の施策をご提案します。オンライン30分の相談予約はこちら。">
+<meta name="robots" content="noindex, nofollow">
+<title>店舗の集客サポート｜飲食店・理美容店の集客相談｜NXTERA</title>
+<meta name="description" content="新規客、平日の空席、リピート、集客費、運用の負担。飲食店・理美容店の状況に合わせて、集客の見直し方と取り組む順番を整理します。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="01-shukyaku-tougou.css?v=20260917-wide3">
 </head>
-<body data-domain="tougou">
-
-<p class="mockflag"><b>DESIGN MOCK</b>　02と03を1枚にまとめた比較用の別案／金額・時間・ロゴはすべて仮値です</p>
-
+<body data-domain="tougou" id="top">
+<a class="acq-skip" href="#concerns">本文へ</a>
+<p class="acq-mock"><b>DESIGN MOCK</b> 提供範囲・料金・運営情報は確認中。予約ページもモックです。</p>
 <header class="hd">
   <div class="wrap hd__in">
-    <a class="logo" href="#"><span class="logo__mark" aria-hidden="true"></span>
-      <span class="logo__txt">
-        <span class="logo__type">NXTERA</span>
-      </span>
-      <span class="logo__sub">飲食店・サロンの集客支援</span>
-    </a>
-    <nav class="hd__nav">
-      <a href="#">できること</a>
-      <a href="#">料金</a>
-      <a href="#">進め方</a>
-    </nav>
+    <a class="logo" href="#top" aria-label="NXTERA ページの先頭へ"><span class="logo__mark" aria-hidden="true"></span><span class="logo__txt"><span class="logo__type">NXTERA</span></span><span class="logo__sub">店舗の集客サポート</span></a>
+    <nav class="hd__nav" aria-label="ページ内メニュー"><a href="#concerns">お悩み別</a><a href="#support">支援内容</a><a href="#price">料金・条件</a><a href="#flow">相談の流れ</a></nav>
+    <a class="acq-header-cta" href="07-yoyaku.html">集客を相談する</a>
   </div>
 </header>
-
-<main class="fv">
-  <div class="wrap fv__in">
-
-    <div>
-      <p class="eyebrow">飲食店・美容室・サロン向け 集客支援</p>
-
-      <h1 class="catch">集客を、数字から見直す。<br><em>選ばれない理由を見つける。</em></h1>
-
-      <p class="catch-sub">Googleマップ・口コミ・SNS・予約導線をまとめて整理。</p>
-
-      <p class="sub">MEOだけ、SNSだけに分けず、掲載プランやリピート状況まで確認。<br>飲食店・美容室・サロンごとに、来月どこに手をつけるべきかをご提案します。</p>
-
-      <div class="komi komi--strong">
-        <div class="komi__body">
-          <p class="komi__lead"><span class="komi__lead-s">当サイト限定</span><span class="komi__lead-b">特典</span></p>
-          <ul class="komi__list">
-            <li><span class="komi__item">PR用動画制作</span><span class="komi__q">2本無料</span></li>
-            <li><span class="komi__item">口コミ収集ツール利用</span><span class="komi__q">3か月無料</span></li>
-          </ul>
-        </div>
+<main>
+  <section class="acq-hero" aria-labelledby="hero-title">
+    <img class="acq-hero-photo" src="images/01-tougou-hero-v4-wide.jpg" width="2172" height="724" alt="明るい店舗のカウンターで、自分に向けたタブレットの画面を確認するオーナーのイメージ。" loading="eager" fetchpriority="high" decoding="async">
+    <div class="wrap acq-hero-in">
+      <div class="acq-hero-copy">
+        <p class="acq-kicker">飲食店・理美容店のオーナーへ</p>
+        <h1 id="hero-title">店舗の<br>集客サポート</h1>
+        <p class="acq-hero-lead">何から変えるか。<br>そこから、一緒に。</p>
+        <p class="acq-hero-text"><span class="acq-hero-context">新規客が増えない。平日の予約が空く。<br>頑張っているのに、来店につながらない。<br></span>お店の状況と予算から、次の一手を整理します。</p>
+        <div class="acq-actions"><a class="acq-button" href="07-yoyaku.html">店舗の集客について相談する<span aria-hidden="true"> →</span></a><a class="acq-text-link" href="#support">支援内容・できることを見る</a></div>
+        <p class="acq-hero-note">施策が決まっていなくてもご相談いただけます。<br>相談料・対応時間は<a href="#price">確認中</a>です。</p>
       </div>
-
-      <div class="ctas">
-        <a class="btn btn--main" href="07-yoyaku.html">相談スケジュールを選ぶ
-          <span class="btn__note">オンライン30分</span>
-        </a>
-        <a class="btn btn--sub" href="#">LINEで情報を得る</a>
-      </div>
-
-      <p class="ctanote">受付：8:00〜翌1:00<br>全国オンライン・1回30分。カメラはオフでも構いません。その場でのご契約は不要です。</p>
-
-      <div class="trust">
-        <ul>
-          <li>日時は空いている枠から、ご自身で選べます。電話を待つ必要はありません</li>
-          <li>施策ごとに業者を分けません。マップも口コミもSNSも同じ担当が見ます</li>
-          <li>全国オンライン完結。お店を閉めてからで間に合います</li>
-        </ul>
-      </div>
-
-      <p class="more">このあと：業種を選ぶ／よくある失敗と、その理由／できること</p>
     </div>
-
-    <!-- 業種を特定しない1枚。一般クエリの受け皿のため、どちらのオーナーにも自分に見える絵にする -->
-    <aside class="shot" aria-label="閉店後のカウンターで締め作業をする店主の写真">
-      <picture>
-        <source media="(max-width:859px)" srcset="images/01-tougou-sp.webp" width="800" height="533">
-        <img class="shot__img" src="images/01-tougou-hero-v.webp"
-           width="880" height="1320" loading="eager" decoding="async"
-           alt="閉店後のカウンター。レジ、伝票の束、電卓、書きかけの帳面を前にして、スマートフォンを見る店主。">
-      </picture>
-    </aside>
-
+  </section>
+  <div class="acq-principles">
+    <ul class="wrap"><li><span>01</span><strong>悩みから、整理する</strong></li><li><span>02</span><strong>予算と手間で、選ぶ</strong></li><li><span>03</span><strong>取り組んだ後も、確かめる</strong></li></ul>
   </div>
+
+  <section class="acq-section" id="concerns" aria-labelledby="concerns-title">
+    <div class="wrap">
+      <div class="acq-section-head"><p class="acq-kicker">まずは、いまのお悩みから</p><h2 id="concerns-title">「集客したい」の中身は、<br>お店によって違うから。</h2><p>新しい施策を増やす前に、どこで困っているかを確認します。<br>原因が分からない段階から、整理していきましょう。</p></div>
+      <nav class="acq-concern-links" aria-label="集客のお悩み">
+        <a href="#concern-new"><span>新規客</span><strong>新しいお客さまが<br>なかなか増えない</strong><span class="acq-link-foot">認知・比較・予約を確認 <span aria-hidden="true">↓</span></span></a>
+        <a href="#concern-empty"><span>空席・空き枠</span><strong>平日や特定の時間が<br>埋まらない</strong><span class="acq-link-foot">曜日・時間帯ごとに確認 <span aria-hidden="true">↓</span></span></a>
+        <a href="#concern-repeat"><span>リピート</span><strong>一度来てくれても<br>次の来店が続かない</strong><span class="acq-link-foot">再来のきっかけを確認 <span aria-hidden="true">↓</span></span></a>
+        <a href="#concern-cost"><span>集客費</span><strong>掲載費や値引きを<br>増やし続けたくない</strong><span class="acq-link-foot">費用と来店経路を確認 <span aria-hidden="true">↓</span></span></a>
+        <a href="#concern-time"><span>運用の負担</span><strong>投稿や更新まで<br>手が回らない</strong><span class="acq-link-foot">作業の優先順位を確認 <span aria-hidden="true">↓</span></span></a>
+      </nav>
+      <p class="acq-callout">「いくつも当てはまる」「何が原因か分からない」でも大丈夫。最初からMEOやSNSに決める必要はありません。</p>
+    </div>
+  </section>
+
+  <section class="acq-section acq-tint" id="approach" aria-labelledby="approach-title">
+    <div class="wrap acq-approach">
+      <div class="acq-section-head"><p class="acq-kicker">増やす前に、見直す</p><h2 id="approach-title">お金も時間も、<br>使いどころを決める。</h2><p>お客さまが来ない理由を、露出不足だけとは考えません。お店の強み、価格、商圏、空き枠、来店後の体験まで確認し、対応できる範囲を整理します。</p></div>
+      <ol class="acq-steps">
+        <li><span>01</span><div><h3>現状をそろえる</h3><p>増やしたいお客さま、空いている時間、いまの集客経路。まずは把握できる情報から。</p></div></li>
+        <li><span>02</span><div><h3>できる量に絞る</h3><p>予算と店舗で使える時間を確認。続けること、変えること、後にすることを決めます。</p></div></li>
+        <li><span>03</span><div><h3>役割を決めて取り組む</h3><p>提案だけで終わらせないために、実行担当・作業範囲・確認日をそろえます。</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="acq-section" id="support" aria-labelledby="support-title">
+    <div class="wrap">
+      <div class="acq-section-head"><p class="acq-kicker">お悩み別の支援</p><h2 id="support-title">施策ありきではなく、<br>確認したいことから。</h2><p>以下は支援の組み立て方の例です。実際の対応内容・回数・費用は、現状確認とお見積もりで合意します。</p></div>
+      <div class="acq-support-list">
+        <article id="concern-new"><div class="acq-support-heading"><span class="acq-index">01 / 新規客</span><h3>知ってもらえていない？<br>予約の前で迷っている？</h3></div><dl><div><dt>まず確認すること</dt><dd>来店経路、商圏、店舗ページの情報、写真、メニュー・料金、予約までの手順。</dd></div><div><dt>支援の例</dt><dd>Googleマップの情報整備、店舗の強みが伝わる紹介、SNSの発信内容、予約リンクの見直し。</dd></div><div><dt>変化を見る数字</dt><dd>表示・リンククリックと、予約完了・新規来店を分けて確認。</dd></div></dl></article>
+        <article id="concern-empty"><div class="acq-support-heading"><span class="acq-index">02 / 空席・空き枠</span><h3>埋めたいのは、<br>いつの、どんな枠ですか。</h3></div><dl><div><dt>まず確認すること</dt><dd>曜日・時間帯別の予約と来店、周辺の需要、営業時間、予約枠の公開状況。</dd></div><div><dt>支援の例</dt><dd>利用シーンの伝え方、空き枠の案内、対象時間のメニュー・企画、既存客への告知を検討。</dd></div><div><dt>変化を見る数字</dt><dd>対象時間の予約・来店数と、追加費用・店舗の負担。</dd></div></dl></article>
+        <article id="concern-repeat"><div class="acq-support-heading"><span class="acq-index">03 / リピート</span><h3>次に来る理由と、<br>きっかけはありますか。</h3></div><dl><div><dt>まず確認すること</dt><dd>来店周期、初回と再来の状況、接客・サービスへの声、次回案内の方法。</dd></div><div><dt>支援の例</dt><dd>次回予約の案内、同意を得たLINE等での情報配信、スタッフ間で共有する対応手順の整理。</dd></div><div><dt>変化を見る数字</dt><dd>対象顧客と観測期間を決めた再来率、次回予約率。</dd></div></dl></article>
+        <article id="concern-cost"><div class="acq-support-heading"><span class="acq-index">04 / 集客費</span><h3>やめる前に、<br>費用と役割を見比べる。</h3></div><dl><div><dt>まず確認すること</dt><dd>媒体費、広告費、予約手数料、値引き、経路別の新規客と再来状況。</dd></div><div><dt>支援の例</dt><dd>掲載プランの比較、既存媒体を残した改善案、自店のマップ・SNS・予約ページの役割整理。</dd></div><div><dt>変化を見る数字</dt><dd>対象範囲をそろえた獲得単価と、売上・原価・値引きの状況。</dd></div></dl></article>
+        <article id="concern-time"><div class="acq-support-heading"><span class="acq-index">05 / 運用の負担</span><h3>全部を続けず、<br>必要な作業に絞る。</h3></div><dl><div><dt>まず確認すること</dt><dd>投稿・更新・返信の作業量、担当者、承認方法、予約につながっている経路。</dd></div><div><dt>支援の例</dt><dd>発信テーマの整理、更新計画、返信文案、予約導線の点検。代行する作業と店舗で行う作業を分けます。</dd></div><div><dt>変化を見る数字</dt><dd>店舗の作業時間、更新状況と予約・問い合わせの変化。</dd></div></dl></article>
+      </div>
+      <details class="acq-detail" id="meo"><summary>MEO対策・Googleマップの運用を検討している方へ</summary><div><p>基本情報・カテゴリ・営業時間・写真・メニュー・予約リンクを確認し、更新や口コミ返信、パフォーマンスの確認方法を整理します。投稿・返信などの代行範囲と回数は個別に合意します。</p><p>検索順位や来店数は保証しません。口コミの購入、投稿への見返り、高評価の方だけへの投稿依頼は行わない方針です。アカウント権限は店舗側の所有を前提に、必要な管理権限を確認します。</p></div></details>
+    </div>
+  </section>
+
+  <section class="acq-section acq-tint" id="examples" aria-labelledby="examples-title">
+    <div class="wrap">
+      <div class="acq-section-head"><p class="acq-kicker">お店に合わせた進め方</p><h2 id="examples-title">同じ「空きがある」でも、<br>見るところは変わります。</h2><p>以下は架空の支援例です。導入実績や成果を示すものではありません。</p></div>
+      <div class="acq-examples">
+        <article><img class="acq-example-food" src="images/01-tougou-insyoku.jpg" width="1536" height="1024" alt="夜の飲食店で、店員が食事中のお客さまに料理を提供するイメージ。" loading="lazy" decoding="async"><div><p class="acq-kicker">飲食店の例</p><h3>週末は来店があるのに、<br>平日の夜は席が空く。</h3><dl><dt>確認</dt><dd>近隣のお客さまの利用目的、曜日別の来店、夜のメニュー・価格の見え方。</dd><dt>取り組み候補</dt><dd>仕事帰りの利用シーンとメニューを紹介。マップ・SNSから営業時間と予約先を確認できる状態へ。</dd><dt>振り返り</dt><dd>平日夜の来店と予約、企画にかかった費用を確認。単に全体の表示回数だけで判断しません。</dd></dl></div></article>
+        <article><img class="acq-example-salon" src="images/01-tougou-biyo.jpg" width="1536" height="1024" alt="明るいヘアサロンで、美容師とお客さまが予定カードを見ながら次回の来店について相談するイメージ。" loading="lazy" decoding="async"><div><p class="acq-kicker">理美容店の例</p><h3>新規の予約は入るのに、<br>次の来店が続かない。</h3><dl><dt>確認</dt><dd>初回の来店目的、施術後の声、来店周期、次回予約の案内と連絡への同意。</dd><dt>取り組み候補</dt><dd>次回の目安を伝える案内を整理。得意施術と料金を明確にし、必要な方への再来案内を検討。</dd><dt>振り返り</dt><dd>対象期間の初回来店客を追って再来を確認。新規広告を増やす必要があるかも見直します。</dd></dl></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="acq-section" id="report" aria-labelledby="report-title">
+    <div class="wrap">
+      <div class="acq-section-head"><p class="acq-kicker">取り組んだ後の確認</p><h2 id="report-title">数字を並べるだけでなく、<br>次にすることまで。</h2><p>継続支援では、実行した作業、確認できた変化、次の取り組みを共有する想定です。報告・面談の頻度は契約前に決めます。</p></div>
+      <figure class="acq-report">
+        <figcaption><div><span class="acq-tag">成果物の見本 / 架空例</span><h3>集客の振り返りシート</h3></div><p>テーマ：平日夜の予約導線を見直す</p></figcaption>
+        <dl class="acq-report-summary"><div><dt>実施したこと</dt><dd>夜のメニュー情報を更新。店舗ページの予約リンクを整理。</dd></div><div><dt>いま分かること</dt><dd>予約先までの経路は確認済み。経路別の予約完了・来店は未計測。</dd></div></dl>
+        <div class="acq-table-scroll" role="region" aria-label="集客指標の確認表" tabindex="0"><table><caption>反応と予約・来店は、別々に確認します</caption><thead><tr><th scope="col">段階</th><th scope="col">確認する情報</th><th scope="col">判断するときの注意</th></tr></thead><tbody><tr><th scope="row">見つけてもらう</th><td>表示・閲覧、検索語、対象地域</td><td>表示回数だけでは来店を判断しない</td></tr><tr><th scope="row">予約先へ進む</th><td>予約リンクのクリック</td><td>クリックを予約完了と数えない</td></tr><tr><th scope="row">予約・来店する</th><td>予約システム・来店記録</td><td>キャンセルや経路不明を区別する</td></tr><tr><th scope="row">また来る</th><td>対象顧客の一定期間内の再来</td><td>来店周期と観測期間をそろえる</td></tr></tbody></table></div>
+        <div class="acq-report-next"><span>次にすること</span><p>予約完了を確認できる方法を検討し、店舗と担当者で記録方法・担当・確認日を決める。</p></div>
+      </figure>
+      <p class="acq-note">取得できるデータは利用媒体・システム・権限で異なります。未計測をゼロとして扱わず、取得できない項目と判断の限界も共有します。</p>
+    </div>
+  </section>
+
+  <section class="acq-section acq-tint" id="scope" aria-labelledby="scope-title">
+    <div class="wrap">
+      <div class="acq-section-head"><p class="acq-kicker">無理なく進めるために</p><h2 id="scope-title">任せること。<br>お店で行うこと。</h2><p>「すべてお任せ」と曖昧にせず、作業と確認の役割を決めます。以下は役割分担の案です。</p></div>
+      <div class="acq-roles"><div><p class="acq-role-label">NXTERAの支援候補</p><ul><li>現状と課題の整理、取り組む順番の提案</li><li>店舗情報・予約導線の点検と改善案</li><li>合意した範囲の文案・更新・運用支援</li><li>作業内容と確認できる数字の振り返り</li></ul></div><div><p class="acq-role-label">店舗にお願いすること</p><ul><li>目標・予算・予約や来店状況の共有</li><li>必要な管理権限と写真・メニュー情報の提供</li><li>掲載内容・返信内容・費用の承認</li><li>接客、施術・商品、店内での案内の実行</li></ul></div></div>
+      <p class="acq-callout">撮影・動画制作、サイト制作、広告運用、ツール導入の対応可否と費用は個別確認です。提案した施策がすべて月額料金に含まれるわけではありません。</p>
+      <div class="acq-team"><h3>窓口と担当範囲を、開始前に。</h3><p>窓口、各施策の実行担当、連絡方法、対応時間を明示して進める想定です。担当体制・支援経験・掲載可能な実績は確認中です。</p></div>
+    </div>
+  </section>
+
+  <section class="acq-section" id="price" aria-labelledby="price-title">
+    <div class="wrap">
+      <div class="acq-section-head"><p class="acq-kicker">料金・契約条件</p><h2 id="price-title">必要な支援と、<br>かかる費用をそろえて。</h2><p>料金・契約条件は現在確認中です。無料相談、最低価格、成果報酬、成果保証の表示はしていません。</p></div>
+      <dl class="acq-facts">
+        <div><dt>初回相談</dt><dd><span class="acq-pending">確認中</span>相談料、所要時間、対応時間・方法</dd></div>
+        <div><dt>初期費用・継続支援料</dt><dd><span class="acq-pending">確認中</span>金額、税込総額、対象店舗数、支払い条件</dd></div>
+        <div><dt>料金に含まれる作業</dt><dd><span class="acq-pending">確認中</span>対象媒体、更新・投稿・返信の回数、制作物、面談頻度</dd></div>
+        <div><dt>追加費用・外部費用</dt><dd><span class="acq-pending">確認中</span>広告費、撮影・制作費、媒体・ツール利用料と事前承認方法</dd></div>
+        <div><dt>契約期間・解約</dt><dd><span class="acq-pending">確認中</span>最低期間、更新、解約期限、違約金の有無</dd></div>
+        <div><dt>アカウント・制作物</dt><dd><span class="acq-pending">確認中</span>所有権・利用権、終了時のデータ引き渡し・管理権限の解除</dd></div>
+      </dl>
+      <p class="acq-note">費用と対応範囲への合意後に支援を開始する想定です。動画制作・口コミツール等の特典は、条件が確定するまで掲載していません。</p>
+    </div>
+  </section>
+
+  <section class="acq-section acq-tint" id="flow" aria-labelledby="flow-title">
+    <div class="wrap">
+      <div class="acq-section-head"><p class="acq-kicker">ご相談からの流れ</p><h2 id="flow-title">困っていることを、<br>そのままお聞かせください。</h2></div>
+      <ol class="acq-flow"><li><span>01</span><h3>状況を伺う</h3><p>いまの悩み、増やしたい来店、取り組んでいることを共有。</p></li><li><span>02</span><h3>確認することを整理</h3><p>店舗ページや手元の情報から、追加で調べる点と課題の仮説を整理。</p></li><li><span>03</span><h3>範囲と費用を合意</h3><p>優先する施策、実行担当、期間、費用を確認して依頼を判断。</p></li><li><span>04</span><h3>実行して振り返る</h3><p>合意した作業から開始。記録を確認し、次の取り組みを検討。</p></li></ol>
+      <div class="acq-consult"><h3>最初の相談で整理すること</h3><p>いま困っている場面／追加で確認したい情報／支援できる範囲と次の進め方。</p><p class="acq-note">店舗ページのURLや、分かる範囲の集客費・予約状況があると具体的に話せます。資料が揃っていなくても構いません。精密な分析や改善効果の確約を初回相談で行うものではありません。</p></div>
+    </div>
+  </section>
+
+  <section class="acq-section" id="faq" aria-labelledby="faq-title">
+    <div class="wrap acq-narrow"><div class="acq-section-head"><p class="acq-kicker">よくあるご質問</p><h2 id="faq-title">依頼を決める前に。</h2></div>
+      <details class="acq-detail"><summary>何を頼むべきか分からなくても相談できますか？</summary><div><p>施策が決まっていない段階を想定しています。「お客さまが減った」「平日だけ空く」など、困っている状況から伺い、確認したいことを整理します。</p></div></details>
+      <details class="acq-detail"><summary>MEO対策やSNS運用だけでも相談できますか？</summary><div><p>検討中の施策についてもご相談いただけます。対応可否、作業範囲、回数、料金は確認のうえ提示する想定です。別の施策を必ずセットにする前提ではありません。</p></div></details>
+      <details class="acq-detail"><summary>すでに掲載媒体や別の業者を利用しています。</summary><div><p>現在の取り組みと契約条件を確認し、継続・変更・役割分担を検討します。既存契約の解約や、すべての媒体の乗り換えを前提にしません。権限や契約によって対応できない作業もあります。</p></div></details>
+      <details class="acq-detail"><summary>どれくらいで予約や来店が増えますか？</summary><div><p>商圏、需要、店舗の状態、施策によって異なり、一律の期間や増加数はお約束できません。確認できる指標と振り返り時期を決め、変化が乏しい場合も取り組みを見直します。</p></div></details>
+      <details class="acq-detail"><summary>忙しいので、全部任せられますか？</summary><div><p>代行可能な作業は事前に確認します。写真・店舗情報の提供、内容の承認、接客や店内での案内など、店舗側の協力が必要な作業もあります。無理なく続けられる量から相談します。</p></div></details>
+      <details class="acq-detail"><summary>予算が小さい場合や、1店舗でも相談できますか？</summary><div><p>店舗数と予算を伺い、対応可能な範囲を確認します。最低料金・受注条件は確認中のため、すべてのご予算で対応できるとはお約束していません。</p></div></details>
+      <details class="acq-detail"><summary>口コミやGoogleマップの順位を保証できますか？</summary><div><p>順位・評価・口コミ件数・売上は保証しません。実体験に基づく任意の投稿依頼と返信を支援し、口コミの購入や見返りの提供、高評価者だけへの依頼は行わない方針です。</p></div></details>
+    </div>
+  </section>
+
+  <section class="acq-final" aria-labelledby="final-title"><div class="wrap"><p class="acq-kicker">まずは、いまのお店の話から。</p><h2 id="final-title">集客の「次にすること」を、<br>一緒に整理しませんか。</h2><p>まだ方法を決めていなくても、<br>いくつか試して迷っていても、ご相談ください。</p><a class="acq-button" href="07-yoyaku.html">店舗の集客について相談する<span aria-hidden="true"> →</span></a><p class="acq-note">相談料・対応条件は確認中です。<a href="#price">料金・契約条件を見る</a></p></div></section>
 </main>
-
-<section class="sec" id="gyoushu">
-  <div class="wrap">
-    <p class="eyebrow">業種を選ぶ</p>
-    <h2 class="sec__h">起きている失敗は、業種で違います。<br><em>お店はどちらですか。</em></h2>
-
-    <div class="tabs" role="tablist" aria-label="業種">
-      <button class="tab" role="tab" id="tab-inshoku" aria-controls="panel-inshoku" aria-selected="true">飲食店</button>
-      <button class="tab" role="tab" id="tab-biyo" aria-controls="panel-biyo" aria-selected="false" tabindex="-1">美容室・サロン</button>
-    </div>
-
-    <!-- ============ 飲食 ============ -->
-    <div class="panel" role="tabpanel" id="panel-inshoku" aria-labelledby="tab-inshoku" tabindex="0">
-
-      <p class="eyebrow eyebrow--sub">よくある失敗</p>
-      <ul class="fails">
-        <li class="fail">
-          <p class="fail__q">MEO対策を頼んで、Googleマップの順位は上がった。<br>でも来たのは値引き目当ての一見客で、再来しなかった。</p>
-          <p class="fail__a"><span class="fail__mark">なぜ</span>順位を上げる施策と、再来する人を増やす施策は別物だからです。露出が増えるほど、価格で店を選ぶ人の割合も一緒に増えます。</p>
-        </li>
-        <li class="fail">
-          <p class="fail__q">Instagramの運用を外に任せた。<br>投稿は増えたが、予約は増えなかった。</p>
-          <p class="fail__a"><span class="fail__mark">なぜ</span>投稿の先に、予約までの道がなかったからです。プロフィールから予約完了まで3タップ以上かかると、ほとんどの人はそこで離れます。</p>
-        </li>
-        <li class="fail">
-          <p class="fail__q">グルメ媒体の掲載プランを上げた。<br>客数は増えたのに、手元に残るお金は減った。</p>
-          <p class="fail__a"><span class="fail__mark">なぜ</span>掲載費とクーポンの原資が同時に増えるからです。客数ではなく「1人あたりいくら残るか」で見ないと、増えるほど苦しくなります。</p>
-        </li>
-        <li class="fail">
-          <p class="fail__q">忙しい月に施策を止めた。<br>その2ヶ月後、予約がすとんと落ちた。</p>
-          <p class="fail__a"><span class="fail__mark">なぜ</span>集客の効果は1〜2ヶ月遅れて出るからです。止めた月ではなく、その先に谷が来ます。忙しいときほど止めてはいけない理由がここにあります。</p>
-        </li>
-      </ul>
-
-      <p class="eyebrow eyebrow--sub">できること</p>
-      <ul class="shien">
-        <li class="card">
-          <h3 class="card__h">Googleマップと口コミを、来店後まで設計する</h3>
-          <p class="card__d">見つけてもらう対策だけで止めません。来た人に口コミをお願いする流れまで作ります。特典の口コミ収集ツールは、ここで使うものです。</p>
-          <p class="card__to">「順位は上がったのに、再来しない」に効きます</p>
-        </li>
-        <li class="card">
-          <h3 class="card__h">予約までの道を、1〜2タップに縮める</h3>
-          <p class="card__d">プロフィールから入っても、投稿から入っても、マップから入っても、同じ予約画面に着くようにします。途中で迷う場所をなくします。</p>
-          <p class="card__to">「投稿は増えたのに、予約が増えない」に効きます</p>
-        </li>
-        <li class="card">
-          <h3 class="card__h">「1人呼ぶのに、いくらかかっているか」を出す</h3>
-          <p class="card__d">ホットペッパーや食べログの掲載費に、クーポンの値引き分を足して、お客様1人あたりの集客コストを出します。その人が実際に使ってくれた額と並べれば、プランを上げるべきか下げるべきかが数字で決まります。</p>
-          <p class="card__to">「客数は増えたのに、残るお金は減った」に効きます</p>
-        </li>
-        <li class="card">
-          <h3 class="card__h">1年分の集客カレンダーをつくる</h3>
-          <p class="card__d">効果が出るのは1〜2ヶ月先です。閑散月の2ヶ月前から仕込み、忙しい月こそ止めない形にします。何月に何をするかを先に決めておきます。</p>
-          <p class="card__to">「止めた2ヶ月後に、予約が落ちた」に効きます</p>
-        </li>
-      </ul>
-    </div>
-
-    <!-- ============ 理美容 ============ -->
-    <div class="panel" role="tabpanel" id="panel-biyo" aria-labelledby="tab-biyo" tabindex="0" hidden>
-
-      <p class="eyebrow eyebrow--sub">よくある失敗</p>
-      <ul class="fails">
-        <li class="fail">
-          <p class="fail__q">掲載プランを上げて、新規は増えた。<br>でも2回目に来てくれる人は、増えなかった。</p>
-          <p class="fail__a"><span class="fail__mark">なぜ</span>クーポンで来た人は、次もクーポンのある店を探すからです。掲載を強くするほど、価格でサロンを選ぶ人の割合が増えます。</p>
-        </li>
-        <li class="fail">
-          <p class="fail__q">Instagramにスタイル写真を出し続けた。<br>フォロワーは増えたが、予約は増えなかった。</p>
-          <p class="fail__a"><span class="fail__mark">なぜ</span>見ているのが同業とサロン好きで、通える距離の人ではなかったからです。届く相手を決めないまま出し続けても、予約には変わりません。</p>
-        </li>
-        <li class="fail">
-          <p class="fail__q">次回予約の声かけをスタッフに任せた。<br>人によってばらつき、そのうち誰もやらなくなった。</p>
-          <p class="fail__a"><span class="fail__mark">なぜ</span>やり方が個人の裁量のままだからです。忙しい日から先に崩れ、一度崩れると戻りません。</p>
-        </li>
-        <li class="fail">
-          <p class="fail__q">クーポンの割引を小さくしたら、客足が落ちた。<br>戻そうとしたら、元の単価に戻せなくなっていた。</p>
-          <p class="fail__a"><span class="fail__mark">なぜ</span>値引きで集めた客層にとっては、値引きが来店の条件だからです。同じ客層のまま単価だけを戻すことはできません。</p>
-        </li>
-      </ul>
-
-      <p class="eyebrow eyebrow--sub">できること</p>
-      <ul class="shien">
-        <li class="card">
-          <h3 class="card__h">クーポン以外の入口を増やす</h3>
-          <p class="card__d">掲載は残したまま、Googleマップ・口コミ・紹介からの流入を育てます。価格以外の理由で選ばれる入口が増えるほど、掲載への依存が下がります。特典の口コミ収集ツールは、ここで使うものです。</p>
-          <p class="card__to">「新規は増えたのに、2回目が増えない」に効きます</p>
-        </li>
-        <li class="card">
-          <h3 class="card__h">Instagramを「通える人に届く」設定に変える</h3>
-          <p class="card__d">投稿の内容と位置情報、プロフィールからの導線を見直して、通える距離の人に届くようにします。予約までのタップ数も減らします。</p>
-          <p class="card__to">「フォロワーは増えたのに、予約が増えない」に効きます</p>
-        </li>
-        <li class="card">
-          <h3 class="card__h">次回予約を、個人技から仕組みに変える</h3>
-          <p class="card__d">お会計のときの声かけを裁量に任せず、誰がやっても同じ流れになる形にします。次に来る日が決まっている人が増えれば、月ごとの予約の波も読めるようになります。</p>
-          <p class="card__to">「声かけが人によってばらついた」に効きます</p>
-        </li>
-        <li class="card">
-          <h3 class="card__h">「1人呼ぶのに、いくらかかっているか」を出す</h3>
-          <p class="card__d">掲載費にクーポンの値引き分を足して、お客様1人あたりの集客コストを出します。単価を戻す手順も、いつからどれだけ動かすかも、その数字をもとに決めます。</p>
-          <p class="card__to">「元の単価に戻せなくなった」に効きます</p>
-        </li>
-      </ul>
-    </div>
-
-    <p class="sec__close">どちらの業種でも、<b>やりっぱなしにしないための仕組み</b>をつくります。<br>
-    毎月いっしょに数字を見ながら、次の一手を決めていきます。</p>
-
-    <div class="ctas ctas--center">
-      <a class="btn btn--main" href="07-yoyaku.html">相談スケジュールを選ぶ
-        <span class="btn__note">オンライン30分</span>
-      </a>
-      <a class="btn btn--sub" href="#">LINEで情報を得る</a>
-    </div>
-    <p class="ctanote ctanote--center">受付：8:00〜翌1:00　全国オンライン・1回30分。カメラはオフでも構いません。その場でのご契約は不要です。</p>
-  </div>
-</section>
-
-<nav class="bar" aria-label="主要アクション">
-  <a class="bar__s" href="#">LINEで<br>情報</a>
-  <a class="bar__p" href="07-yoyaku.html">日程を選ぶ<small>8:00〜翌1:00</small></a>
-  <a class="bar__s" href="#gyoushu">業種を<br>選ぶ</a>
-</nav>
-
-<script>
-(function () {
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
-  if (!tabs.length) return;
-
-  function select(tab) {
-    tabs.forEach(function (t) {
-      var on = (t === tab);
-      t.setAttribute('aria-selected', on ? 'true' : 'false');
-      t.tabIndex = on ? 0 : -1;
-      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
-    });
-  }
-
-  tabs.forEach(function (tab, i) {
-    tab.addEventListener('click', function () { select(tab); });
-    tab.addEventListener('keydown', function (e) {
-      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-      if (!d) return;
-      e.preventDefault();
-      var next = tabs[(i + d + tabs.length) % tabs.length];
-      select(next);
-      next.focus();
-    });
-  });
-})();
-</script>
-
-<script>
-  /* 戻る操作やブラウザのスクロール位置の復元で、ページ途中から表示されることがある。
-     ハッシュ指定がないときは必ず先頭から見せる。 */
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  window.addEventListener('load', function () {
-    if (!location.hash) window.scrollTo(0, 0);
-  });
-</script>
-
+<footer class="acq-footer"><div class="wrap"><div class="acq-footer-top"><div><p class="acq-brand">NXTERA</p><p>店舗の集客サポート</p></div><a href="#top" class="acq-text-link">ページの先頭へ ↑</a></div><p class="acq-note">運営法人・所在地・問い合わせ先・担当体制は確認中です。本ページの提供範囲・支援例は構成案であり、公開前に確定します。写真はAI生成のイメージで、実在の顧客・担当者を示すものではありません。</p><details class="acq-detail" id="privacy"><summary>個人情報・店舗情報の取り扱い</summary><div><p>このページには情報入力・送信機能はありません。予約先もモックです。実際に相談を受け付ける前に、情報の利用目的、保存期間、委託・第三者提供、削除依頼窓口、正式なプライバシーポリシーを公開します。分析用データは必要な範囲に限定し、顧客の個人情報を含む資料は共有方法を確認してからお送りください。</p></div></details></div></footer>
+<nav class="acq-mobile-bar" aria-label="主要アクション"><a href="#concerns">悩みから探す</a><a href="07-yoyaku.html">集客を相談する <span aria-hidden="true">→</span></a></nav>
 </body>
 </html>

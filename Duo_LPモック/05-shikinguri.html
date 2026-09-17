@@ -1,266 +1,198 @@
 <!doctype html>
-<!--
-  NXTERA / 資金繰りLP — FV＋2セクションのデザインモック。
-  構成は 02〜04 と同じ：FV → よくある失敗 → できること → CTA。
-  FVは上段だけ2カラム（左に文字・右に写真）。支援の範囲から下は横幅いっぱい（README 4-21）。
-  山谷図は「できること」へ移した（4-20）。
-  対象は「表がない店」ではなく、**表はあるが先が読めていない店**（README 4-17）。
-  試算表も通帳も終わった月の記録なので、そこを先へ伸ばすところから始める。
-  診断（06）へは飛ばさない。06の5問は3領域横断で、資金繰りで来た人に販促費を聞くことになる。
-  05は自前の診断も持たない。チェックできる項目がどれも「先を読む表を作る」に収束し、
-  診断として分岐しないため。主CTAは相談スケジュール直行。
-  仮値：ロゴ、後払い・初回手数料0円の適用条件（未確定）、山谷図の曲線。
-  担当者は個人名・顔を出さず「体制」として示す（複数名対応の可能性／個人写真は失注要因）。
-  資格名（税理士・中小企業診断士など）は未取得のため記載していません。
-  金額・実データ・実績数値はゼロ。画像はFV右カラムの1枚のみ（顔なしの仮画像）。
-  スタイルは tokens.css に集約（.who / .scope / .sheet / .ch-*）。
--->
+<!-- 構成モック。料金・契約条件・運営情報は未確定。支援例と表の金額は架空で、実績ではありません。 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NXTERA｜資金繰りLP FVモック</title>
+<title>NXTERA｜店舗オーナーの資金繰りサポート</title>
+<meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="05-shikinguri.css">
 </head>
-<body data-domain="shikin">
-
-<p class="mockflag"><b>DESIGN MOCK</b>　適用条件は未確定</p>
-
+<body data-domain="shikin" id="top">
+<p class="mockflag"><b>DESIGN MOCK</b>　料金・契約条件・運営情報は確認中。支援例は架空です。</p>
 <header class="hd">
   <div class="wrap hd__in">
-    <a class="logo" href="#"><span class="logo__mark" aria-hidden="true"></span>
-      <span class="logo__txt">
-        <span class="logo__type">NXTERA</span>
-      </span>
-      <span class="logo__sub">資金繰りの整理</span>
-    </a>
-    <nav class="hd__nav">
-      <a href="#">できること</a>
-      <a href="#">料金</a>
-      <a href="#">進め方</a>
+    <a class="logo" href="#top" aria-label="NXTERA ページの先頭へ"><span class="logo__mark" aria-hidden="true"></span><span class="logo__txt"><span class="logo__type">NXTERA</span></span><span class="logo__sub">資金繰りの整理</span></a>
+    <nav class="hd__nav" aria-label="ページ内メニュー">
+      <a href="#shien">できること</a><a href="#price">料金</a><a href="#flow">進め方</a><a href="#faq">よくある質問</a>
     </nav>
   </div>
 </header>
-
-<main class="fv">
-  <div class="wrap fv__in">
-
-    <!-- 上段だけ2カラム。写真はこの段の高さに収まる。
-         支援の範囲から下は .fv__wide で横幅いっぱいに回す（README 4-21）。 -->
-    <div>
-      <p class="eyebrow">店舗オーナー向け</p>
-
-      <h1 class="catch">支払いに追われる前に<br><em>打てる手があります。</em></h1>
-
-      <p class="catch-sub">お金が薄くなる時期を先に見つけ、入金と支払いのタイミングから整える。</p>
-
-      <p class="sub">これからの入金と支払いを3〜6ヶ月先まで見える化し、資金が薄くなる時期を事前に把握します。</p>
-
-      <p class="sub">必要に応じて、支払い時期を調整できるサービスの活用や、金融機関への相談に必要な書類整理・面談準備まで。状況に合わせて、資金繰りを改善する方法を一緒に考えます。</p>
-    </div>
-
-    <!-- 業種を特定しない1枚。顔は写さない（AI生成のため。README 4-18）。
-         本番は同構図で撮影する前提。プロンプトE。 -->
-    <aside class="shot" aria-label="閉店後のテーブルで、店主と担当者が資金繰り表を見ている写真">
-      <picture>
-        <source media="(max-width:859px)" srcset="images/05-shikin-sp.webp" width="800" height="533">
-        <img class="shot__img" src="images/05-shikin-hero-v.webp"
-           width="768" height="1024" loading="eager" decoding="async"
-           alt="閉店後のテーブル。手書きの表を広げて、エプロン姿の店主と担当者が向かい合い、担当者が表の一行を指さしている。顔は写っていない。">
-      </picture>
-    </aside>
-
-    <div class="fv__wide">
-      <!-- どこまでやって、どこからはやらないか。条件とCTAより上に置く。 -->
-      <div class="scope">
-        <p class="scope__t">支援の範囲</p>
-        <ul>
-          <li>いまお使いの表があれば、それを先3〜6ヶ月まで伸ばすところから始めます</li>
-          <li>金融機関へ出す必要書類の整理と、面談の準備までを支援します</li>
-          <li>日時は空いている枠から、ご自身で選べます。営業後の時間帯も選べます</li>
-        </ul>
+<main>
+  <section class="fv" aria-labelledby="hero-title">
+    <div class="wrap fv__in">
+      <div>
+        <p class="eyebrow">店舗オーナー向け</p>
+        <h1 class="catch" id="hero-title">店舗の資金繰りを、<br><em>先を見て整える。</em></h1>
+        <p class="catch-sub">支払いに追われる前に、<br>手元のお金と、打てる手を一緒に整理。</p>
+        <p class="sub">いまある表を活かし、入金・支払い・手元資金を3〜6ヶ月先まで見える化。支払条件の見直しから、金融機関への相談に必要な書類整理・面談準備まで支援します。</p>
+        <div class="ctas"><a class="btn btn--main" href="07-yoyaku.html">30分相談の日程を選ぶ<span class="btn__note">全国オンライン・カメラオフ可</span></a></div>
+        <p class="ctanote">いまの状況を伺い、手をつける順番を整理します。<br>受付 8:00〜翌1:00。その場でのご契約は不要です。</p>
+        <p class="cash-note">相談料は確認中です。<a href="#price">料金・契約条件を見る</a></p>
       </div>
-
-      <!-- 「支援の範囲」を読んだ直後、CTAの真上に置く。誰がやるのかへの答え。
-           個人は出さない。複数名で対応する可能性があり、担当個人の写真・氏名は失注要因にもなるため。
-           写真はFV右カラムに移したので、ここは図を持たないテキストだけの枠にしている
-           （同じ写真を1ページに2回出さない）。 -->
-      <aside class="who who--text">
-        <div>
-          <p class="who__name">ひとりで作らなくて大丈夫です</p>
-          <p class="who__role">先を読む表づくりから、書類の整理と面談の準備まで。相談から同じ担当が通して見ます（内容に応じて複数名で対応します）。</p>
-        </div>
+      <aside class="shot" aria-label="店舗で資金繰りの相談をする場面のイメージ">
+        <picture>
+          <img class="shot__img" src="images/05-shikinguri-hero-v2.webp" width="1536" height="1024" loading="eager" fetchpriority="high" decoding="async" alt="明るい店舗で、担当者が入出金の予定表を指し示し、店主がノートにメモを取りながら一緒に確認する様子。">
+        </picture>
       </aside>
-
-      <div class="komi">
-        <span class="komi__tag">込み</span>
-        <p class="komi__txt">後払い・初回手数料0円。先にお支払いいただくものはありません。</p>
-      </div>
-
-      <div class="ctas">
-        <a class="btn btn--main" href="07-yoyaku.html">相談スケジュールを選ぶ
-          <span class="btn__note">オンライン30分</span>
-        </a>
-        <a class="btn btn--sub" href="#">LINEで情報を得る</a>
-      </div>
-
-      <p class="ctanote">受付：8:00〜翌1:00<br>全国オンライン・1回30分。カメラはオフでも構いません。その場でのご契約は不要です。</p>
     </div>
+    <div class="cash-points"><ul class="wrap">
+      <li><strong>3〜6ヶ月先</strong><span>入出金と残高の見通し</span></li>
+      <li><strong>営業後も相談</strong><span>8:00〜翌1:00の相談枠</span></li>
+      <li><strong>同じ担当が伴走</strong><span>内容に応じて複数名で対応</span></li>
+    </ul></div>
+  </section>
 
-    <p class="more">このあと：よくある失敗と、その理由／できること</p>
+  <section class="sec" id="shippai" aria-labelledby="worries-title">
+    <div class="wrap">
+      <p class="eyebrow">こんなお悩みはありませんか</p>
+      <h2 class="sec__h" id="worries-title">数字はある。<br><em>でも、次の支払いに余裕があるか分からない。</em></h2>
+      <ul class="fails cash-three">
+        <li class="fail"><h3 class="fail__q">表はあるけれど、<br>先の見通しが立たない</h3><p class="fail__a">試算表や通帳で分かるのは、これまでの動き。家賃・仕入れ・税金・返済の予定を重ねると、これからの残高を確認できます。</p></li>
+        <li class="fail"><h3 class="fail__q">売上は伸びているのに、<br>手元のお金が増えない</h3><p class="fail__a">カードなどの入金日と、仕入れや給与の支払日は別々です。売上の金額だけでなく、お金が動く日付も確認します。</p></li>
+        <li class="fail"><h3 class="fail__q">銀行へ相談したいけれど、<br>何を準備すればよいか迷う</h3><p class="fail__a">必要な時期や資金の使い道を整理し、手元の資料と不足している資料を確認。金融機関へ説明する内容を一緒に準備します。</p></li>
+      </ul>
+    </div>
+  </section>
 
-  </div>
+  <section class="sec sec--alt" id="shien" aria-labelledby="support-title">
+    <div class="wrap">
+      <p class="eyebrow">できること・お渡しするもの</p>
+      <h2 class="sec__h" id="support-title">見通しをつくり、手を打ち、<br><em>毎月の変化を確認します。</em></h2>
+      <p class="cash-intro">表づくりから書類整理・面談準備まで。状況に合わせて必要な支援を組み合わせます。</p>
+      <p class="cash-note">構成案：成果物の形式・更新頻度・担当範囲は、公開前に確定します。</p>
+      <ol class="cash-services">
+        <li><span class="cash-step" aria-hidden="true">01</span><div><h3>3〜6ヶ月先の残高を見える化</h3><p>入金と支払いの予定を、いまある表に追加。月末残高に加え、支払いが集中する時期は週・日単位でも確認します。</p></div><div class="cash-output"><span>成果物案</span><strong>資金繰り見通し表</strong><p>入出金予定／繰越残高／確認が必要な時期</p></div></li>
+        <li><span class="cash-step" aria-hidden="true">02</span><div><h3>対応の順番と準備を整理</h3><p>支払条件の見直し、金融機関への相談、出店前の資金計画などを検討。必要に応じて補助金・助成金の制度や必要書類も確認します。</p></div><div class="cash-output"><span>成果物案</span><strong>対応事項一覧・面談準備メモ</strong><p>確認する相手／期限／必要資料／説明する内容</p></div></li>
+        <li><span class="cash-step" aria-hidden="true">03</span><div><h3>予定と実績を比べて更新</h3><p>入金の遅れや支払いの増減を反映し、次の数ヶ月を見直します。オーナーは最新の資料を共有し、担当者と次に行うことを確認します。</p></div><div class="cash-output"><span>成果物案</span><strong>更新した見通し表・確認メモ</strong><p>予定との差／残高の変化／次回までの対応</p></div></li>
+      </ol>
+      <figure class="cash-sample" aria-labelledby="sample-title">
+        <figcaption><p class="cash-label">架空のサンプル・実績ではありません</p><h3 id="sample-title">入出金の差だけでなく、残るお金まで確認。</h3><p>金額は説明用の仮定です。前月からの繰越を含めて、月末の手元資金を見通します。</p></figcaption>
+        <div class="cash-table-scroll" role="region" aria-label="資金繰り表サンプル、単位は万円" tabindex="0">
+          <table class="cash-table">
+            <caption>資金繰り見通し表の一部（単位：万円）</caption>
+            <thead><tr><th scope="col">項目</th><th scope="col">1月<span>実績</span></th><th scope="col">2月<span>実績</span></th><th scope="col" class="cash-future">3月<span>予定</span></th><th scope="col" class="cash-focus">4月<span>予定</span></th><th scope="col" class="cash-future">5月<span>予定</span></th><th scope="col" class="cash-future">6月<span>予定</span></th></tr></thead>
+            <tbody>
+              <tr><th scope="row">前月繰越</th><td>150</td><td>180</td><td>160</td><td class="cash-focus">200</td><td>20</td><td>40</td></tr>
+              <tr><th scope="row">入金合計</th><td>300</td><td>280</td><td>320</td><td class="cash-focus">240</td><td>300</td><td>320</td></tr>
+              <tr><th scope="row">支払い合計</th><td>270</td><td>300</td><td>280</td><td class="cash-focus">420</td><td>280</td><td>280</td></tr>
+              <tr class="cash-balance"><th scope="row">月末の手元資金</th><td>180</td><td>160</td><td>200</td><td class="cash-focus"><strong>20</strong></td><td>40</td><td>80</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="cash-formula">前月繰越 ＋ 入金合計 − 支払い合計 ＝ 月末の手元資金</p>
+        <p class="cash-sample-note"><strong>4月は、手元資金が200万円から20万円へ。</strong>必要な残高はお店ごとに異なります。月末に残高があっても途中で不足する場合があるため、実際には入出金の日付も確認します。</p>
+      </figure>
+      <p class="cash-scope"><strong>支援の範囲</strong>融資の申込み・金融機関への説明はオーナーご自身で行います。補助金・助成金は制度の整理と必要書類の確認までで、申請書類の作成代行は行いません。融資の実行や制度の採択を保証するものではありません。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="example" aria-labelledby="example-title">
+    <div class="wrap">
+      <p class="eyebrow">支援のイメージ</p>
+      <h2 class="sec__h" id="example-title">「いつ、何を確認するか」が<br><em>分かる状態へ。</em></h2>
+      <p class="cash-intro">飲食店を想定した架空のケースです。実際のお客様の事例や、成果を保証するものではありません。</p>
+      <dl class="cash-case">
+        <div><dt>相談前</dt><dd>売上は把握しているものの、カード入金と仕入れ・給与・税金の支払いが重なる時期の残高が分からない。</dd></div>
+        <div><dt>一緒に整理</dt><dd>入金予定、支払予定、現在の預金残高を同じ表へ。支払条件を確認する相手と、金融機関への相談に必要な資料を洗い出す。</dd></div>
+        <div><dt>目指す状態</dt><dd>残高が少なくなる時期を把握し、「何を・誰に・いつまでに確認するか」を決めて動ける。</dd></div>
+      </dl>
+      <div class="cash-team" id="team">
+        <div><p class="cash-label">支援体制</p><h3>ひとりで抱えず、<br>同じ担当と進める。</h3></div>
+        <div><p>相談から表づくり、書類整理・面談準備まで、同じ担当が通して見ます。内容に応じて複数名で対応します。</p><p class="cash-note">担当チームの経歴・支援経験は確認中です。確認できた事実のみ掲載します。</p><a class="cash-text-link" href="#company">運営情報・資料の取り扱い</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--alt" id="price" aria-labelledby="price-title">
+    <div class="wrap">
+      <p class="eyebrow">料金・契約条件</p>
+      <h2 class="sec__h" id="price-title">相談料と継続支援の費用を、<br><em>分けてご案内します。</em></h2>
+      <p class="cash-intro">料金・条件は現在確認中です。このモックでは、無料・後払い・成功報酬の有無を確約していません。</p>
+      <dl class="cash-facts">
+        <div><dt>初回30分の相談料</dt><dd><span class="cash-pending">確認中</span>無料／有料、税込金額</dd></div>
+        <div><dt>継続支援の料金</dt><dd><span class="cash-pending">確認中</span>月額または個別見積り、料金に含む支援</dd></div>
+        <div><dt>面談・表の更新</dt><dd><span class="cash-pending">確認中</span>月あたりの回数、時間、更新の担当者</dd></div>
+        <div><dt>追加費用・成功報酬</dt><dd><span class="cash-pending">確認中</span>有無、発生する条件、外部サービスの費用</dd></div>
+        <div><dt>支払い時期・初回手数料</dt><dd><span class="cash-pending">確認中</span>後払い・初回手数料0円の対象と適用条件</dd></div>
+        <div><dt>契約期間・解約条件</dt><dd><span class="cash-pending">確認中</span>最低契約期間、更新、解約・キャンセル方法</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="sec" id="flow" aria-labelledby="flow-title">
+    <div class="wrap">
+      <p class="eyebrow">相談から支援開始まで</p>
+      <h2 class="sec__h" id="flow-title">まずは30分、<br><em>いまの状況を整理するところから。</em></h2>
+      <p class="cash-note">構成案：事前資料の要否・案内方法・支援開始までの日数は確認中です。</p>
+      <ol class="cash-flow">
+        <li><span class="cash-step" aria-hidden="true">01</span><div><h3>相談日時を選ぶ</h3><p>8:00〜翌1:00の空いている枠から、30分のオンライン相談を選びます。</p></div></li>
+        <li><span class="cash-step" aria-hidden="true">02</span><div><h3>状況と優先順位を整理する</h3><p>気になっている支払い、入金予定、いま使っている表を確認。先に確かめることと、追加で必要な資料を整理します。</p></div></li>
+        <li><span class="cash-step" aria-hidden="true">03</span><div><h3>支援内容・料金を確認する</h3><p>必要な支援、成果物、面談・更新の頻度、費用と契約条件をご案内。その場での契約は不要です。</p></div></li>
+        <li><span class="cash-step" aria-hidden="true">04</span><div><h3>契約後、見通しづくりを始める</h3><p>必要な資料を共有し、担当者と資金繰り表を整理。継続支援では、予定と実績を定期的に確認します。</p></div></li>
+      </ol>
+      <div class="cash-prep"><h3>確認する資料の例</h3><p>いま使っている表、預金残高、入出金の予定、借入の返済予定表など。資料の提出時期と共有方法は、ご案内時に確認いただく想定です。</p><p class="cash-note">初回相談で資金繰り表の完成や、融資可否の判断を行うものではありません。</p></div>
+      <div class="ctas"><a class="btn btn--main" href="07-yoyaku.html">30分相談の日程を選ぶ<span class="btn__note">カメラオフ可・その場での契約不要</span></a><a class="cash-text-link" href="#price">相談料・契約条件を確認する</a></div>
+    </div>
+  </section>
+
+  <section class="sec sec--alt" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <p class="eyebrow">よくある質問</p>
+      <h2 class="sec__h" id="faq-title">相談の前に、気になること。</h2>
+      <p class="cash-note">回答は構成案です。対応可否・条件は公開前に確認します。</p>
+      <div class="cash-faq">
+        <details><summary>顧問税理士がいても相談できますか？</summary><p>税務や決算と、これからの入出金・残高の見通しを整理する支援は役割が異なります。既存の資料を活かし、担当範囲を確認する想定です。税理士との連携方法は個別に確認します。</p></details>
+        <details><summary>資金繰り表がなくても相談できますか？</summary><p>まずは、試算表や預金残高、入出金予定など、手元にどのような資料があるかを確認する想定です。表を新規に作成する場合の対応範囲と費用は確認中です。</p></details>
+        <details><summary>今月の支払いが厳しい場合も対応できますか？</summary><p>急ぎの相談への対応可否と着手時期は個別に確認します。即日の資金調達や支払いへの対応をお約束するサービスではありません。</p></details>
+        <details><summary>融資や補助金の申請を代行してもらえますか？</summary><p>金融機関へ提出する書類の整理と面談準備を支援します。融資の申込み・説明はオーナーご自身で行います。補助金・助成金は制度整理と必要書類の確認までで、申請書類の作成代行は行いません。</p></details>
+        <details><summary>相談は無料ですか？ その場で契約が必要ですか？</summary><p>初回相談料は確認中です。無料とは確定していません。その場での契約は不要です。<a href="#price">料金・契約条件の確認項目</a>をご覧ください。</p></details>
+        <details><summary>決算書や通帳の情報は、どのように扱いますか？</summary><p>資料の共有手段、閲覧できる担当者、第三者提供の条件、保管期間と削除方法は確認中です。正式な取り扱い方針を掲載してから、資料をお預かりする想定です。</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec cash-final" aria-labelledby="consult-title">
+    <div class="wrap">
+      <p class="eyebrow">オンライン30分相談</p>
+      <h2 class="sec__h" id="consult-title">次の支払いの前に、<br><em>確認する順番を一緒に。</em></h2>
+      <p class="cash-intro">いまの状況を伺い、気になる入出金と、先に手をつけることを整理します。</p>
+      <div class="ctas"><a class="btn btn--main" href="07-yoyaku.html">30分相談の日程を選ぶ<span class="btn__note">全国オンライン・カメラオフ可</span></a><a class="cash-text-link" href="#flow">相談の流れを確認する</a></div>
+      <p class="ctanote">受付 8:00〜翌1:00。その場でのご契約は不要です。<br>相談料は確認中です。<a href="#price">料金・契約条件</a></p>
+    </div>
+  </section>
 </main>
-
-<section class="sec" id="shippai">
+<footer class="cash-footer" id="company">
   <div class="wrap">
-    <p class="eyebrow">よくある失敗</p>
-    <h2 class="sec__h">「今月は大丈夫」が<br><em>急に崩れる理由があります。</em></h2>
-
-    <ul class="fails">
-      <li class="fail">
-        <p class="fail__q">資金繰りの表はある。<br>ただ、埋まっているのは終わった月だけだった。</p>
-        <p class="fail__a"><span class="fail__mark">なぜ</span>試算表も通帳も、終わったことの記録だからです。家賃・仕入れ・税金・返済は先の日付が決まっているのに、その欄が空のままでは、薄くなる月は来てから分かります。</p>
-      </li>
-      <li class="fail">
-        <p class="fail__q">売上は伸びていた。<br>なのに、手元のお金は増えなかった。</p>
-        <p class="fail__a"><span class="fail__mark">なぜ</span>売上が立つ日と、お金が入る日が違うからです。カード・電子マネー・掛けの入金は遅れて届くのに、仕入れと人件費は先に出ていきます。伸びるほど、先に出る分も大きくなります。</p>
-      </li>
-      <li class="fail">
-        <p class="fail__q">借入を申し込んだら、資料を何度も求められた。<br>やり取りをしているうちに、必要な時期を過ぎていた。</p>
-        <p class="fail__a"><span class="fail__mark">なぜ</span>先を読んだ資金繰り表が手元になかったからです。試算表はあっても、銀行が見たいのはこれからの見通しです。書類が揃ってから審査が始まるので、揃える時間のぶんだけ入金も後ろへずれます。</p>
-      </li>
-      <li class="fail">
-        <p class="fail__q">2店舗目を出した直後に、手元が締まった。<br>既存店は変わっていないのに、月末が回らなくなった。</p>
-        <p class="fail__a"><span class="fail__mark">なぜ</span>出店の費用は先に全額出るのに、新店が軌道に乗るまでには数ヶ月かかるからです。その間ずっと、既存店の利益で新店の不足を埋めることになります。</p>
-      </li>
-      <li class="fail">
-        <p class="fail__q">仕入先への支払いは月末にまとめて。<br>入金より先に出ていくのに、条件を見直したことがなかった。</p>
-        <p class="fail__a"><span class="fail__mark">なぜ</span>支払いの条件は、契約したときのまま動かないからです。入金を早める話はしても、支払いを後ろにずらす話は誰からも出てきません。</p>
-      </li>
-      <li class="fail">
-        <p class="fail__q">使える補助金があると聞いた。<br>調べているうちに、募集が終わっていた。</p>
-        <p class="fail__a"><span class="fail__mark">なぜ</span>公募の期間が短く、必要書類に事業計画まで含まれるからです。見つけてから準備を始めると、ほとんど間に合いません。</p>
-      </li>
-    </ul>
-
-    <p class="sec__close">どれも、<b>終わった月の数字だけを見ていると気づけません。</b><br>
-    NXTERAは、いまある表を先へ伸ばして、薄くなる月をその月が来る前に見つけます。</p>
-
+    <p class="cash-label">NXTERA</p><h2>運営情報・資料の取り扱い</h2>
+    <p class="cash-note">以下は確認中です。正式な情報・方針を公開前に掲載します。</p>
+    <dl class="cash-facts">
+      <div><dt>運営会社・責任者</dt><dd>正式名称・所在地・運営責任者・連絡先：確認中</dd></div>
+      <div><dt>担当チームの経験</dt><dd>経歴・支援領域・掲載可能な実績：確認中</dd></div>
+      <div><dt>資料の取り扱い</dt><dd>共有手段・閲覧権限・第三者提供・保管期間・削除方法：確認中</dd></div>
+    </dl>
+    <details class="cash-policy" id="privacy"><summary>プライバシーポリシー（確認中）</summary><p>運営主体、利用目的、第三者提供の条件、安全管理措置、保存期間、開示・削除の窓口を確認後、正式な方針を掲載します。現在のモックには資料を送信する機能はありません。</p></details>
+    <nav class="cash-footer-nav" aria-label="フッターメニュー"><a href="#privacy">プライバシーポリシー</a><a href="#price">料金・契約条件</a><a href="#top">ページの先頭へ</a></nav>
   </div>
-</section>
-
-<section class="sec sec--alt" id="shien">
-  <div class="wrap">
-    <p class="eyebrow">できること</p>
-    <h2 class="sec__h">表をつくって終わりにしない。<br><em>毎月、薄い月を先に見つけます。</em></h2>
-
-    <ul class="shien">
-      <li class="card">
-        <h3 class="card__h">表を、3〜6ヶ月先まで伸ばす</h3>
-        <p class="card__d">いまある表に、これから出ていくお金の予定を足していきます。ゼロから作り直すことはしません。どの月のどの週が薄くなるかを、その月が来る前に見えるようにします。</p>
-        <p class="card__to">「表はあるのに、終わった月しか埋まっていない」に効きます</p>
-      </li>
-      <li class="card">
-        <h3 class="card__h">売上ではなく、お金が入る日で見る</h3>
-        <p class="card__d">現金・カード・電子マネー・掛けごとに、入金までの日数を出します。仕入れと人件費の支払日と並べれば、伸びているのに苦しい理由が日付で見えます。</p>
-        <p class="card__to">「売上は伸びたのに、手元が増えない」に効きます</p>
-      </li>
-      <li class="card">
-        <h3 class="card__h">金融機関に出す書類を、先に揃える</h3>
-        <p class="card__d">試算表、資金繰り表、直近の売上の内訳。いつまでに何を用意するかを必要な時期から逆算して整理し、面談で必ず聞かれることへの答えも一緒に準備します。</p>
-        <p class="card__to">「資料のやり取りで時期を過ぎた」に効きます</p>
-      </li>
-      <li class="card">
-        <h3 class="card__h">出店の前に、薄くなる数ヶ月を見込む</h3>
-        <p class="card__d">出店にかかる費用、新店が軌道に乗るまでの月数、その間に既存店から出ていく額。2店舗目を出すかどうかを、出す前の資金繰り表で判断できるようにします。</p>
-        <p class="card__to">「2店舗目の直後に手元が締まった」に効きます</p>
-      </li>
-      <li class="card">
-        <h3 class="card__h">お金が出ていく日を、後ろにずらせないか見る</h3>
-        <p class="card__d">仕入先ごとの支払日と、入金までの日数を並べます。金額はそのままでも、出ていく日が数日ずれるだけで薄い月が消えることがあります。見直せる条件があるかを、一緒に確認します。</p>
-        <p class="card__to">「入金より先に支払いが来る」に効きます</p>
-      </li>
-      <li class="card">
-        <h3 class="card__h">使える補助金・助成金を、先に一覧にする</h3>
-        <p class="card__d">公募が始まる前に、対象になりそうな制度と必要書類を整理しておきます。見つけてから動くと間に合わないので、準備のほうを先に済ませておく形です。</p>
-        <p class="card__to">「調べているうちに募集が終わっていた」に効きます</p>
-      </li>
-    </ul>
-
-    <!-- 1枚目のカード「表を、3〜6ヶ月先まで伸ばす」の図解。01の計算図（.dg）と同じ扱いで、
-         カードの並びの直後に置く。金額・実データは入れていない。
-         図の要点は「どこから先が予定か」。試算表や通帳にあるのは左半分（実績）だけで、
-         谷が来るのは右半分（予定）。表があっても先が読めていない、という状態を図にしている。 -->
-    <aside class="sheet" aria-label="資金繰り表のサンプル表示">
-      <span class="sheet__label">SAMPLE</span>
-      <p class="sheet__t">先の入金と支払いを、月ごとに並べる</p>
-
-      <svg class="chart" viewBox="0 0 330 140" role="img"
-           aria-label="2月までが実績、3月からが予定。予定側の4月で入金の線が支払いの線を下回り、その月に帯が立っているサンプル図。金額は表示していません。">
-        <!-- 予定側をうっすら敷く。谷が「これから来る」ことを面で示す -->
-        <rect class="ch-fut" x="111" y="22" width="209" height="82"/>
-        <rect class="ch-gap" x="168" y="22" width="48" height="82"/>
-
-        <path class="ch-ax" d="M14 104h306"/>
-
-        <!-- 実績と予定の境目 -->
-        <path class="ch-now" d="M111 18V108"/>
-        <text class="ch-era" x="105" y="15" text-anchor="end">実績</text>
-        <text class="ch-era ch-era--now" x="117" y="15">これからの予定</text>
-
-        <path class="ch-out" d="M30 62 84 56 138 60 192 34 246 58 300 62"/>
-        <path class="ch-in" d="M30 44 84 58 138 36 192 82 246 66 300 46"/>
-        <path class="ch-gapline" d="M192 36V80"/>
-        <circle class="ch-dot-out" cx="192" cy="34" r="4"/>
-        <circle class="ch-dot-in" cx="192" cy="82" r="4.5"/>
-        <text class="ch-lbl" x="216" y="30">支払いが入金を</text>
-        <text class="ch-lbl" x="216" y="42">上回る月</text>
-
-        <g class="ch-t" text-anchor="middle">
-          <text x="30" y="120">1月</text><text x="84" y="120">2月</text><text x="138" y="120">3月</text>
-          <text x="192" y="120">4月</text><text x="246" y="120">5月</text><text x="300" y="120">6月</text>
-        </g>
-      </svg>
-
-      <div class="ch-key">
-        <span><i></i>入金</span>
-        <span><i class="d"></i>支払い</span>
-      </div>
-      <p class="sheet__note">※ 形を示すためのサンプルです。金額は含まれていません。試算表や通帳に残っているのは左半分だけで、<b>谷が来るのは右半分</b>です。</p>
-    </aside>
-
-    <p class="sec__close">担当するのは、<b>先を読む表づくりと、書類の整理・面談の準備まで</b>です。<br>
-    融資のお申し込みと、金融機関へのご説明はオーナーご自身で行っていただきます。<br>
-    補助金も、<b>制度の整理と必要書類の確認まで</b>です。申請書類の作成代行は行っていません。</p>
-
-    <div class="ctas ctas--center">
-      <a class="btn btn--main" href="07-yoyaku.html">相談スケジュールを選ぶ
-        <span class="btn__note">オンライン30分</span>
-      </a>
-      <a class="btn btn--sub" href="#">LINEで情報を得る</a>
-    </div>
-    <p class="ctanote ctanote--center">受付：8:00〜翌1:00　全国オンライン・1回30分。カメラはオフでも構いません。その場でのご契約は不要です。</p>
-  </div>
-</section>
-
+</footer>
 <nav class="bar" aria-label="主要アクション">
-  <a class="bar__s" href="#">LINEで<br>情報</a>
-  <a class="bar__p" href="07-yoyaku.html">日程を選ぶ<small>8:00〜翌1:00</small></a>
-  <a class="bar__s" href="#shippai">よくある<br>失敗</a>
+  <a class="bar__s" href="#price">料金・条件</a><a class="bar__p" href="07-yoyaku.html">相談日を選ぶ<small>オンライン30分</small></a><a class="bar__s" href="#faq">よくある質問</a>
 </nav>
-
 <script>
-  /* 戻る操作やブラウザのスクロール位置の復元で、ページ途中から表示されることがある。
-     ハッシュ指定がないときは必ず先頭から見せる。 */
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  function revealAnchor() {
+    var target = document.getElementById(location.hash.slice(1));
+    if (target && target.tagName === 'DETAILS') target.open = true;
+  }
+  window.addEventListener('hashchange', revealAnchor);
   window.addEventListener('load', function () {
     if (!location.hash) window.scrollTo(0, 0);
+    else revealAnchor();
   });
 </script>
-
 </body>
 </html>

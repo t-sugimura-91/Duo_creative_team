@@ -1,0 +1,10 @@
+Mode: built-in image_gen, edit (identity-preserve).
+Edit target: 01-tougou-hero-v3.jpg
+Output: 01-tougou-hero-v4-wide.png (2172x724)
+Web asset: 01-tougou-hero-v4-wide.jpg (same dimensions, JPEG quality 85)
+Original assets retained.
+
+Use case: identity-preserve
+Asset type: panoramic full-bleed website hero photograph.
+Input image 1 is the edit target. Reframe this exact shop owner scene as a wider, pulled-back environmental photograph. Keep the same Japanese woman, face, hair, white shirt and dark olive apron, same bright shop, realistic daylight and tablet task. Preserve the physical tablet orientation: its screen faces the woman; the camera sees the plain back of the tablet. Both hands, the entire tablet and her head must be comfortably visible with generous margins, not cropped.
+Output an extra-wide panorama, approximately 3:1 aspect ratio (e.g. 2400 by 800). The woman must be SMALLER than the original, occupy about 55-60% of image height from head to waist, be positioned around 74% across the image width. Her head at about 22% image height, hands/tablet between 50% and 70%. Reveal more of the counter and shop surrounding her. Left 48% is the same continuous pale grey shop wall, naturally quiet for dark HTML text, with no added graphic overlay. Keep the environment as one continuous room, no split panel. Keep enough safe margins that a short desktop banner can show her head and whole tablet together. No writing, no logo, no watermark. Do not enlarge the person to fill the frame. The key edit is wider field of view and smaller subject, not a new person or a close-up.

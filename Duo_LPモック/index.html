@@ -1,167 +1,150 @@
 <!doctype html>
-<!--
-  ============================================================
-  NXTERA / LPモック一覧 — 各モックへの入口。
-  番号は 01〜07。06（3分診断）は現在未使用なので載せていない（README 4-16）。
-  リンクは同じフォルダの相対パス。ダブルクリックでそのまま開ける。
-  ============================================================
--->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NXTERA LPモック一覧</title>
+<meta name="robots" content="noindex, nofollow">
+<title>LP構成・デザインの意図｜NXTERA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Zen+Kaku+Gothic+New:wght@500;700&amp;display=swap" rel="stylesheet">
 <style>
-  :root{
-    --paper:#EDEAE4; --card:#FAF8F4;
-    --ink:#17191C; --ink-2:#474C52; --ink-3:#666C73;
-    --line:#DED8CD; --brand:#1E4A3D;
-    --inshoku:#C1440E; --biyo:#46707F; --kotehi:#9A6410; --shikin:#2F5D8C;
-    --shadow:0 1px 2px rgba(23,25,28,.05), 0 14px 30px -20px rgba(23,25,28,.4);
-  }
-  *,*::before,*::after{box-sizing:border-box;}
-  body{
-    margin:0;background:var(--paper);color:var(--ink);
-    font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;
-    padding:40px 16px 56px;line-height:1.8;-webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:820px;margin-inline:auto;}
-
-  .eyebrow{
-    margin:0;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;
-    font-size:12px;letter-spacing:.16em;color:var(--brand);
-  }
-  h1{
-    margin:8px 0 0;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;
-    font-size:clamp(24px,5.2vw,32px);line-height:1.35;letter-spacing:.01em;text-wrap:balance;
-  }
-  .lede{margin:14px 0 0;font-size:15px;color:var(--ink-2);max-width:40em;}
-
-  .note{
-    margin-top:24px;padding:14px 16px;border-radius:4px;
-    background:var(--card);border:1px solid var(--line);border-left:4px solid var(--brand);
-    font-size:13px;line-height:1.85;color:var(--ink-2);
-  }
-  .note b{color:var(--ink);font-weight:700;}
-
-  .list{list-style:none;margin:32px 0 0;padding:0;display:grid;gap:14px;}
-  .item a{
-    display:block;text-decoration:none;color:inherit;
-    background:var(--card);border:1px solid var(--line);border-radius:6px;
-    padding:20px 22px;box-shadow:var(--shadow);
-    transition:transform .08s ease, border-color .15s ease;
-  }
-  .item a:hover{border-color:var(--ink-3);transform:translateY(-1px);}
-  .item a:focus-visible{outline:2px solid var(--brand);outline-offset:3px;}
-  .no{
-    font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;
-    font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-right:10px;
-  }
-  .tag{
-    display:inline-block;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;
-    font-size:11px;letter-spacing:.1em;color:#fff;padding:3px 9px;border-radius:2px;
-  }
-  .tag--all{background:var(--brand);}
-  .tag--inshoku{background:var(--inshoku);}
-  .tag--biyo{background:var(--biyo);}
-  .tag--kotehi{background:var(--kotehi);}
-  .tag--shikin{background:var(--shikin);}
-  .tag--common{background:var(--ink-2);}
-  .item h2{
-    margin:10px 0 0;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;
-    font-size:18px;line-height:1.5;
-  }
-  .item p{margin:6px 0 0;font-size:13.5px;color:var(--ink-2);line-height:1.8;}
-  .item .go{margin-top:12px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:13px;color:var(--brand);}
-  .item .go::after{content:" →";}
-
-  footer{
-    margin-top:36px;padding-top:18px;border-top:1px solid var(--line);
-    font-size:12px;color:var(--ink-3);line-height:1.9;
-  }
-  footer b{color:var(--ink-2);font-weight:700;}
+:root { --ink:#202d28; --muted:#526057; --line:#d7e1da; --brand:#1e4a3d; --rust:#963f2a; }
+* { box-sizing:border-box; letter-spacing:0; }
+html { -webkit-text-size-adjust:100%; }
+body { margin:0; background:#fff; color:var(--ink); font-family:"Noto Sans JP","Yu Gothic",sans-serif; line-height:1.85; overflow-wrap:anywhere; }
+h1,h2,h3,p { margin:0; }
+h1,h2,h3,.brand { font-family:"Zen Kaku Gothic New","Yu Gothic",sans-serif; line-height:1.5; }
+a { color:var(--brand); text-underline-offset:4px; }
+:focus-visible { outline:3px solid #1b63c9; outline-offset:4px; }
+.wrap { width:100%; max-width:1100px; margin-inline:auto; padding-inline:32px; }
+.topbar { border-bottom:1px solid var(--line); }
+.topbar .wrap { min-height:68px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.brand { color:var(--brand); font-size:24px; font-weight:700; }
+.topbar span { font-size:12px; color:var(--muted); }
+.intro { padding-block:36px 28px; }
+.eyebrow { color:var(--brand); font-size:12px; font-weight:700; }
+h1 { font-size:30px; margin-top:8px; }
+.lede { margin-top:14px; font-size:15px; max-width:760px; }
+.page-nav { display:flex; flex-wrap:wrap; gap:10px 24px; margin-top:22px; font-size:13px; }
+.page-nav a { padding-block:6px; text-decoration:none; border-bottom:1px solid var(--line); }
+.direction { background:#f1f5f2; border-block:1px solid var(--line); padding-block:28px; }
+.direction h2 { font-size:21px; }
+.principles { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; margin-top:20px; }
+.principles h3 { font-size:16px; }
+.principles h3 span { color:var(--rust); margin-right:10px; font-size:13px; }
+.principles p { font-size:13px; margin-top:8px; color:var(--muted); }
+.research-note { margin-top:18px; font-size:11px; color:var(--muted); }
+.lp-section { padding-block:36px; border-bottom:1px solid var(--line); scroll-margin-top:20px; }
+.lp-head { display:flex; align-items:center; justify-content:space-between; gap:24px; }
+.number { font-size:12px; color:var(--brand); font-weight:700; }
+.lp-head h2 { font-size:24px; margin-top:4px; }
+.open-link { display:inline-flex; align-items:center; gap:14px; min-height:44px; padding:10px 16px; border-radius:4px; background:var(--brand); color:#fff; font-size:13px; font-weight:700; text-decoration:none; flex:none; }
+.open-link:hover { background:#163a30; }
+.takeaway { margin-top:16px; font-weight:700; font-size:16px; }
+.lp-body { display:grid; grid-template-columns:224px minmax(0,1fr); gap:32px; margin-top:20px; align-items:start; }
+figure { margin:0; min-width:0; }
+figure a { display:block; }
+figure img { display:block; width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; object-position:75% center; border-radius:4px; }
+#lp-01 figure img { object-position:right center; }
+figcaption { font-size:10px; color:var(--muted); margin-top:7px; }
+.rationale { margin:0; min-width:0; }
+.rationale > div { display:grid; grid-template-columns:96px minmax(0,1fr); gap:16px; }
+.rationale > div + div { margin-top:14px; }
+.rationale dt { font-size:12px; color:var(--brand); font-weight:700; padding-top:2px; }
+.rationale dd { margin:0; font-size:13px; }
+.rationale a { font-weight:500; }
+.booking-route { padding-block:18px; border-block:1px solid var(--line); display:flex; flex-direction:column; align-items:center; gap:5px; font-size:14px; }
+.booking-route > p,.booking-route > span { color:var(--muted); font-size:12px; }
+.booking-route small { margin-top:8px; color:var(--muted); font-size:10px; }
+.closing { padding-block:30px; }
+.closing h2 { font-size:18px; }
+.closing p { margin-top:12px; font-size:13px; }
+.closing strong { color:var(--rust); }
+footer { background:#f1f5f2; padding-block:20px; color:var(--muted); font-size:11px; }
+@media (max-width:759px) {
+ .wrap { padding-inline:20px; }
+ .topbar .wrap { min-height:60px; gap:12px; }
+ .topbar span { font-size:10px; }
+ .intro { padding-block:28px; }
+ h1 { font-size:25px; }
+ .lede { font-size:14px; }
+ .page-nav { gap:8px 18px; font-size:12px; }
+ .principles { grid-template-columns:minmax(0,1fr); gap:18px; }
+ .lp-head { align-items:flex-start; gap:14px; flex-wrap:wrap; }
+ .lp-head h2 { font-size:22px; }
+ .open-link { padding:9px 14px; font-size:12px; }
+ .takeaway { font-size:15px; }
+ .lp-body { grid-template-columns:minmax(0,1fr); gap:20px; }
+ figure { max-width:360px; }
+ figure img { aspect-ratio:2/1; }
+ .rationale > div { grid-template-columns:78px minmax(0,1fr); gap:12px; }
+ .rationale dt { font-size:11px; }
+ .booking-route { align-items:flex-start; }
+}
+@media print {
+ body { font-size:10pt; }
+ .topbar .wrap { min-height:36px; }
+ .wrap { max-width:none; padding-inline:0; }
+ .page-nav,.open-link { display:none; }
+ .intro,.direction,.lp-section,.closing { padding-block:14px; }
+ .lp-section { break-inside:avoid; }
+ .lp-body { grid-template-columns:150px minmax(0,1fr); gap:20px; }
+ .rationale > div { grid-template-columns:78px minmax(0,1fr); gap:10px; }
+ .rationale dd,.principles p { font-size:10pt; }
+ .principles { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
 </style>
 </head>
 <body>
-
+<header class="topbar"><div class="wrap"><p class="brand">NXTERA</p><span>LP設計の説明資料 / 01〜05・07</span></div></header>
+<main>
+<section class="intro wrap" aria-labelledby="page-title"><p class="eyebrow">競合調査から、構成と見た目へ</p><h1 id="page-title">LP構成・デザインの意図</h1><p class="lede">共通の狙いは、<strong>「自分の店の相談だ」と分かり、支援内容と条件を理解して相談できること。</strong>入口の悩みはページごとに変え、相談先としての印象は揃えています。</p><nav class="page-nav" aria-label="各LPの設計意図"><a href="#lp-01">01 総合集客</a><a href="#lp-02">02 飲食</a><a href="#lp-03">03 理美容</a><a href="#lp-04">04 固定費</a><a href="#lp-05">05 資金繰り</a><a href="#lp-07">07 予約</a></nav></section>
+<section class="direction" aria-labelledby="direction-title"><div class="wrap"><h2 id="direction-title">全ページに共通する考え方</h2><div class="principles">
+<div><h3><span>01</span>業種と悩みから入る</h3><p>競合には施策特化型も伴走型も存在。自社はサービス名だけでなく、空席・支払い・契約など店舗の言葉から説明します。</p></div>
+<div><h3><span>02</span>依頼後を具体的に見せる</h3><p>競合の支援範囲・成果物・料金の示し方を参考に、支援例・表・役割分担を配置。自社の未確認実績で補強することはしません。</p></div>
+<div><h3><span>03</span>落ち着きと読みやすさ</h3><p>明るい背景、深緑のブランド色、店舗の写真を基本に、分野ごとの色を補助に使用。写真は対象や作業、表は比較、ボタンは次の行動を伝えます。</p></div>
+</div><p class="research-note">以下は参考サイトの掲載内容と、それを踏まえた設計上の判断です。市場全体の傾向や成果を検証した調査ではありません。検索語・オーナー心理は仮説で、検索量・広告成果・デザイン効果は未検証です。参照先は各項目に掲載（確認日：2026年9月17日）。MEO＝Googleマップ上の店舗情報・表示を整える施策。</p></div></section>
 <div class="wrap">
-
-  <p class="eyebrow">DESIGN MOCK</p>
-  <h1>NXTERA LPモック</h1>
-  <p class="lede">店舗オーナー向けの支援サービスのランディングページ案です。6枚をブラウザで確認できます。</p>
-
-  <p class="note">
-    <b>これはデザイン確認用のモックです。</b><br>
-    サービス名「NXTERA」は仮称、料金・相談時間・受付時間・特典の内容はすべて仮の値です。
-    写真はAI生成の仮画像で、本番は同じ構図で撮影する前提です。
-    実績数値（支援店舗数・改善率など）は、まだ存在しないため<b>意図的に一切載せていません</b>。
-  </p>
-
-  <ul class="list">
-    <li class="item">
-      <a href="01-shukyaku-tougou.html">
-        <span class="no">01</span><span class="tag tag--all">業種を問わない一般クエリ向け</span>
-        <h2>店舗の集客サポート</h2>
-        <p>「店舗 集客」「MEO対策」など業種を含まない検索から来た人の受け皿。飲食と理美容の両方に触れ、施策ありきではなく確認したいことから入る構成です。</p>
-        <p class="go">開く</p>
-      </a>
-    </li>
-
-    <li class="item">
-      <a href="02-shukyaku-inshoku.html">
-        <span class="no">02</span><span class="tag tag--inshoku">飲食店向け</span>
-        <h2>その空席、来月もそのままにしますか。</h2>
-        <p>飲食店の集客LP。ファーストビューの下に「よくある失敗」と「できること」を置き、失敗の一つひとつに支援内容が対応する構成です。</p>
-        <p class="go">開く</p>
-      </a>
-    </li>
-
-    <li class="item">
-      <a href="03-shukyaku-biyo.html">
-        <span class="no">03</span><span class="tag tag--biyo">美容室・サロン向け</span>
-        <h2>予約が入らない理由、見えていますか。</h2>
-        <p>サロンの集客LP。構成は飲食版と同じで、失敗事例と支援内容がサロン特有のもの（掲載プラン・次回予約・単価）に差し替わります。</p>
-        <p class="go">開く</p>
-      </a>
-    </li>
-
-    <li class="item">
-      <a href="04-kotehi.html">
-        <span class="no">04</span><span class="tag tag--kotehi">固定費の見直し</span>
-        <h2>店舗の固定費、まとめて見直し。</h2>
-        <p>家賃・電気・通信・決済手数料・サブスクなどの見直し。気になる費目を選ぶとページ内で確認する順番が出ます。月額だけでなく、変更後にかかる総額まで並べます。</p>
-        <p class="go">開く</p>
-      </a>
-    </li>
-
-    <li class="item">
-      <a href="05-shikinguri.html">
-        <span class="no">05</span><span class="tag tag--shikin">資金繰りの整理</span>
-        <h2>店舗の資金繰りを、先を見て整える。</h2>
-        <p>これからの入金と支払いを先まで並べて、資金が薄くなる時期を事前に見つけます。金融機関への相談に必要な書類整理・面談準備まで。</p>
-        <p class="go">開く</p>
-      </a>
-    </li>
-
-    <li class="item">
-      <a href="07-yoyaku.html">
-        <span class="no">07</span><span class="tag tag--common">共通</span>
-        <h2>相談スケジュール（予約カレンダー）</h2>
-        <p>各LPの「相談スケジュールを選ぶ」の遷移先。8:00から翌0:30まで30分刻みで、オーナー自身が枠を選べます。競合36社を調べた範囲では、予約カレンダーを置いている会社はありませんでした。</p>
-        <p class="go">開く</p>
-      </a>
-    </li>
-  </ul>
-
-  <footer>
-    スマートフォンでも確認できます。写真はPCでは縦位置、スマホでは横長に切り替わります。<br>
-    <b>06（3分診断）は載せていません。</b>広告LPとして使う予定がなく、どのLPからもリンクしていないためです（README 4-16）。ファイル自体は <code>06-shindan.html</code> に残してあります。
-  </footer>
-
+<article class="lp-section" id="lp-01" aria-labelledby="title-01">
+<header class="lp-head"><div><p class="number">LP 01</p><h2 id="title-01">店舗集客の総合LP</h2></div><a class="open-link" href="01-shukyaku-tougou.html" aria-label="店舗集客の総合LPのモックを見る">モックを見る <span aria-hidden="true">→</span></a></header>
+<p class="takeaway">施策を選ぶ前の「何から始める？」を受け止める。</p>
+<div class="lp-body"><figure><a href="01-shukyaku-tougou.html" aria-label="店舗集客の総合LPのモックを見る"><img src="images/01-tougou-hero-v4-wide.jpg" alt="店舗でタブレットを確認するオーナーのイメージ" loading="lazy" decoding="async"></a><figcaption>掲載中のMV画像（AI生成）</figcaption></figure>
+<dl class="rationale"><div><dt>想定する人</dt><dd>「店舗 集客」「MEO対策」などの検索。方法が決まっていないオーナーも対象。</dd></div><div><dt>競合調査</dt><dd><a href="https://meo-dash.com/lp/">MEO Dash! byGMO</a>はMEO施策と実績を訴求。一方、<a href="https://alute.co.jp/store_support/">ALUTE</a>は複数媒体を通じた来店・再来の改善を提案。「幅広く支援」だけでは差別化にならない。</dd></div><div><dt>構成の意図</dt><dd>新規客・空席・再来・費用・手間の悩みから入り、支援内容と確認シートへ。MEOは目的ではなく手段として説明する。</dd></div><div><dt>見た目の意図</dt><dd>店内と手元が分かる引きの写真で、店舗の相談先と伝える。短い見出しと控えめなMVの高さで、次の内容へつなぐ。</dd></div></dl></div>
+</article>
+<article class="lp-section" id="lp-02" aria-labelledby="title-02">
+<header class="lp-head"><div><p class="number">LP 02</p><h2 id="title-02">飲食店の集客LP</h2></div><a class="open-link" href="02-shukyaku-inshoku.html" aria-label="飲食店の集客LPのモックを見る">モックを見る <span aria-hidden="true">→</span></a></header>
+<p class="takeaway">「いつ・誰に・何のために来てほしいか」を具体化する。</p>
+<div class="lp-body"><figure><a href="02-shukyaku-inshoku.html" aria-label="飲食店の集客LPのモックを見る"><img src="images/02-inshoku-hero-v2.jpg" alt="料理をテーブルに提供する飲食店オーナーのイメージ" loading="lazy" decoding="async"></a><figcaption>掲載中のMV画像（AI生成）</figcaption></figure>
+<dl class="rationale"><div><dt>想定する人</dt><dd>「飲食店 集客」「平日 集客」などの検索・Meta広告。客数だけでなく空く時間帯に悩む店主。</dd></div><div><dt>競合調査</dt><dd><a href="https://matoka.co.jp/service">matoka</a>は飲食店向けにMEO・SNS・グルメサイト運用とレポートを具体化。業種の理解と、実際に任せる作業の説明が比較材料になると判断。</dd></div><div><dt>構成の意図</dt><dd>曜日・時間帯・来店目的に分け、居酒屋とカフェの支援例を掲載。予約数だけでなく、予約なしの来店も扱う。</dd></div><div><dt>見た目の意図</dt><dd>料理を提供する写真と赤茶のボタンで、飲食店向けだとすぐ伝える。PR動画2本無料・口コミ収集ツール3か月無料を冒頭近くと本文に配置。</dd></div></dl></div>
+</article>
+<article class="lp-section" id="lp-03" aria-labelledby="title-03">
+<header class="lp-head"><div><p class="number">LP 03</p><h2 id="title-03">理容室・美容室の集客LP</h2></div><a class="open-link" href="03-shukyaku-biyo.html" aria-label="理容室・美容室の集客LPのモックを見る">モックを見る <span aria-hidden="true">→</span></a></header>
+<p class="takeaway">新規を増やすだけでなく、次の来店と現場の負担まで見る。</p>
+<div class="lp-body"><figure><a href="03-shukyaku-biyo.html" aria-label="理容室・美容室の集客LPのモックを見る"><img src="images/03-biyo-hero-v3.jpg" alt="理容室で仕上がりを確認する理容師とお客さまのイメージ" loading="lazy" decoding="async"></a><figcaption>掲載中のMV画像（AI生成）</figcaption></figure>
+<dl class="rationale"><div><dt>想定する人</dt><dd>「美容室 集客」「サロン 新規集客」などの検索・Meta広告。新規・再来・空き枠に悩むオーナー。</dd></div><div><dt>競合調査</dt><dd><a href="https://blueoceanoffice.co.jp/">Blue ocean office</a>は小規模美容室に向け、価格設定・SNSの負担・経営の悩みを訴求。集客数だけでなく、運営の負担まで説明する必要があると判断。</dd></div><div><dt>構成の意図</dt><dd>得意な施術・客層、新規から再来、施術枠、媒体費を分けて説明。美容室に加え、予約・指名を取らない理容室の例も掲載する。</dd></div><div><dt>見た目の意図</dt><dd>仕上がりを確認する理容の写真と落ち着いた青緑で、飲食版と区別。02と同じ2つの特典を示し、無料だけでなく活用場面も伝える。</dd></div></dl></div>
+</article>
+<article class="lp-section" id="lp-04" aria-labelledby="title-04">
+<header class="lp-head"><div><p class="number">LP 04</p><h2 id="title-04">固定費の見直しLP</h2></div><a class="open-link" href="04-kotehi.html" aria-label="固定費の見直しLPのモックを見る">モックを見る <span aria-hidden="true">→</span></a></header>
+<p class="takeaway">「いくら安くなる？」の前に、総額と変更条件を確かめる。</p>
+<div class="lp-body"><figure><a href="04-kotehi.html" aria-label="固定費の見直しLPのモックを見る"><img src="images/04-kotehi-hero-v2.webp" alt="店舗で明細書と比較表を確認する手元のイメージ" loading="lazy" decoding="async"></a><figcaption>掲載中のMV画像（AI生成）</figcaption></figure>
+<dl class="rationale"><div><dt>想定する人</dt><dd>固定費を減らしたいが、どの契約から見直せばよいか分からない店舗オーナー。</dd></div><div><dt>競合調査</dt><dd><a href="https://coston.ai/">COSTON</a>、<a href="https://ap.actpro.co.jp/costpro/">アクトプロ</a>は対象費目・分析から実行までの流れ・成果報酬を明示。COSTONは品質維持も説明。安さ以外の判断材料が重要と判断。</dd></div><div><dt>構成の意図</dt><dd>費目チェックから確認事項・必要資料へ進み、変更費用を含む総額比較を提示。根拠のない削減額試算は出さない。</dd></div><div><dt>見た目の意図</dt><dd>明細を比較する手元の写真で、何をするサービスかを示す。チェック項目と比較表を中心にし、金額・条件を見比べやすくする。</dd></div></dl></div>
+</article>
+<article class="lp-section" id="lp-05" aria-labelledby="title-05">
+<header class="lp-head"><div><p class="number">LP 05</p><h2 id="title-05">資金繰りサポートLP</h2></div><a class="open-link" href="05-shikinguri.html" aria-label="資金繰りサポートLPのモックを見る">モックを見る <span aria-hidden="true">→</span></a></header>
+<p class="takeaway">「借りられる」と約束せず、先の見通しと準備を伝える。</p>
+<div class="lp-body"><figure><a href="05-shikinguri.html" aria-label="資金繰りサポートLPのモックを見る"><img src="images/05-shikinguri-hero-v2.webp" alt="担当者と店主が入出金予定表を一緒に確認するイメージ" loading="lazy" decoding="async"></a><figcaption>掲載中のMV画像（AI生成）</figcaption></figure>
+<dl class="rationale"><div><dt>想定する人</dt><dd>売上はあるのに現金が残らない、次の支払いや銀行への相談準備に不安がある店主。</dd></div><div><dt>競合調査</dt><dd><a href="https://www.raku-bs.com/">洛ビジネスサポート</a>は銀行対応の準備、<a href="https://teana.jp/plan/cash/shikinguri/shikinguri-komon-apply/">ティナ・コンサルティング</a>は資金繰り表と継続支援を具体化。成果物・役割・費用が相談判断の材料になると判断。</dd></div><div><dt>構成の意図</dt><dd>支払いの悩みから、見通し表・対応メモ・継続確認へ。架空の入出金表で残るお金を示し、料金・準備資料・相談の流れを説明する。</dd></div><div><dt>見た目の意図</dt><dd>担当者と店主が一緒に資料を見る写真で、相談の場面を具体化。落ち着いた青と読みやすい表で、焦りを煽らず判断を支える。</dd></div></dl></div>
+</article>
+<article class="lp-section" id="lp-07" aria-labelledby="title-07">
+<header class="lp-head"><div><p class="number">LP 07</p><h2 id="title-07">共通の相談予約ページ</h2></div><a class="open-link" href="07-yoyaku.html" aria-label="共通の相談予約ページのモックを見る">モックを見る <span aria-hidden="true">→</span></a></header>
+<p class="takeaway">説明を重ねず、「相談したい」を日時選択へつなげる。</p>
+<div class="lp-body"><div class="booking-route" aria-label="予約の流れ"><p>各LPから</p><span aria-hidden="true">↓</span><strong>日時を選ぶ</strong><span aria-hidden="true">↓</span><strong>選択内容を確認</strong><small>現在は送信しないモック</small></div>
+<dl class="rationale"><div><dt>想定する人</dt><dd>各LPを読んで相談を検討した人。サービス説明より、次の手続きを知りたい段階。</dd></div><div><dt>競合調査</dt><dd><a href="https://meo-dash.com/lp/">MEO Dash! byGMO</a>には資料請求フォーム、<a href="https://www.raku-bs.com/">洛ビジネスサポート</a>には申込み後に担当者が連絡する流れがある。日時選択は自社の導線案であり、競合にない機能とは断定しない。</dd></div><div><dt>構成の意図</dt><dd>カレンダーで日時を選択し、選択内容を確認することに集中。相談条件・変更方法・情報の取り扱いは補足で示す。</dd></div><div><dt>見た目の意図</dt><dd>LPと同じロゴ・深緑・書体を使い、遷移後も同じサービスと分かるようにする。PCはカレンダーと選択内容を横並び、SPは縦並び。</dd></div></dl></div>
+</article>
+<section class="closing" aria-labelledby="launch-title"><h2 id="launch-title">プレゼン時に添える前提</h2><p><strong>これは公開前の構成・デザイン案です。</strong>写真はAI生成、支援例・表は説明用の架空例。02・03の「PR動画2本無料」「口コミ収集ツール3か月無料」は掲載方針確認済みですが、適用条件は未確定です。</p><p>料金・提供範囲・運営情報・相談時間・受付時間・特典条件は公開前に確定します。04・05に残る30分／8:00〜翌1:00等も仮設定です。07は予約送信を行わないモック。公開前に実機で表示を確認し、公開後に広告と予約の成果を検証します。</p></section>
 </div>
-
+</main>
+<footer><div class="wrap">対象は01・02・03・04・05・07の6ページ。06（診断）は今回の対象外です。</div></footer>
 </body>
 </html>

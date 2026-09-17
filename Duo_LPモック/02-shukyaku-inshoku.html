@@ -1,225 +1,105 @@
 <!doctype html>
-<!--
-  ============================================================
-  NXTERA / 集客LP（飲食）— ファーストビューのみのデザインモックです。
-  ページ全体ではなく、1画面目の見え方を確認するためのファイルです。
-
-  【仮値の注記】
-   - ロゴ「NXTERA」はテキスト仮置き。マークはCSS図形の仮組みです。
-   - 相談時間「30分」は仮値です。
-   - 受付時間「8:00〜翌1:00」は仮値です。時間帯を絞らず、
-     営業実態の異なる店でも枠が見つかる形にしています。
-   - 写真は使用していません（外部画像の読み込みなし）。PC右カラムは
-     構図を示すためのインラインSVGの線画で、本番は同構図の写真に差し替え前提。
-   - 実績数値（導入店舗数・削減率等）は意図的に一切掲載していません。
-  ============================================================
--->
+<!-- 構成モック。特典2本・3か月は掲載方針確認済み。適用条件・料金・提供範囲は未確定。支援例は架空です。 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NXTERA｜集客LP（飲食）FVモック</title>
+<meta name="robots" content="noindex, nofollow">
+<title>飲食店の集客サポート｜NXTERA</title>
+<meta name="description" content="飲食店の新規・再来・集客費を整理し、お店に合う取り組みを相談。PR動画2本無料制作・口コミ収集ツール3か月無料の特典をご案内します。適用条件は確認中です。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="shukyaku-sector.css?v=20260917-photo2">
 </head>
-<body data-domain="inshoku">
-
-<p class="mockflag"><b>DESIGN MOCK</b>　ファーストビューのみ／金額・時間・ロゴはすべて仮値です</p>
-
-<header class="hd">
-  <div class="wrap hd__in">
-    <a class="logo" href="#"><span class="logo__mark" aria-hidden="true"></span>
-      <span class="logo__txt">
-        <span class="logo__type">NXTERA</span>
-      </span>
-      <span class="logo__sub">飲食店の集客支援</span>
-    </a>
-    <nav class="hd__nav">
-      <a href="#">できること</a>
-      <a href="#">料金</a>
-      <a href="#">進め方</a>
-    </nav>
-  </div>
-</header>
-
-<main class="fv">
-  <div class="wrap fv__in">
-
-    <div>
-      <h1 class="catch">その空席、<br><em>来月もそのままにしますか。</em></h1>
-
-      <p class="catch-sub">感覚ではなく、数字から「埋まらない理由」を見つける。</p>
-
-      <p class="sub">その原因を、Googleマップ・口コミ・曜日ごとの集客データから整理して、来月どこに手をつけるかをご提案します。</p>
-
-      <div class="komi komi--strong">
-        <div class="komi__body">
-          <p class="komi__lead"><span class="komi__lead-s">当サイト限定</span><span class="komi__lead-b">特典</span></p>
-          <ul class="komi__list">
-            <li><span class="komi__item">PR用動画制作</span><span class="komi__q">2本無料</span></li>
-            <li><span class="komi__item">口コミ収集ツール利用</span><span class="komi__q">3か月無料</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="ctas">
-        <a class="btn btn--main" href="07-yoyaku.html">相談スケジュールを選ぶ
-          <span class="btn__note">オンライン30分</span>
-        </a>
-        <a class="btn btn--sub" href="#">LINEで情報を得る</a>
-      </div>
-
-      <p class="ctanote">受付：8:00〜翌1:00<br>全国オンライン・1回30分。カメラはオフでも構いません。その場でのご契約は不要です。</p>
-
-      <div class="trust">
-        <ul>
-          <li>日時は空いている枠から、ご自身で選べます。電話を待つ必要はありません</li>
-          <li>施策ごとに業者を分けません。マップも口コミもSNSも同じ担当が見ます</li>
-          <li>全国オンライン完結。来店も出張も不要です</li>
-        </ul>
-      </div>
-
-
-      <p class="more">このあと：よくある失敗と、その理由／できること</p>
-    </div>
-
-    <!-- ビジュアル枠：外部画像は一切読み込まず、インラインSVGの線画で構図を示す -->
-    <aside class="shot" aria-label="閉店後のカウンターで締め作業をする店主の写真">
-      <picture>
-        <source media="(max-width:859px)" srcset="images/02-inshoku-sp.webp" width="800" height="533">
-        <img class="shot__img" src="images/02-inshoku-hero-v.webp"
-           width="880" height="1320" loading="eager" decoding="async"
-           alt="閉店後の居酒屋のカウンター。消灯した客席を背に、伝票の束と電卓を前にしてスマートフォンを見る店主。">
-      </picture>
-
-    </aside>
-
-  </div>
+<body class="sector-page" data-domain="inshoku" id="top">
+<a class="sector-skip" href="#concerns">本文へ</a>
+<p class="sector-mock"><b>DESIGN MOCK</b> 料金・提供範囲・特典条件は確認中。予約ページもモックです。</p>
+<header class="hd"><div class="wrap hd__in">
+<a class="logo" href="#top" aria-label="NXTERA ページの先頭へ"><span class="logo__mark" aria-hidden="true"></span><span class="logo__type">NXTERA</span><span class="logo__sub">飲食店の集客支援</span></a>
+<nav class="hd__nav" aria-label="ページ内メニュー"><a href="#support">支援内容</a><a href="#benefits">特典</a><a href="#price">料金・条件</a><a href="#flow">相談の流れ</a></nav>
+<a class="sector-header-cta" href="07-yoyaku.html">集客を相談する</a>
+</div></header>
+<main>
+<section class="sector-hero" aria-labelledby="hero-title">
+<img class="sector-hero-image" src="images/02-inshoku-hero-v2.jpg" width="1672" height="941" alt="明るい飲食店で料理をテーブルに並べるオーナーのイメージ。" loading="eager" fetchpriority="high" decoding="async">
+<div class="wrap sector-hero-inner"><div class="sector-hero-copy">
+<p class="sector-kicker">飲食店オーナーの方へ</p>
+<h1 id="hero-title">飲食店の<br>集客サポート</h1>
+<p class="sector-hero-lead">平日の空席も、<br>新しいお客さまも。</p><p class="sector-hero-intro">曜日・時間帯・来店目的から、<br>お店に合う集客を一緒に考えます。</p>
+<div class="sector-actions"><a class="sector-button" href="07-yoyaku.html">お店の集客を相談する<span aria-hidden="true">→</span></a><a class="sector-link" href="#cases">悩みに近い支援例を見る</a></div>
+<p class="sector-hero-note">施策が決まっていなくてもご相談いただけます。<br>相談料・対応時間は<a href="#price">確認中</a>です。</p>
+</div></div></section>
+<aside class="sector-benefit-strip" aria-label="2つの特典"><div class="wrap">
+<p class="sector-benefit-label">集客に活かせる<br><strong>2つの特典</strong></p>
+<p><span>PR動画制作</span><strong>2本無料</strong></p><p><span>口コミ収集ツール</span><strong>3か月無料</strong></p>
+<a href="#benefits">活用例・適用条件を見る <span aria-hidden="true">↓</span></a>
+</div><p class="wrap sector-strip-note">対象プラン・契約の要否など、適用条件は確認中です。</p></aside>
+<section class="sector-section" id="concerns">
+<div class="wrap"><div class="sector-heading"><p class="sector-kicker">まずは、お店の状況から</p><h2>来てほしい時間と、<br>選んでほしい理由から。</h2><p>客数だけでなく、いつ・誰に・何のために来てほしいかを整理します。空席の原因を、広告やSNSの不足だけとは決めつけません。</p></div>
+<ul class="sector-audience"><li>居酒屋・レストラン</li><li>カフェ・喫茶店</li><li>予約を取らないお店も</li></ul>
+<nav class="sector-concerns" aria-label="お悩み別の支援"><a href="#support-new"><span>新規のお客さま</span><strong>店を知ってもらえて<br>いない気がする</strong><span class="sector-concern-foot">確認ポイントを見る <span aria-hidden="true">↓</span></span></a><a href="#support-weekday"><span>平日・時間帯</span><strong>週末は埋まるのに、<br>平日や夜が空く</strong><span class="sector-concern-foot">確認ポイントを見る <span aria-hidden="true">↓</span></span></a><a href="#support-repeat"><span>再来店</span><strong>一度は来てくれるけれど、<br>常連につながらない</strong><span class="sector-concern-foot">確認ポイントを見る <span aria-hidden="true">↓</span></span></a><a href="#support-cost"><span>集客費・手間</span><strong>掲載費も投稿作業も、<br>増やし続けたくない</strong><span class="sector-concern-foot">確認ポイントを見る <span aria-hidden="true">↓</span></span></a></nav>
+<p class="sector-note">いくつ当てはまっても、原因が分からなくても構いません。いまの取り組み・予算・店舗で使える時間を伺います。</p>
+</div></section>
+<section class="sector-section sector-tint" id="cases">
+<div class="wrap"><div class="sector-heading"><p class="sector-kicker">お悩みに合わせた進め方</p><h2>例えば、こんな見直しから。</h2><p>以下は架空の支援例です。導入実績や成果を示すものではありません。</p></div>
+<div class="sector-cases"><article><p class="sector-kicker">居酒屋・レストランの支援例</p><h3>平日の夜に、<br>利用するきっかけを。</h3><dl><dt>まず、確認</dt><dd>曜日・時間帯ごとの来店、近隣のお客さまの利用目的、料理・価格・営業時間の伝わり方。</dd><dt>取り組み候補</dt><dd>仕事帰りや少人数の食事など、利用場面に合うメニュー紹介を検討。マップ・媒体の情報と予約先を整える。</dd><dt>その後の確認</dt><dd>平日夜の来店・予約と、告知にかかった費用を分けて振り返る。</dd></dl></article><article><p class="sector-kicker">カフェ・喫茶店の支援例</p><h3>ランチ以外の時間にも、<br>立ち寄る理由を。</h3><dl><dt>まず、確認</dt><dd>午後の需要、提供できる商品、客席の使い方、予約なしで来店するお客さまの経路。</dd><dt>取り組み候補</dt><dd>午後のメニューや過ごし方を写真・動画で紹介。価格、アクセス、営業時間を確認しやすくする。</dd><dt>その後の確認</dt><dd>対象時間帯の来店・注文と負担を確認。予約件数だけを成果にしない。</dd></dl></article></div>
+</div></section>
+<section class="sector-section" id="support">
+<div class="wrap"><div class="sector-heading"><p class="sector-kicker">支援内容</p><h2>何を増やすかの前に、<br>どこを変えるか。</h2><p>MEO・SNS・掲載媒体は、課題に合わせて選ぶ手段です。いま使っているものも活かしながら、作業範囲と優先順位を相談します。</p></div>
+<div class="sector-support-list"><article id="support-new"><div><span class="sector-index">01</span><h3>新規のお客さまに知ってもらう</h3></div><dl><div><dt>確認すること</dt><dd>商圏、客層、メニュー、価格、アクセス、写真と来店経路を確認します。</dd></div><div><dt>支援候補</dt><dd>Googleマップ・掲載媒体の情報整理、料理や店内の伝え方、SNSの発信テーマ、来店・予約先の案内。</dd></div><div><dt>振り返ること</dt><dd>店舗ページの表示や反応と、新規来店は別々に確認します。</dd></div></dl></article><article id="support-weekday"><div><span class="sector-index">02</span><h3>埋めたい曜日・時間帯から考える</h3></div><dl><div><dt>確認すること</dt><dd>曜日別・時間帯別の来店、営業体制、客席、近隣の需要を確認します。</dd></div><div><dt>支援候補</dt><dd>利用シーンに合う告知、季節の企画、提供可能なメニューの見せ方。値引き以外の案も含めて検討します。</dd></div><div><dt>振り返ること</dt><dd>対象時間帯の来店と、追加費用・現場の手間を見ます。</dd></div></dl></article><article id="support-repeat"><div><span class="sector-index">03</span><h3>次に来るきっかけをつくる</h3></div><dl><div><dt>確認すること</dt><dd>来店周期、接客や料理への声、再来の状況、案内の方法を確認します。</dd></div><div><dt>支援候補</dt><dd>季節メニューの案内、同意を得たLINE等の配信、店舗で無理なくできる案内手順の整理。</dd></div><div><dt>振り返ること</dt><dd>再来の記録方法と観測期間を決め、取得できる範囲で確認します。</dd></div></dl></article><article id="support-cost"><div><span class="sector-index">04</span><h3>媒体と作業の役割を見直す</h3></div><dl><div><dt>確認すること</dt><dd>掲載費・広告費・手数料・値引きと、経路別の来店、作業時間を確認します。</dd></div><div><dt>支援候補</dt><dd>既存媒体を残す案も含む掲載プランの比較、更新の優先順位、店舗と担当者の作業分担。</dd></div><div><dt>振り返ること</dt><dd>対象期間・費用・客数の範囲をそろえます。売上だけで採算を断定しません。</dd></div></dl></article></div>
+<details class="sector-detail"><summary>MEO・Googleマップ、SNSだけでも相談できますか？</summary><div><p>検討している施策からもご相談いただけます。マップの基本情報・写真・投稿・口コミ返信、SNSの紹介文・発信テーマ・来店先の案内など、対応する作業と回数を合意します。検索順位・予約・来店の増加は保証しません。</p></div></details>
+<p class="sector-callout">すべての施策を一度に始める前提ではありません。制作・投稿・返信などの代行可否、回数、費用は見積もりで確認します。</p>
+</div></section>
+<section class="sector-section sector-soft" id="benefits">
+<div class="wrap"><div class="sector-heading"><p class="sector-kicker">ご案内している特典</p><h2>伝える素材と、<br>声を受け取るきっかけを。</h2><p>制作物やツールを増やすだけでなく、お店の集客にどう使うかを一緒に考えます。</p></div>
+<div class="sector-benefits">
+<article><p class="sector-kicker">特典 01</p><h3>PR動画制作 <strong>2本無料</strong></h3><p>料理の魅力や店内の雰囲気、利用シーンを伝える動画へ。メニュー紹介や店舗紹介など、発信の目的を相談して決めます。</p><p class="sector-benefit-use">活用イメージ：料理・メニュー紹介／店内・利用シーン紹介</p><p class="sector-note">動画の尺・形式、撮影の有無、素材提供、修正回数、納期、広告等での利用範囲は確認中です。</p></article>
+<article><p class="sector-kicker">特典 02</p><h3>口コミ収集ツール <strong>3か月無料</strong></h3><p>来店後の実体験に基づく声を受け取る機会づくりに。投稿のお願いと、寄せられた声への対応を店舗の運用に合わせて検討します。</p><p class="sector-benefit-use">店舗向けのツール利用特典です。口コミ投稿者への報酬ではありません。</p><p class="sector-note">対象ツール・機能、開始日、初期設定費の有無、終了後の料金・自動更新・停止方法は確認中です。</p></article>
+</div>
+<div class="sector-benefit-conditions"><h3>お申し込み前に確認すること</h3><p>対象プラン、契約の要否、適用店舗数、申込期限、他特典との併用条件は確認中です。相談だけで適用されると確約するものではありません。条件を確定・提示したうえでご案内します。</p></div>
+<details class="sector-detail"><summary>口コミツールはどのような運用を想定していますか？</summary><div><p>実際に来店したお客さまが、内容を自由に決めて任意で投稿できる案内を想定しています。投稿への金銭・割引等の見返り、口コミの購入、高評価の方だけを選んだ投稿依頼は行わない方針です。具体的なツール機能と案内方法は導入前に確認します。</p></div></details>
+</div></section>
+<section class="sector-section" id="report">
+<div class="wrap"><div class="sector-heading"><p class="sector-kicker">取り組みを、確かめる</p><h2>数字の変化を、<br>次の判断につなげる。</h2><p>何を行い、何が分かり、何がまだ分からないか。確認する情報と振り返り日を決めて進めます。</p></div>
+<figure class="sector-report"><figcaption><span>成果物の見本 / 架空例</span><h3>曜日・時間帯別の集客確認シート</h3></figcaption>
+<div class="sector-table-scroll" role="region" aria-label="曜日・時間帯別の集客確認シート" tabindex="0"><table><caption>確認する項目と情報源の例</caption><thead><tr><th scope="col">確認する項目</th><th scope="col">使う情報</th><th scope="col">判断するときの注意</th></tr></thead><tbody><tr><th scope="row">平日夜の来店</th><td>予約台帳・POS・来店記録</td><td>予約あり・なしを分けて確認</td></tr><tr><th scope="row">認知から来店まで</th><td>マップ・媒体・予約先の反応</td><td>閲覧・経路検索を実来店と数えない</td></tr><tr><th scope="row">集客にかかる費用</th><td>媒体費・広告費・手数料・値引き</td><td>対象経路・期間をそろえ、二重計上を避ける</td></tr><tr><th scope="row">続けられる運用か</th><td>更新・撮影・返信の作業時間</td><td>費用と現場の負担の両方を見る</td></tr></tbody></table></div>
+<div class="sector-report-next"><strong>次の取り組み例</strong><p>平日夜のメニュー紹介を見直し、来店記録の取り方と確認日を店舗・担当者で決める。</p></div></figure>
+<p class="sector-note">取得できるデータは媒体・システム・権限によって異なります。未計測はゼロとせず、来店経路の不明分や確認できない項目も共有します。報告頻度・形式は契約前に合意します。</p>
+</div></section>
+<section class="sector-section sector-tint" id="scope">
+<div class="wrap"><div class="sector-heading"><p class="sector-kicker">実行するための役割分担</p><h2>任せる作業と、<br>お店で行うこと。</h2><p>「すべてお任せ」と曖昧にせず、現場で続けられる作業量と承認方法を整理します。以下は支援体制の案です。</p></div>
+<div class="sector-roles"><div><h3>NXTERAの支援候補</h3><ul><li>現状確認と優先順位の提案</li><li>合意した範囲の情報整備・文案・運用支援</li><li>制作・更新の進行と確認事項の整理</li><li>作業内容・取得できる数字・次の施策の共有</li></ul></div><div><h3>店舗にお願いすること</h3><ul><li>メニュー・価格・営業時間・写真の共有</li><li>予約・来店・費用の分かる範囲での共有</li><li>掲載・返信内容と費用の承認</li><li>料理・接客・店内での案内の実行</li></ul></div></div>
+<p class="sector-callout">広告配信費、追加の撮影・制作、システム導入、媒体・ツール利用料は含有範囲を個別に確認します。アカウントの所有・管理権限、制作物の利用権も契約前に整理します。</p>
+<div class="sector-team"><h3>窓口と担当者を、開始前に確認。</h3><p>対応担当、連絡方法、対応時間、支援経験、掲載できる実績は確認中です。架空の事例やAI生成写真を、実在の顧客・担当者の実績として掲載しません。</p></div>
+</div></section>
+<section class="sector-section" id="price">
+<div class="wrap"><div class="sector-heading"><p class="sector-kicker">料金・契約条件</p><h2>費用と支援範囲をそろえて、<br>依頼するかを判断。</h2><p>支援料金・相談料は確認中です。特典以外のサービス全体が無料になるものではありません。</p></div>
+<dl class="sector-facts">
+<div><dt>初回相談</dt><dd><span class="sector-pending">確認中</span>相談料・所要時間・対応方法・受付時間</dd></div><div><dt>初期費用・継続料金</dt><dd><span class="sector-pending">確認中</span>税込総額、店舗数、支払い方法、対象媒体と作業回数</dd></div><div><dt>別途かかる費用</dt><dd><span class="sector-pending">確認中</span>広告費、制作・撮影、媒体・ツール費と事前承認方法</dd></div><div><dt>契約・解約</dt><dd><span class="sector-pending">確認中</span>最低期間、更新、解約期限、違約金の有無</dd></div><div><dt>アカウント・制作物</dt><dd><span class="sector-pending">確認中</span>所有・利用権、終了時のデータ引き渡しと権限解除</dd></div>
+</dl><p class="sector-note">PR動画2本無料・口コミ収集ツール3か月無料の<a href="#benefits">適用条件はこちら</a>。費用・条件への合意後に支援を開始する想定です。</p>
+</div></section>
+<section class="sector-section sector-tint" id="flow">
+<div class="wrap"><div class="sector-heading"><p class="sector-kicker">相談からの流れ</p><h2>いま困っていることを、<br>そのままお聞かせください。</h2></div>
+<ol class="sector-flow"><li><span>01</span><h3>状況を伺う</h3><p>悩み、目標、現在の取り組みと予算を共有。</p></li><li><span>02</span><h3>確認事項を整理</h3><p>把握できる情報から、課題の仮説と追加で確認する点を整理。</p></li><li><span>03</span><h3>範囲・費用を合意</h3><p>実行担当、作業、期間、料金、特典の適用条件を確認。</p></li><li><span>04</span><h3>実行・振り返り</h3><p>合意した作業から始め、確認日ごとに次の取り組みを検討。</p></li></ol>
+<div class="sector-consult"><h3>最初の相談で整理すること</h3><p>いま困っている場面／追加で確認したい情報／支援できる範囲と次の進め方。</p><p class="sector-note">あると話しやすいもの：店舗ページのURL、分かる範囲の曜日・時間帯別の来店、現在の掲載費・広告費。<br>資料が揃っていなくても構いません。初回相談で精密な分析や改善効果を確約するものではありません。</p><a class="sector-button" href="07-yoyaku.html">お店の集客を相談する<span aria-hidden="true">→</span></a></div>
+</div></section>
+<section class="sector-section" id="faq">
+<div class="wrap sector-narrow"><div class="sector-heading"><p class="sector-kicker">よくあるご質問</p><h2>依頼を決める前に。</h2></div>
+<details class="sector-detail"><summary>何を頼むべきか決まっていません。</summary><div><p>方法が決まっていない段階からご相談いただけます。困っている状況と、いま取り組んでいることを伺い、どこから確認するか整理します。</p></div></details>
+<details class="sector-detail"><summary>予約を取っていないお店でも相談できますか？</summary><div><p>予約の有無にかかわらず、来店経路や時間帯別の状況から確認します。予約システムの導入を前提にせず、来店・注文の記録など取得できる情報を使います。</p></div></details>
+<details class="sector-detail"><summary>掲載媒体や、いま依頼している業者は続けられますか？</summary><div><p>契約条件と役割を確認し、継続・変更・分担を検討します。すべてを乗り換えることや既存契約を解約することを前提にしません。権限や契約により対応できない作業もあります。</p></div></details>
+<details class="sector-detail"><summary>特典だけを利用できますか？</summary><div><p>対象プラン・契約の要否・特典単独での利用可否は確認中です。PR動画2本無料、口コミ収集ツール3か月無料の内容とともに、適用条件を確定したうえでご案内します。</p></div></details>
+<details class="sector-detail"><summary>忙しいので、どこまで任せられるか知りたいです。</summary><div><p>制作・投稿・返信など、代行する作業と回数は契約前に合意します。店舗情報・写真の提供、内容の承認、店内での接客や案内など、店舗側の協力が必要なこともあります。</p></div></details>
+<details class="sector-detail"><summary>いつから効果が出ますか？</summary><div><p>商圏、需要、店舗の状態、施策によって異なります。順位・予約・来店・売上や、一律の改善期間は保証しません。確認できる指標と振り返り時期を決めて見直します。</p></div></details>
+<details class="sector-detail"><summary>1店舗や小さな予算でも相談できますか？</summary><div><p>店舗数・予算・使える時間から対応可能な範囲を確認します。最低料金・受注条件は確認中のため、すべての予算で対応できるとはお約束していません。</p></div></details>
+</div></section>
+<section class="sector-final" aria-labelledby="final-title"><div class="wrap"><p class="sector-kicker">まずは、飲食店のいまのお悩みから。</p><h2 id="final-title">お店の集客、<br>次にすることを一緒に。</h2><p>何から始めるか、まだ決まっていなくても。<br>いくつか試して、迷っていても。</p><a class="sector-button" href="07-yoyaku.html">お店の集客を相談する<span aria-hidden="true">→</span></a><p class="sector-note">相談料・対応条件は<a href="#price">確認中</a>です。<a href="#benefits">2つの特典について</a></p></div></section>
 </main>
-
-<section class="sec" id="shippai">
-  <div class="wrap">
-    <p class="eyebrow">よくある失敗</p>
-    <h2 class="sec__h">「やったのに、変わらなかった」には<br><em>理由があります。</em></h2>
-
-    <ul class="fails">
-      <li class="fail">
-        <p class="fail__q">MEO対策を頼んで、Googleマップの順位は上がった。<br>でも来たのは値引き目当ての一見客で、再来しなかった。</p>
-        <p class="fail__a"><span class="fail__mark">なぜ</span>順位を上げる施策と、再来する人を増やす施策は別物だからです。露出が増えるほど、価格で店を選ぶ人の割合も一緒に増えます。</p>
-      </li>
-      <li class="fail">
-        <p class="fail__q">Instagramの運用を外に任せた。<br>投稿は増えたが、予約は増えなかった。</p>
-        <p class="fail__a"><span class="fail__mark">なぜ</span>投稿の先に、予約までの道がなかったからです。プロフィールから予約完了まで3タップ以上かかると、ほとんどの人はそこで離れます。</p>
-      </li>
-      <li class="fail">
-        <p class="fail__q">グルメ媒体の掲載プランを上げた。<br>客数は増えたのに、手元に残るお金は減った。</p>
-        <p class="fail__a"><span class="fail__mark">なぜ</span>掲載費とクーポンの原資が同時に増えるからです。客数ではなく「1人あたりいくら残るか」で見ないと、増えるほど苦しくなります。</p>
-      </li>
-      <li class="fail">
-        <p class="fail__q">忙しい月に施策を止めた。<br>その2ヶ月後、予約がすとんと落ちた。</p>
-        <p class="fail__a"><span class="fail__mark">なぜ</span>集客の効果は1〜2ヶ月遅れて出るからです。止めた月ではなく、その先に谷が来ます。忙しいときほど止めてはいけない理由がここにあります。</p>
-      </li>
-    </ul>
-
-    <p class="sec__close">どれも、<b>施策を単体で見ていると気づけません。</b><br>
-    NXTERAは、順位・投稿・掲載を別々の仕事にせず、予約と再来までつなげて見ます。</p>
-
-  </div>
-</section>
-
-<section class="sec sec--alt" id="shien">
-  <div class="wrap">
-    <p class="eyebrow">できること</p>
-    <h2 class="sec__h">順位を上げて終わりにしない。<br><em>予約と再来まで、ひと続きで見ます。</em></h2>
-
-    <ul class="shien">
-      <li class="card">
-        <h3 class="card__h">Googleマップと口コミを、来店後まで設計する</h3>
-        <p class="card__d">見つけてもらう対策だけで止めません。来た人に口コミをお願いする流れまで作ります。特典の口コミ収集ツールは、ここで使うものです。</p>
-        <p class="card__to">「順位は上がったのに、再来しない」に効きます</p>
-      </li>
-      <li class="card">
-        <h3 class="card__h">予約までの道を、1〜2タップに縮める</h3>
-        <p class="card__d">プロフィールから入っても、投稿から入っても、マップから入っても、同じ予約画面に着くようにします。途中で迷う場所をなくします。</p>
-        <p class="card__to">「投稿は増えたのに、予約が増えない」に効きます</p>
-      </li>
-      <li class="card">
-        <h3 class="card__h">「1人呼ぶのに、いくらかかっているか」を出す</h3>
-        <p class="card__d">ホットペッパーや食べログの掲載費に、クーポンの値引き分を足して、お客様1人あたりの集客コストを出します。その人が実際に使ってくれた額と並べれば、プランを上げるべきか下げるべきかが数字で決まります。</p>
-        <p class="card__to">「客数は増えたのに、残るお金は減った」に効きます</p>
-      </li>
-      <li class="card">
-        <h3 class="card__h">1年分の集客カレンダーをつくる</h3>
-        <p class="card__d">効果が出るのは1〜2ヶ月先です。閑散月の2ヶ月前から仕込み、忙しい月こそ止めない形にします。何月に何をするかを先に決めておきます。</p>
-        <p class="card__to">「止めた2ヶ月後に、予約が落ちた」に効きます</p>
-      </li>
-    </ul>
-
-    <figure class="dg">
-      <figcaption class="dg__h">「1人呼ぶのに、いくらかかっているか」の出し方</figcaption>
-
-      <svg class="dg__fig" viewBox="0 0 420 336" role="img"
-           aria-label="掲載費18万円とクーポンの値引き6万円を足し、来店した人120人で割ると、1人あたり2,000円になることを示す図。">
-        <!-- 掲載費 -->
-        <rect class="dg-box" x="10" y="6" width="400" height="54" rx="2"/>
-        <text class="dg-t"  x="28"  y="39">掲載費</text>
-        <text class="dg-n"  x="392" y="39" text-anchor="end">180,000円</text>
-
-        <text class="dg-op" x="210" y="80" text-anchor="middle">＋</text>
-
-        <!-- クーポンの値引き -->
-        <rect class="dg-box" x="10" y="90" width="400" height="54" rx="2"/>
-        <text class="dg-t"  x="28"  y="123">クーポンの値引き</text>
-        <text class="dg-n"  x="392" y="123" text-anchor="end">60,000円</text>
-
-        <text class="dg-op" x="210" y="164" text-anchor="middle">÷</text>
-
-        <!-- 来店した人 -->
-        <rect class="dg-box" x="10" y="174" width="400" height="54" rx="2"/>
-        <text class="dg-t"  x="28"  y="207">来店した人</text>
-        <text class="dg-n"  x="392" y="207" text-anchor="end">120人</text>
-
-        <text class="dg-op" x="210" y="248" text-anchor="middle">＝</text>
-
-        <!-- 1人あたり -->
-        <rect class="dg-fill" x="10" y="258" width="400" height="66" rx="2"/>
-        <text class="dg-tb" x="28"  y="299">1人あたり</text>
-        <text class="dg-nb" x="392" y="301" text-anchor="end">2,000円</text>
-      </svg>
-
-      <p class="dg__n">金額はすべて例です。この2,000円を、その人が実際に使ってくれた額と並べて、掲載プランを上げるべきか下げるべきかを決めます。</p>
-    </figure>
-
-    <p class="sec__close">どれも、<b>やりっぱなしにしないための仕組み</b>です。<br>
-    毎月いっしょに数字を見ながら、次の一手を決めていきます。</p>
-
-    <div class="ctas ctas--center">
-      <a class="btn btn--main" href="07-yoyaku.html">相談スケジュールを選ぶ
-        <span class="btn__note">オンライン30分</span>
-      </a>
-      <a class="btn btn--sub" href="#">LINEで情報を得る</a>
-    </div>
-    <p class="ctanote ctanote--center">受付：8:00〜翌1:00　全国オンライン・1回30分。カメラはオフでも構いません。その場でのご契約は不要です。</p>
-  </div>
-</section>
-
-<!-- SP固定CTAバー：3ラベル -->
-<nav class="bar" aria-label="主要アクション">
-  <a class="bar__s" href="#">LINEで<br>情報</a>
-  <a class="bar__p" href="07-yoyaku.html">日程を選ぶ<small>8:00〜翌1:00</small></a>
-  <a class="bar__s" href="#shippai">よくある<br>失敗</a>
-</nav>
-
-<script>
-  /* 戻る操作やブラウザのスクロール位置の復元で、ページ途中から表示されることがある。
-     ハッシュ指定がないときは必ず先頭から見せる。 */
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  window.addEventListener('load', function () {
-    if (!location.hash) window.scrollTo(0, 0);
-  });
-</script>
-
+<footer class="sector-footer"><div class="wrap"><div class="sector-footer-top"><div><p class="sector-brand">NXTERA</p><p>飲食店の集客サポート</p></div><a href="#top">ページの先頭へ ↑</a></div><p class="sector-note">運営法人・所在地・問い合わせ先・正式な提供範囲は確認中です。写真はAI生成のイメージで、実在の顧客・担当者を示すものではありません。支援例・成果物は説明用の架空例です。</p>
+<details class="sector-detail"><summary>個人情報・店舗情報の取り扱い</summary><div><p>このページには情報入力・送信機能はなく、予約先もモックです。実際の受付前に、情報の利用目的・保存期間・委託や第三者提供・削除依頼窓口と正式なプライバシーポリシーを公開します。顧客の個人情報を含む資料は、共有方法の確認後に必要な範囲だけお送りください。</p></div></details>
+</div></footer>
+<nav class="sector-mobile-bar" aria-label="主要アクション"><a href="#benefits">2つの特典</a><a href="07-yoyaku.html">集客を相談する <span aria-hidden="true">→</span></a></nav>
 </body>
 </html>
