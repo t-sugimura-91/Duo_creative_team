@@ -11,7 +11,7 @@
   仮値：ロゴ、後払い・初回手数料0円の適用条件（未確定）、山谷図の曲線。
   担当者は個人名・顔を出さず「体制」として示す（複数名対応の可能性／個人写真は失注要因）。
   資格名（税理士・中小企業診断士など）は未取得のため記載していません。
-  金額・実データ・実績数値はゼロ。画像の読み込みもゼロ（すべてインラインSVG）。
+  金額・実データ・実績数値はゼロ。画像は担当者カードの1枚のみ（顔なしの仮画像）。
   スタイルは tokens.css に集約（.who / .scope / .sheet / .ch-*）。
 -->
 <html lang="ja">
@@ -66,23 +66,12 @@
       </div>
 
       <!-- 「支援の範囲」を読んだ直後、CTAの真上に置く。誰がやるのかへの答え。
-           個人は出さない。複数名で対応する可能性があり、担当個人の写真・氏名は失注要因にもなるため。 -->
+           個人は出さない。複数名で対応する可能性があり、担当個人の写真・氏名は失注要因にもなるため。
+           写真は顔を写していない仮画像（画像生成プロンプト E-2）。本番は同構図で撮影する前提。 -->
       <aside class="who">
-        <svg class="who__fig" viewBox="0 0 400 190" preserveAspectRatio="xMidYMid slice" role="img"
-             aria-label="机をはさんで向かい合う2人。机の上に資金繰り表が1枚置かれている線画。">
-          <rect class="il-bg" width="400" height="190"/>
-          <circle class="il-ink12" cx="90" cy="74" r="26"/>
-          <path class="il-ink12" d="M38 150c4-34 26-50 52-50s48 16 52 50z"/>
-          <circle class="il-s il-accs" cx="310" cy="70" r="26"/>
-          <path class="il-s il-accs" d="M258 150c4-36 26-52 52-52s48 16 52 52z"/>
-          <g transform="rotate(-3 200 136)">
-            <rect class="il-s il-pa" x="152" y="120" width="96" height="30" rx="2"/>
-            <path class="il-s il-s--thin" d="M160 130h60M160 138h72"/>
-          </g>
-          <path class="il-s" d="M268 142 246 150"/>
-          <rect class="il-ink20" x="0" y="150" width="400" height="7"/>
-          <rect class="il-ink06" x="0" y="157" width="400" height="33"/>
-        </svg>
+        <img class="who__fig" src="images/05-shikin-who.webp"
+             width="400" height="240" loading="lazy" decoding="async"
+             alt="閉店後のテーブル。手書きの表を広げて、エプロン姿の店主と担当者が向かい合い、担当者が表の一行を指さしている。顔は写っていない。">
         <div>
           <p class="who__name">ひとりで作らなくて大丈夫です</p>
           <p class="who__role">先を読む表づくりから、書類の整理と面談の準備まで。相談から同じ担当が通して見ます（内容に応じて複数名で対応します）。</p>
