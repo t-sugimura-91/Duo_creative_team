@@ -2,7 +2,8 @@
 <!--
   NXTERA / 資金繰りLP — FV＋2セクションのデザインモック。
   構成は 02〜04 と同じ：FV → よくある失敗 → できること → CTA。
-  FVは2カラム（左に文字・右に写真）。人はCTAの真上、山谷図は「できること」へ（README 4-20）。
+  FVは上段だけ2カラム（左に文字・右に写真）。支援の範囲から下は横幅いっぱい（README 4-21）。
+  山谷図は「できること」へ移した（4-20）。
   対象は「表がない店」ではなく、**表はあるが先が読めていない店**（README 4-17）。
   試算表も通帳も終わった月の記録なので、そこを先へ伸ばすところから始める。
   診断（06）へは飛ばさない。06の5問は3領域横断で、資金繰りで来た人に販促費を聞くことになる。
@@ -47,17 +48,32 @@
 <main class="fv">
   <div class="wrap fv__in">
 
+    <!-- 上段だけ2カラム。写真はこの段の高さに収まる。
+         支援の範囲から下は .fv__wide で横幅いっぱいに回す（README 4-21）。 -->
     <div>
-      <p class="eyebrow">表はあるのに、先が読めていない店舗オーナーへ</p>
+      <p class="eyebrow">店舗オーナー向け</p>
 
-      <h1 class="catch">資金繰り、<em>苦しくなる前に</em><br>手を打てていますか。</h1>
+      <h1 class="catch">支払いに追われる前に<br><em>打てる手があります。</em></h1>
 
       <p class="catch-sub">お金が薄くなる時期を先に見つけ、入金と支払いのタイミングから整える。</p>
 
       <p class="sub">これからの入金と支払いを3〜6ヶ月先まで見える化し、資金が薄くなる時期を事前に把握します。</p>
 
       <p class="sub">必要に応じて、支払い時期を調整できるサービスの活用や、金融機関への相談に必要な書類整理・面談準備まで。状況に合わせて、資金繰りを改善する方法を一緒に考えます。</p>
+    </div>
 
+    <!-- 業種を特定しない1枚。顔は写さない（AI生成のため。README 4-18）。
+         本番は同構図で撮影する前提。プロンプトE。 -->
+    <aside class="shot" aria-label="閉店後のテーブルで、店主と担当者が資金繰り表を見ている写真">
+      <picture>
+        <source media="(max-width:859px)" srcset="images/05-shikin-sp.webp" width="800" height="533">
+        <img class="shot__img" src="images/05-shikin-hero-v.webp"
+           width="683" height="1024" loading="eager" decoding="async"
+           alt="閉店後のテーブル。手書きの表を広げて、エプロン姿の店主と担当者が向かい合い、担当者が表の一行を指さしている。顔は写っていない。">
+      </picture>
+    </aside>
+
+    <div class="fv__wide">
       <!-- どこまでやって、どこからはやらないか。条件とCTAより上に置く。 -->
       <div class="scope">
         <p class="scope__t">支援の範囲</p>
@@ -93,18 +109,6 @@
 
       <p class="ctanote">受付：8:00〜翌1:00<br>全国オンライン・1回30分。カメラはオフでも構いません。その場でのご契約は不要です。</p>
     </div>
-
-
-    <!-- 業種を特定しない1枚。顔は写さない（AI生成のため。README 4-18）。
-         本番は同構図で撮影する前提。プロンプトE。 -->
-    <aside class="shot" aria-label="閉店後のテーブルで、店主と担当者が資金繰り表を見ている写真">
-      <picture>
-        <source media="(max-width:859px)" srcset="images/05-shikin-sp.webp" width="800" height="533">
-        <img class="shot__img" src="images/05-shikin-hero-v.webp"
-           width="683" height="1024" loading="eager" decoding="async"
-           alt="閉店後のテーブル。手書きの表を広げて、エプロン姿の店主と担当者が向かい合い、担当者が表の一行を指さしている。顔は写っていない。">
-      </picture>
-    </aside>
 
     <p class="more">このあと：よくある失敗と、その理由／できること</p>
 

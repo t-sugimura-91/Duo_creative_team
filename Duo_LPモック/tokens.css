@@ -720,8 +720,8 @@ body[data-domain="shikin"]  .shot__img{aspect-ratio:2/3;}
    ============================================================ */
 /* 資金繰り：装飾を一段落とす。切迫している人は装飾を見ない。 */
 body[data-domain="shikin"] .fv::before{opacity:.28;background-image:none;}
-/* キャッチは2行。1行あたり12文字が折り返さない大きさに抑える
-   （資金繰り、苦しくなる前に ／ 手を打てていますか。）。 */
+/* キャッチは2行。1行あたり10文字が折り返さない大きさに抑える
+   （支払いに追われる前に ／ 打てる手があります。）。 */
 body[data-domain="shikin"] .catch{line-height:1.42;}
 @media (max-width:859px){
   body[data-domain="shikin"] .catch{font-size:min(6.6vw, 26px);}
@@ -835,3 +835,15 @@ body[data-domain="kotehi"] .catch{font-size:min(6.6vw, 26px);}
   letter-spacing:.04em;padding:6px var(--s-5);text-align:center;line-height:1.6;
 }
 .mockflag b{color:#F0C36D;font-weight:700;}
+
+/* ============================================================
+   05のFV：上段だけ2カラム
+   支援の範囲から下（.fv__wide）は横幅いっぱいに回す。
+   写真は上段の高さに合わせて切るので、本文を読み終えた位置で切れる（README 4-21）。
+   .shot__img の aspect-ratio を上書きするため、この層（ファイル末尾）に置いている。
+   ============================================================ */
+@media (min-width:860px){
+  body[data-domain="shikin"] .fv__wide{grid-column:1 / -1;margin-top:var(--s-10);}
+  body[data-domain="shikin"] .shot{align-self:stretch;}
+  body[data-domain="shikin"] .shot__img{aspect-ratio:auto;height:100%;object-fit:cover;}
+}
