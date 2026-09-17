@@ -1,0 +1,167 @@
+<!doctype html>
+<!--
+  ============================================================
+  NXTERA / LPモック一覧 — 各モックへの入口。
+  番号は 01〜07。06（3分診断）は現在未使用なので載せていない（README 4-16）。
+  リンクは同じフォルダの相対パス。ダブルクリックでそのまま開ける。
+  ============================================================
+-->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NXTERA LPモック一覧</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEAE4; --card:#FAF8F4;
+    --ink:#17191C; --ink-2:#474C52; --ink-3:#666C73;
+    --line:#DED8CD; --brand:#1E4A3D;
+    --inshoku:#C1440E; --biyo:#46707F; --kotehi:#9A6410; --shikin:#2F5D8C;
+    --shadow:0 1px 2px rgba(23,25,28,.05), 0 14px 30px -20px rgba(23,25,28,.4);
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;
+    padding:40px 16px 56px;line-height:1.8;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:820px;margin-inline:auto;}
+
+  .eyebrow{
+    margin:0;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;
+    font-size:12px;letter-spacing:.16em;color:var(--brand);
+  }
+  h1{
+    margin:8px 0 0;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;
+    font-size:clamp(24px,5.2vw,32px);line-height:1.35;letter-spacing:.01em;text-wrap:balance;
+  }
+  .lede{margin:14px 0 0;font-size:15px;color:var(--ink-2);max-width:40em;}
+
+  .note{
+    margin-top:24px;padding:14px 16px;border-radius:4px;
+    background:var(--card);border:1px solid var(--line);border-left:4px solid var(--brand);
+    font-size:13px;line-height:1.85;color:var(--ink-2);
+  }
+  .note b{color:var(--ink);font-weight:700;}
+
+  .list{list-style:none;margin:32px 0 0;padding:0;display:grid;gap:14px;}
+  .item a{
+    display:block;text-decoration:none;color:inherit;
+    background:var(--card);border:1px solid var(--line);border-radius:6px;
+    padding:20px 22px;box-shadow:var(--shadow);
+    transition:transform .08s ease, border-color .15s ease;
+  }
+  .item a:hover{border-color:var(--ink-3);transform:translateY(-1px);}
+  .item a:focus-visible{outline:2px solid var(--brand);outline-offset:3px;}
+  .no{
+    font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;
+    font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-right:10px;
+  }
+  .tag{
+    display:inline-block;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;
+    font-size:11px;letter-spacing:.1em;color:#fff;padding:3px 9px;border-radius:2px;
+  }
+  .tag--all{background:var(--brand);}
+  .tag--inshoku{background:var(--inshoku);}
+  .tag--biyo{background:var(--biyo);}
+  .tag--kotehi{background:var(--kotehi);}
+  .tag--shikin{background:var(--shikin);}
+  .tag--common{background:var(--ink-2);}
+  .item h2{
+    margin:10px 0 0;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;
+    font-size:18px;line-height:1.5;
+  }
+  .item p{margin:6px 0 0;font-size:13.5px;color:var(--ink-2);line-height:1.8;}
+  .item .go{margin-top:12px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:13px;color:var(--brand);}
+  .item .go::after{content:" →";}
+
+  footer{
+    margin-top:36px;padding-top:18px;border-top:1px solid var(--line);
+    font-size:12px;color:var(--ink-3);line-height:1.9;
+  }
+  footer b{color:var(--ink-2);font-weight:700;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <p class="eyebrow">DESIGN MOCK</p>
+  <h1>NXTERA LPモック</h1>
+  <p class="lede">店舗オーナー向けの支援サービスのランディングページ案です。6枚をブラウザで確認できます。</p>
+
+  <p class="note">
+    <b>これはデザイン確認用のモックです。</b><br>
+    サービス名「NXTERA」は仮称、料金・相談時間・受付時間・特典の内容はすべて仮の値です。
+    写真はAI生成の仮画像で、本番は同じ構図で撮影する前提です。
+    実績数値（支援店舗数・改善率など）は、まだ存在しないため<b>意図的に一切載せていません</b>。
+  </p>
+
+  <ul class="list">
+    <li class="item">
+      <a href="01-shukyaku-tougou.html">
+        <span class="no">01</span><span class="tag tag--all">業種を問わない一般クエリ向け</span>
+        <h2>店舗の集客サポート</h2>
+        <p>「店舗 集客」「MEO対策」など業種を含まない検索から来た人の受け皿。飲食と理美容の両方に触れ、施策ありきではなく確認したいことから入る構成です。</p>
+        <p class="go">開く</p>
+      </a>
+    </li>
+
+    <li class="item">
+      <a href="02-shukyaku-inshoku.html">
+        <span class="no">02</span><span class="tag tag--inshoku">飲食店向け</span>
+        <h2>その空席、来月もそのままにしますか。</h2>
+        <p>飲食店の集客LP。ファーストビューの下に「よくある失敗」と「できること」を置き、失敗の一つひとつに支援内容が対応する構成です。</p>
+        <p class="go">開く</p>
+      </a>
+    </li>
+
+    <li class="item">
+      <a href="03-shukyaku-biyo.html">
+        <span class="no">03</span><span class="tag tag--biyo">美容室・サロン向け</span>
+        <h2>予約が入らない理由、見えていますか。</h2>
+        <p>サロンの集客LP。構成は飲食版と同じで、失敗事例と支援内容がサロン特有のもの（掲載プラン・次回予約・単価）に差し替わります。</p>
+        <p class="go">開く</p>
+      </a>
+    </li>
+
+    <li class="item">
+      <a href="04-kotehi.html">
+        <span class="no">04</span><span class="tag tag--kotehi">固定費の見直し</span>
+        <h2>店舗の固定費、まとめて見直し。</h2>
+        <p>家賃・電気・通信・決済手数料・サブスクなどの見直し。気になる費目を選ぶとページ内で確認する順番が出ます。月額だけでなく、変更後にかかる総額まで並べます。</p>
+        <p class="go">開く</p>
+      </a>
+    </li>
+
+    <li class="item">
+      <a href="05-shikinguri.html">
+        <span class="no">05</span><span class="tag tag--shikin">資金繰りの整理</span>
+        <h2>店舗の資金繰りを、先を見て整える。</h2>
+        <p>これからの入金と支払いを先まで並べて、資金が薄くなる時期を事前に見つけます。金融機関への相談に必要な書類整理・面談準備まで。</p>
+        <p class="go">開く</p>
+      </a>
+    </li>
+
+    <li class="item">
+      <a href="07-yoyaku.html">
+        <span class="no">07</span><span class="tag tag--common">共通</span>
+        <h2>相談スケジュール（予約カレンダー）</h2>
+        <p>各LPの「相談スケジュールを選ぶ」の遷移先。8:00から翌0:30まで30分刻みで、オーナー自身が枠を選べます。競合36社を調べた範囲では、予約カレンダーを置いている会社はありませんでした。</p>
+        <p class="go">開く</p>
+      </a>
+    </li>
+  </ul>
+
+  <footer>
+    スマートフォンでも確認できます。写真はPCでは縦位置、スマホでは横長に切り替わります。<br>
+    <b>06（3分診断）は載せていません。</b>広告LPとして使う予定がなく、どのLPからもリンクしていないためです（README 4-16）。ファイル自体は <code>06-shindan.html</code> に残してあります。
+  </footer>
+
+</div>
+
+</body>
+</html>
