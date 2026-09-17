@@ -636,11 +636,14 @@ body[data-domain="kotehi"]  .shot__img{aspect-ratio:2/3;}
   border:1px solid var(--c-line);border-left:3px solid var(--c-accent);
   border-radius:var(--r-1);box-shadow:var(--sh-1);
 }
+/* 写真を入れる枠。線画のときの2:1だと人物が細く切れるので5:3にした。
+   本番で実在スタッフを撮るまでは、顔の写らない仮画像を入れる（画像生成プロンプト E-2）。 */
 .who__fig{
-  width:132px;height:72px;flex:none;border-radius:var(--r-1);
+  width:150px;height:90px;flex:none;border-radius:var(--r-1);
   background:var(--c-bg-sunk);border:1px solid var(--c-line);
+  object-fit:cover;
 }
-@media (min-width:860px){ .who__fig{width:168px;height:84px;} }
+@media (min-width:860px){ .who__fig{width:200px;height:120px;} }
 /* 担当者カードは「個人」ではなく「体制」を示す枠。
    氏名・顔は出さない（複数名で対応する可能性があり、担当個人の写真は失注要因にもなるため）。
    .who__name は短い約束の一行、.who__role はその中身。 */
