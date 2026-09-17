@@ -718,7 +718,12 @@ body[data-domain="kotehi"]  .shot__img{aspect-ratio:2/3;}
    ============================================================ */
 /* 資金繰り：装飾を一段落とす。切迫している人は装飾を見ない。 */
 body[data-domain="shikin"] .fv::before{opacity:.28;background-image:none;}
-body[data-domain="shikin"] .catch{line-height:1.42;}
+/* キャッチは1行（資金繰り、サポートします。）。12文字が折り返さない大きさに抑える。
+   他LPと体裁を揃える必要はないという判断で、2行の型から外してある。 */
+body[data-domain="shikin"] .catch{line-height:1.42;font-size:min(6.6vw, 26px);}
+@media (min-width:860px){
+  body[data-domain="shikin"] .catch{font-size:clamp(27px, 3.0vw, 38px);}
+}
 
 /* 理美容：4枚のうち最も静か。線を細く、余白を広く、絵の面積を大きく。 */
 body[data-domain="biyo"]{--c-line:#E4E5E2;}
