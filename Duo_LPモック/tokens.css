@@ -515,7 +515,8 @@ img{max-width:100%;}
 body[data-domain="inshoku"] .shot__img,
 body[data-domain="biyo"]    .shot__img,
 body[data-domain="tougou"]  .shot__img,
-body[data-domain="kotehi"]  .shot__img{aspect-ratio:2/3;}
+body[data-domain="kotehi"]  .shot__img,
+body[data-domain="shikin"]  .shot__img{aspect-ratio:2/3;}
 
 /* SPでは縦位置のまま縮小するとFVが1画面に収まらないため、横長の別ファイルへ
    差し替える（<picture>のsourceで切替）。キャッチより上に置き、開いた瞬間に
@@ -526,15 +527,18 @@ body[data-domain="kotehi"]  .shot__img{aspect-ratio:2/3;}
   body[data-domain="inshoku"] .fv__in,
   body[data-domain="biyo"]    .fv__in,
   body[data-domain="tougou"]  .fv__in,
-  body[data-domain="kotehi"]  .fv__in{display:flex;flex-direction:column;}
+  body[data-domain="kotehi"]  .fv__in,
+  body[data-domain="shikin"]  .fv__in{display:flex;flex-direction:column;}
   body[data-domain="inshoku"] .shot,
   body[data-domain="biyo"]    .shot,
   body[data-domain="tougou"]  .shot,
-  body[data-domain="kotehi"]  .shot{display:block;order:-1;margin-bottom:var(--s-5);}
+  body[data-domain="kotehi"]  .shot,
+  body[data-domain="shikin"]  .shot{display:block;order:-1;margin-bottom:var(--s-5);}
   body[data-domain="inshoku"] .shot__img,
   body[data-domain="biyo"]    .shot__img,
   body[data-domain="tougou"]  .shot__img,
-  body[data-domain="kotehi"]  .shot__img{aspect-ratio:3/2;}
+  body[data-domain="kotehi"]  .shot__img,
+  body[data-domain="shikin"]  .shot__img{aspect-ratio:3/2;}
 }
 @media (max-width:859px){
   body[data-domain="tougou"] .shot{order:0;margin-top:var(--s-6);margin-bottom:0;}
@@ -636,8 +640,10 @@ body[data-domain="kotehi"]  .shot__img{aspect-ratio:2/3;}
   border:1px solid var(--c-line);border-left:3px solid var(--c-accent);
   border-radius:var(--r-1);box-shadow:var(--sh-1);
 }
-/* 写真を入れる枠。線画のときの2:1だと人物が細く切れるので5:3にした。
-   本番で実在スタッフを撮るまでは、顔の写らない仮画像を入れる（画像生成プロンプト E-2）。 */
+/* 写真はFV右カラムへ移したので、05のカードは図を持たない（.who--text）。
+   同じ写真を1ページに2回出さないため。.who__fig の定義は、
+   別ページで図つきのカードを使う場合に備えて残してある。 */
+.who--text{gap:0;}
 .who__fig{
   width:150px;height:90px;flex:none;border-radius:var(--r-1);
   background:var(--c-bg-sunk);border:1px solid var(--c-line);
@@ -673,21 +679,16 @@ body[data-domain="kotehi"]  .shot__img{aspect-ratio:2/3;}
 
 /* ============================================================
    資金繰り表（.sheet）＋ 山谷の折れ線（.ch-*）
-   数字は人より下。FVを1カラムにしたので、本文→人→条件→CTA→数字の順に縦へ並ぶ。
+   図は「できること」セクションへ移した。FVは2カラムで、右は写真。
    ============================================================ */
-/* 05のFVは1カラム。右カラムを作らず、図は本文の流れの下に置く。
-   本文が4段落あるので、横に置くより読み終わったところで図に出会うほうが素直。 */
+/* 05のFVは2カラムに戻した。右は写真、図は「できること」へ移してある（README 4-20）。
+   .sheet はFVを離れてカードの下に入るので、幅の上限だけ残す。 */
 .sheet{
   display:block;background:var(--c-surface);border:1px solid var(--c-line);
   border-radius:var(--r-2);padding:var(--s-5);position:relative;box-shadow:var(--sh-1);
   margin-top:var(--s-6);
 }
-body[data-domain="shikin"] .fv__in{display:flex;flex-direction:column;}
-/* 1カラムだと幅いっぱいに伸びて図が間延びするので、広い画面では上限を置く */
-@media (min-width:860px){
-  body[data-domain="shikin"] .fv__in{gap:0;}
-  .sheet{max-width:560px;margin-top:var(--s-8);}
-}
+@media (min-width:860px){ .sheet{max-width:620px;margin-top:var(--s-8);} }
 .sheet__label{
   position:absolute;top:-11px;left:12px;font-size:var(--fs-100);
   letter-spacing:.08em;color:var(--c-ink-2);background:var(--c-bg);
@@ -725,7 +726,10 @@ body[data-domain="shikin"] .catch{line-height:1.42;}
 @media (max-width:859px){
   body[data-domain="shikin"] .catch{font-size:min(6.6vw, 26px);}
 }
-/* PCはFVが1カラムで幅に余裕があるため、標準の --fs-900 のまま（上限は置かない）。 */
+/* FVを2カラムに戻したぶん左カラムが狭いので、PCにも上限を置く（860pxで最も余裕がない）。 */
+@media (min-width:860px){
+  body[data-domain="shikin"] .catch{font-size:clamp(27px, 3.0vw, 38px);}
+}
 
 /* 理美容：4枚のうち最も静か。線を細く、余白を広く、絵の面積を大きく。 */
 body[data-domain="biyo"]{--c-line:#E4E5E2;}
