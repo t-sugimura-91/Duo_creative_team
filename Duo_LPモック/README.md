@@ -1089,9 +1089,18 @@ E-2で生成した `05-shikinguri-hero-v.png`（1536×1024）から切り出し�
 `.fv__in` はもともと `grid-template-columns:minmax(0,1fr) 380px` のグリッドなので、
 **下段を `.fv__wide` で包んで `grid-column:1 / -1` を当てるだけ**で横幅いっぱいになる。
 
-写真は `align-self:stretch` ＋ `.shot__img{aspect-ratio:auto;height:100%}` で
-**上段の高さ（＝左の文字ブロックの高さ）に合わせて切る**。比率より高さを優先させている。
+写真は `align-self:stretch` で上段の高さに合わせ、
+`.shot__img{aspect-ratio:auto;width:100%;height:100%;object-fit:cover}` で
+**上段の高さ（＝左の文字ブロックの高さ）に切る**。比率より高さを優先させている。
 これで写真の下端と支援の範囲の上端が揃い、左側に空白が溜まらない。
+
+**`<picture>` に `flex:1 1 auto` を渡すのを忘れると効かない。**
+`.shot` は `display:flex;flex-direction:column` のコンテナで、その子は `<img>` ではなく
+`<picture>`。picture が高さを持たないと、img の `height:100%` が解決先を失って auto に落ち、
+**写真が縮まずに支援の範囲を下へ押し下げる。** 最初の実装がこれで、見た目が崩れていた。
+
+`object-position:center 42%` は、切り落とす位置の指定。
+手元と書類が縦のやや上寄りにあるので、下を多めに落としている。
 
 **この上書きは `tokens.css` の末尾に置いた。** `body[data-domain="shikin"] .shot__img{aspect-ratio:2/3}`
 より後ろでないと効かないため。

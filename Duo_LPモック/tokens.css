@@ -839,11 +839,16 @@ body[data-domain="kotehi"] .catch{font-size:min(6.6vw, 26px);}
 /* ============================================================
    05のFV：上段だけ2カラム
    支援の範囲から下（.fv__wide）は横幅いっぱいに回す。
-   写真は上段の高さに合わせて切るので、本文を読み終えた位置で切れる（README 4-21）。
+   写真は上段の高さ（＝左の文字ブロックの高さ）に合わせて切る。比率より高さを優先。
+   .shot は flex コンテナで、中の <picture> が高さを持たないと img の height:100% が
+   解決しない。picture に flex:1 を渡して初めて写真が縮む。
    .shot__img の aspect-ratio を上書きするため、この層（ファイル末尾）に置いている。
    ============================================================ */
 @media (min-width:860px){
-  body[data-domain="shikin"] .fv__wide{grid-column:1 / -1;margin-top:var(--s-10);}
+  body[data-domain="shikin"] .fv__wide{grid-column:1 / -1;margin-top:var(--s-8);}
   body[data-domain="shikin"] .shot{align-self:stretch;}
-  body[data-domain="shikin"] .shot__img{aspect-ratio:auto;height:100%;object-fit:cover;}
+  body[data-domain="shikin"] .shot picture{display:block;flex:1 1 auto;min-height:0;}
+  body[data-domain="shikin"] .shot__img{
+    aspect-ratio:auto;width:100%;height:100%;object-fit:cover;object-position:center 42%;
+  }
 }
